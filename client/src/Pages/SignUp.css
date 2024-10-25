@@ -1,0 +1,81 @@
+.signup-section{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #f1faee;
+    /* background: url("../assets/images/mountain-minimal.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; */
+}
+
+.signup-form{
+    width: 35%;
+    height: 75vh;
+    padding: 1rem;
+    background-color: white;
+    border-radius: .3rem;
+    /* box-shadow: 10px 10px 10px grey; */
+    filter: drop-shadow(5px 5px 5px grey);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signup-form h2{
+    font-size: 2rem;
+    font-weight: 400;
+    /* background-color: pink; */
+}
+
+.signup-form form{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+    /* background-color: aqua; */
+    padding: 1.3rem;
+    gap: .2rem;
+}
+
+.signup-form label{
+    font-size: 1.7rem;
+}
+
+.signup-inputs{
+    width: 95%;
+    padding: .5rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+    font-size: 1.2rem;
+    /* background-color: pink; */
+}
+
+.signup-btn{
+    width: 50%;
+    background: linear-gradient(to right,rgb(19, 19, 152), dodgerblue);
+    font-size: 1.3rem;
+    border: none;
+    padding: .4rem;
+    border-radius: .3rem;
+    color: white;
+    margin: 1.2rem auto 0 auto;
+    cursor: pointer;
+}
+
+.acc-already{
+    /* background-color: pink; */
+    font-size: 1.3rem;
+}
+
+.acc-already a{
+    color: rgb(5, 5, 35);
+    text-decoration: none;
+}

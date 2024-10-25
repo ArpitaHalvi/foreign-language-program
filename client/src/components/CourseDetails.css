@@ -1,0 +1,126 @@
+/* COURSE DETAILS PAGE */
+.box{
+    width: 100%;
+    background-color: #f1faee;
+    padding: 1.5rem 0;
+}
+
+.course-details{
+    width: 80%;
+    /* height: 90vh; */
+    margin: 0 auto;
+    background-color: #f0fcff;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%,1fr));
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: .4rem;
+    /* box-shadow: 5px 5px 5px 5px grey; */
+    /* filter: drop-shadow(5px 5px 5px grey); */
+    border: 1px solid rgb(222, 221, 221);
+}
+
+.course-details .further-info{
+    font-size: 1.3rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+.course-details .course-item{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: .5rem;
+    filter: drop-shadow(5px 5px 5px grey);
+}
+
+.course-img img{
+    width: 100%;
+    height: 50%;
+    border-radius: .5rem .5rem 0 0;
+}
+
+.course-img img:hover{
+    filter: brightness(60%);
+}
+
+.course-item .course-info{
+    height: 50%;
+    padding: .5rem;
+    /* background-color: plum; */
+}
+
+.course-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: .5rem; */
+}
+
+.course-name{
+    width: 93%;
+    font-size: 1.4rem;
+    font-weight: 400;
+    /* background-color: aqua; */
+}
+
+.age-group,.duration{
+    width: 93%;
+    font-size: 1.25rem;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: space-between;
+    margin: 4% 0;
+}
+
+.age-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-info .fee,.course-info .mode{
+    background: linear-gradient(to right, black, grey);
+    background-clip: text;
+    color: transparent;
+    font-size: 1.4rem;
+    text-align: right;
+    line-height: 1.2rem;
+}
+
+/* ******************* FIX THIS ******************** */
+
+.mode{
+    margin-left: .7rem;
+    align-self: first baseline;
+}
+
+/* ********************** DONE SOME CHANGES BUT MIGHT REQUIRE MORE LATER ******************* */
+.course-info a{
+    width: 100%;
+    text-decoration: none;
+    color: white;
+    padding: .4rem 1.7rem;
+}
+
+.join-btn-container{
+    width: 100%;
+    /* background-color: aqua; */
+}
+
+.join-btn{
+    width: 50%; 
+    border-radius: .4rem;
+    border: none;
+    background: linear-gradient(to right, blue,dodgerblue);
+    color: white;   
+    font-size: 1.1rem;
+    display: block;
+    cursor: pointer;
+}
+
+.course-item:nth-of-type(5) h2{
+    font-size: 1.6rem;
+}
