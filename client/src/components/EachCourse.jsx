@@ -1,5 +1,5 @@
 import React from "react";
-import "./Courses.css";
+import "./Courses.scss";
 import { NavLink } from "react-router-dom";
 
 export default function EachCourse({ title, fees, eligibility }) {

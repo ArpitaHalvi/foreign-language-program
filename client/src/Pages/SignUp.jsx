@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SignUp.css";
+import "./SignUp.scss";
 import { NavLink } from "react-router-dom";
 import { Facebook, Google, LinkedIn } from "@mui/icons-material";
 

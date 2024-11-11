@@ -1,7 +1,7 @@
 import React from "react";
 import EachCourse from "./EachCourse";
 import { courses } from "../data.js";
-import "./Courses.css";
+import "./Courses.scss";
 
 export default function AllCourses() {
   return (

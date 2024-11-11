@@ -1,7 +1,8 @@
-import React from "react";
 import Courses from "./Courses";
-import "./CourseDetails.css";
+import "./Courses.scss";
 import { courses } from "../data";
+import { NavLink } from "react-router-dom";
+import { ContactMailOutlined } from "@mui/icons-material";
 
 export default function CoursesRender() {
   return (
@@ -18,8 +19,17 @@ export default function CoursesRender() {
         })}
         <br />
         <p className="further-info">
-          For further information contact us or send an email on
-          <a href=""> sonalchaturvedi76@gmail.com</a>
+          <div className="syllabus">
+            All the above courses will have the same syllabus and can be found
+            here -
+            <NavLink to="/syllabus" className="syllabus-pdf">
+              Syllabus
+            </NavLink>
+          </div>
+          <NavLink to="/contact" className="contact-us">
+            CONTACT US
+            <ContactMailOutlined htmlColor="#050524" />
+          </NavLink>
         </p>
       </section>
     </div>

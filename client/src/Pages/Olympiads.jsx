@@ -1,5 +1,4 @@
-import React from "react";
-import "./Olympiads.css";
+import "./Olympiads.scss";
 import globe from "../assets/images/study.jpg";
 import { NavLink } from "react-router-dom";
 

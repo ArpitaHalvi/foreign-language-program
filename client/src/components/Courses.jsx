@@ -1,5 +1,5 @@
-import React from "react";
-import "./CourseDetails.css";
+/* eslint-disable react/prop-types */
+import "./Courses.scss";
 import study from "../assets/images/study.jpg";
 import { NavLink } from "react-router-dom";
 
@@ -10,14 +10,15 @@ export default function Courses({ title, eligibility, fees, mode, duration }) {
         <img src={study} alt="course-img" />
       </div>
       <div className="course-info">
-        <h2 className="course-name">{title}</h2>
-        <p className="age-group">
-          <span>{eligibility}</span>
-          <span className="fee">Rs {fees}/-</span>
-        </p>
-        <p className="duration">Duration - {duration}</p>
-        <p className="mode">{mode}</p>
-
+        <div className="course-data">
+          <h2 className="course-name">{title}</h2>
+          <p className="age-group">
+            <span>{eligibility}</span>
+            <span className="fee">Rs {fees}/-</span>
+          </p>
+          <p className="duration">Duration - {duration}</p>
+          <p className="mode">{mode}</p>
+        </div>
         <div className="join-btn-container">
           <button className="join-btn">
             <NavLink to="/register" className="join-link">
@@ -29,5 +30,3 @@ export default function Courses({ title, eligibility, fees, mode, duration }) {
     </div>
   );
 }
-
-// data-aos="zoom-in"

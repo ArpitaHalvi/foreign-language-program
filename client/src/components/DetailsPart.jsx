@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function DetailsPart() {
   return (
     <section className="details-part">
@@ -19,5 +17,3 @@ export default function DetailsPart() {
     </section>
   );
 }
-
-// data-aos="flip-left"

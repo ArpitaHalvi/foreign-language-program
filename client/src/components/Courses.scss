@@ -1,0 +1,198 @@
+@import "../index.scss";
+
+/* ******************** COURSE HEAD ****************** */
+.courses {
+  width: 100%;
+  position: relative;
+  .course-section {
+    position: absolute;
+    left: 1.5vw;
+    top: 30vh;
+    padding: 1rem;
+    width: 22%;
+    text-transform: uppercase;
+    font-size: 4rem;
+    color: #050523;
+    line-height: 4rem;
+    font-weight: 400;
+    @media (500px<width<=700px) {
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+    }
+    @media (width<=500px) {
+      font-size: 2rem;
+      line-height: 2rem;
+    }
+  }
+}
+
+/* *************************** COURSE RENDER *********************** */
+.all-courses {
+  max-width: 100%;
+  display: grid;
+  /* grid-template-rows: repeat(3,1fr); */
+  /* gap: .2rem; */
+  //   background-color: #f1faee;
+  background-color: bisque;
+}
+
+.course-box {
+  background-color: dodgerblue;
+}
+
+.course-box:nth-of-type(2) {
+  background-color: blue;
+}
+
+.course {
+  width: 20%;
+  height: fit-content;
+  @include flex-box($flex-dir: column);
+  /* grid-template-rows: repeat(2,1fr); */
+  padding: 1.8rem;
+  margin: 3vh auto;
+  /* border-radius: .5rem; */
+  /* border-radius: 50%; */
+  /* border-radius: 40% 20% / 10% 40%; */
+  border-radius: 30% 70% 30% 70%/ 30% 30% 70% 70%;
+  transition: 0.2s;
+  background-color: white;
+  background-color: blue;
+  box-shadow: 5px 5px 20px grey;
+  text-align: center;
+  a {
+    @include flex-box($flex-dir: column);
+    gap: 1.2rem;
+    text-decoration: none;
+    color: black;
+  }
+  .course-title {
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 0.3rem;
+    line-height: 2.2rem;
+    transition: all 500ms;
+  }
+}
+
+// *********************** COURSE DETAILS ***************************
+.box {
+  width: 100%;
+  padding: 1.5rem 0;
+  .course-details {
+    width: 90%;
+    margin: 0 auto;
+    background-color: #f0fcff;
+    @include res-grid(calc(100% / 3));
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid #dedddd;
+    .course-item {
+      width: 80%;
+      background-color: white;
+      border-radius: 0.5rem;
+      filter: drop-shadow(5px 5px 5px grey);
+      .course-img {
+        img {
+          @include img-setting;
+          border-radius: 0.5rem 0.5rem 0 0;
+          &:hover {
+            filter: brightness(60%);
+          }
+        }
+      }
+      .course-info {
+        @include flex-box($flex-dir: column);
+        padding: 0.5rem;
+        background-color: plum;
+        .course-data {
+          width: 100%;
+          @include flex-box($flex-dir: column);
+          .course-name {
+            width: 100%;
+            font-size: 1.4rem;
+            font-weight: 400;
+            background-color: aqua;
+            @media (width<=1040px) {
+              font-size: 1.2rem;
+            }
+          }
+          .age-group,
+          .duration {
+            width: 100%;
+            font-size: 1.25rem;
+            background-color: aqua;
+            display: flex;
+            justify-content: space-between;
+            margin: 4% 0;
+            @media (width<=1040px) {
+              font-size: 1.1rem;
+            }
+          }
+          .age-group {
+            @include flex-box($justify-content: space-between);
+          }
+          .fee,
+          .mode {
+            background: linear-gradient(to right, black, grey);
+            background-clip: text;
+            color: transparent;
+            font-size: 1.4rem;
+            align-self: first baseline;
+          }
+        }
+        .join-btn-container {
+          width: 100%;
+          background-color: aqua;
+          .join-btn {
+            width: 50%;
+            border-radius: 0.4rem;
+            border: none;
+            background: linear-gradient(to right, blue, dodgerblue);
+            font-size: 1.1rem;
+            a {
+              color: white;
+            }
+            @media (width<=800px) {
+              width: 60%;
+            }
+            @media (width<=700px) {
+              width: 50%;
+            }
+          }
+        }
+      }
+      @media (500px<width<=900px) {
+        width: 60%;
+      }
+    }
+    .further-info {
+      @include flex-box($flex-dir: column);
+      margin: 10% auto;
+      font-size: 1.3rem;
+      padding: 1rem;
+      gap: 1rem;
+      text-align: center;
+      a {
+        color: black;
+      }
+      .syllabus-pdf {
+        color: #673597;
+      }
+      .contact-us {
+        @include flex-box;
+        gap: 1rem;
+        padding: 0.8rem;
+        border-radius: 5px;
+        background-color: #dedddd;
+        &:hover {
+          background-color: #b8b4b4;
+        }
+      }
+    }
+    @media (width<=900px) {
+      @include res-grid;
+      gap: 2rem;
+    }
+  }
+}

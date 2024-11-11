@@ -29,6 +29,10 @@ const userSchema = new Schema({
             enum: ["Olympiads", "A1-A2 Level", "B1-B2 Level", "Professional Course", "Delf Preparation", "TCF & TEF Preparation"],
         }
     ],
+    isAdmin: {
+        type: Boolean,
+        default: false
+    }
 });
 
 userSchema.pre('save', async function (next) {
@@ -62,6 +66,11 @@ userSchema.methods.generateToken = function () {
     } catch (error) {
         console.error(error);
     }
+}
+
+// COMPARING PASSWORDS 
+userSchema.methods.comparePassword = function (password) {
+    return bcrypt.compare(password, this.password);
 }
 
 // Model acts as a higher-level abstraction that interacts with the database based on the defined schema.

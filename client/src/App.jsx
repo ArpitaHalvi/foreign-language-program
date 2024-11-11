@@ -1,10 +1,9 @@
-// import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./components/Home.css";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import "./components/Home.scss";
+// import './App.scss';
+// import AOS from "aos";
+// import "aos/dist/aos.css";
 import Home from "./components/Home";
-import Footer from "./components/Footer";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import About from "./Pages/About";
@@ -16,10 +15,11 @@ import Olympiads from "./Pages/Olympiads.jsx";
 import SignUp from "./Pages/SignUp.jsx";
 
 function App() {
-  AOS.init({
-    offset: 300,
-    duration: 700,
-  });
+  // ********* WON'T NEED IT MAY BE ****************
+  // AOS.init({
+  //   offset: 300,
+  //   duration: 700,
+  // });
   return (
     <>
       <BrowserRouter>
@@ -35,7 +35,6 @@ function App() {
           <Route path="/olympiads" element={<Olympiads />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-        {/* <Footer /> */}
       </BrowserRouter>
     </>
   );

@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+@mixin flex-box(
+  $justify-content: center,
+  $align-items: center,
+  $flex-dir: row
+) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $flex-dir;
+}
+
+@mixin res-grid($col-width: 50%) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($col-width, 1fr));
+  place-items: center;
+}
+
+@mixin img-setting($width: 100%, $object-fit: contain) {
+  width: $width;
+  aspect-ratio: 3/2;
+  object-fit: $object-fit;
+}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Register.css";
+import "./Register.scss";
 
 export default function Register() {
   const [user, setUser] = useState({
@@ -42,16 +42,6 @@ export default function Register() {
             autoComplete="off"
           />
           {/* $$$$$$$$$$$$$$$$$$$$$$$$$$ CONFIRMATION EMAIL FUNCTIONALITY $$$$$$$$$$$$$$$$$$$$$$$$$$$*/}
-          {/* <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            required
-            value={user.email}
-            onChange={handleInput}
-            autoComplete="off"
-          /> */}
           <label htmlFor="courses" id="select-label">
             Select your course
           </label>
