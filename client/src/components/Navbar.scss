@@ -1,7 +1,7 @@
-@import "../index.scss";
-/* ********************** NAVBAR ************************** */
+@use "../index" as index;
+/* ********************** NAVBAR *********************** */
 .head {
-  @include flex-box;
+  @include index.flex-box;
   width: 100%;
   height: 10vh;
   background-color: white;
@@ -11,7 +11,7 @@
   z-index: 1;
   border-bottom: 1px solid #b3b3bb;
   .logo {
-    @include flex-box($justify-content: flex-start);
+    @include index.flex-box($justify-content: flex-start);
     width: 30%;
     padding-left: 2rem;
     // background-color: blueviolet;
@@ -26,18 +26,17 @@
     }
   }
   .navbar {
-    @include flex-box($justify-content: space-between);
+    @include index.flex-box($justify-content: space-between);
     padding: 0 1rem;
     // background-color: #407777;
     width: 70%;
     ul {
       width: 60%;
-      @include flex-box($justify-content: space-between);
+      @include index.flex-box($justify-content: space-between);
       // background-color: aquamarine;
       li {
-        @include flex-box;
+        @include index.flex-box;
         // background-color: chartreuse;
-        gap: 0.5rem;
         .navbar-icons {
           color: #04042d;
         }
@@ -48,19 +47,21 @@
         //   transition: background-color 300ms;
         // }
         a {
+          @include index.flex-box;
+          gap: 0.5rem;
           font-size: 1.5rem;
           color: #04042d;
+          transition: border-bottom;
         }
       }
     }
     .navigation {
-      @include flex-box;
+      @include index.flex-box;
       gap: 2rem;
       #register-btn,
       #signup-btn {
         padding: 0.5rem 1rem;
         color: #050523;
-        // background-color: #f3f1f1;
         font-size: 1.2rem;
         border: 2px solid #050543;
         border-radius: 0.3rem;
@@ -93,12 +94,28 @@
 
 .active-link {
   border-bottom: 2px solid #050523;
+  animation: 2s link-animate ease-in forwards;
+}
+
+@keyframes link-animate {
+  0% {
+    border-bottom-width: 25%;
+  }
+  50% {
+    border-bottom-width: 50%;
+  }
+  75% {
+    border-bottom-width: 75%;
+  }
+  100% {
+    border-bottom-width: 100%;
+  }
 }
 
 @media (width<=1150px) {
   .head {
     .navbar {
-      @include flex-box($justify-content: flex-end);
+      @include index.flex-box($justify-content: flex-end);
       ul,
       .navigation {
         display: none;

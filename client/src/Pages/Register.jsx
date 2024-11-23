@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Register.scss";
 
 export default function Register() {
   const [user, setUser] = useState({
     fullname: "",
     email: "",
-    phone: "",
     courses: "",
-    password: "",
   });
 
   const handleInput = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
+    const { name, value } = e.target;
 
     setUser((prevData) => {
       return {
@@ -26,6 +23,7 @@ export default function Register() {
     e.preventDefault();
     console.log(user);
   };
+
   return (
     <section className="register-page">
       <div className="register-form">
@@ -41,6 +39,17 @@ export default function Register() {
             onChange={handleInput}
             autoComplete="off"
           />
+          <label htmlFor="email">email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            value={user.email}
+            onChange={handleInput}
+            autoComplete="off"
+          />
+
           {/* $$$$$$$$$$$$$$$$$$$$$$$$$$ CONFIRMATION EMAIL FUNCTIONALITY $$$$$$$$$$$$$$$$$$$$$$$$$$$*/}
           <label htmlFor="courses" id="select-label">
             Select your course

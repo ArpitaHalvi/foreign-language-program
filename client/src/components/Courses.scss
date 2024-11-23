@@ -1,4 +1,5 @@
-@import "../index.scss";
+// @import "../index.scss";
+@use "../index" as index;
 
 /* ******************** COURSE HEAD ****************** */
 .courses {
@@ -47,7 +48,7 @@
 .course {
   width: 20%;
   height: fit-content;
-  @include flex-box($flex-dir: column);
+  @include index.flex-box($flex-dir: column);
   /* grid-template-rows: repeat(2,1fr); */
   padding: 1.8rem;
   margin: 3vh auto;
@@ -61,7 +62,7 @@
   box-shadow: 5px 5px 20px grey;
   text-align: center;
   a {
-    @include flex-box($flex-dir: column);
+    @include index.flex-box($flex-dir: column);
     gap: 1.2rem;
     text-decoration: none;
     color: black;
@@ -83,7 +84,7 @@
     width: 90%;
     margin: 0 auto;
     background-color: #f0fcff;
-    @include res-grid(calc(100% / 3));
+    @include index.res-grid(calc(100% / 3));
     padding: 1rem;
     border-radius: 4px;
     border: 1px solid #dedddd;
@@ -94,7 +95,7 @@
       filter: drop-shadow(5px 5px 5px grey);
       .course-img {
         img {
-          @include img-setting;
+          @include index.img-setting;
           border-radius: 0.5rem 0.5rem 0 0;
           &:hover {
             filter: brightness(60%);
@@ -102,12 +103,12 @@
         }
       }
       .course-info {
-        @include flex-box($flex-dir: column);
+        @include index.flex-box($flex-dir: column);
         padding: 0.5rem;
         background-color: plum;
         .course-data {
           width: 100%;
-          @include flex-box($flex-dir: column);
+          @include index.flex-box($flex-dir: column);
           .course-name {
             width: 100%;
             font-size: 1.4rem;
@@ -130,7 +131,7 @@
             }
           }
           .age-group {
-            @include flex-box($justify-content: space-between);
+            @include index.flex-box($justify-content: space-between);
           }
           .fee,
           .mode {
@@ -167,7 +168,7 @@
       }
     }
     .further-info {
-      @include flex-box($flex-dir: column);
+      @include index.flex-box($flex-dir: column);
       margin: 10% auto;
       font-size: 1.3rem;
       padding: 1rem;
@@ -180,7 +181,7 @@
         color: #673597;
       }
       .contact-us {
-        @include flex-box;
+        @include index.flex-box;
         gap: 1rem;
         padding: 0.8rem;
         border-radius: 5px;
@@ -191,7 +192,7 @@
       }
     }
     @media (width<=900px) {
-      @include res-grid;
+      @include index.res-grid;
       gap: 2rem;
     }
   }

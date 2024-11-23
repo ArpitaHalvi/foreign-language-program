@@ -1,4 +1,5 @@
-@import "../index.scss";
+// @import "../index.scss";
+@use "../index" as index;
 
 // background-color: #f1faee;
 // border-radius: 30% 70% 30% 70%/ 30% 30% 70% 70%;
@@ -7,18 +8,18 @@
 
 /* ************ INTRO PART ************ */
 .intro-part {
-  @include res-grid;
+  @include index.res-grid;
   width: 100%;
   height: 90vh;
   .explore-france {
-    @include flex-box;
+    @include index.flex-box;
     padding: 2rem;
     .map {
       border: 1px solid #c7c5c5;
       filter: drop-shadow(5px 5px 5px grey);
       border-radius: 30% 70% 70% 30%/ 30% 30% 70% 70%;
       img {
-        @include img-setting($object-fit: cover);
+        @include index.img-setting($object-fit: cover);
         border-radius: 30% 70% 70% 30%/ 30% 30% 70% 70%;
       }
     }
@@ -27,7 +28,7 @@
     width: 100%;
     padding: 1rem;
     text-align: right;
-    @include flex-box($align-items: flex-end, $flex-dir: column);
+    @include index.flex-box($align-items: flex-end, $flex-dir: column);
     .greeting {
       color: #050523;
       text-transform: capitalize;
@@ -51,7 +52,7 @@
 .details-part {
   width: 100%;
   padding: 1rem;
-  @include res-grid($col-width: 100%);
+  @include index.res-grid($col-width: 100%);
   .collab-heading {
     font-weight: 400;
     letter-spacing: 0.7rem;
@@ -63,14 +64,14 @@
   .collab {
     width: 100%;
     padding: 3rem 0;
-    @include res-grid;
+    @include index.res-grid;
     .partners {
       width: 80%;
       padding: 1rem;
       box-shadow: 10px 10px 10px grey;
       border-radius: 0.4rem;
       img {
-        @include img-setting;
+        @include index.img-setting;
       }
     }
   }
@@ -78,13 +79,13 @@
 
 @media (width<=1000px) {
   .intro-part {
-    @include res-grid($col-width: 100%);
+    @include index.res-grid($col-width: 100%);
     height: fit-content;
     .explore-france {
       order: 2;
     }
     .motive {
-      @include flex-box($flex-dir: column);
+      @include index.flex-box($flex-dir: column);
       text-align: center;
       .aim {
         width: 80%;
@@ -94,7 +95,7 @@
   }
   .details-part {
     .collab {
-      @include res-grid($col-width: 100%);
+      @include index.res-grid($col-width: 100%);
       gap: 2rem;
     }
   }
@@ -204,7 +205,7 @@
 // ****************** FEEDBACK STYLES *********************
 
 .feedback-part {
-  @include flex-box($flex-dir: column);
+  @include index.flex-box($flex-dir: column);
   h2 {
     text-align: center;
     text-transform: uppercase;
@@ -216,17 +217,17 @@
   }
   .feedback-box {
     width: 100%;
-    @include flex-box;
+    @include index.flex-box;
     padding: 2rem;
     // background-color: #c1121f;
     .feedback {
       width: 50%;
-      @include flex-box;
+      @include index.flex-box;
       background-color: plum;
       box-shadow: 5px 5px 10px grey;
       border-radius: 0.5rem;
       img {
-        @include img-setting($width: 30%, $object-fit: cover);
+        @include index.img-setting($width: 30%, $object-fit: cover);
         height: 100%;
         border-radius: 0.5rem 0 0 0.5rem;
       }
@@ -251,7 +252,7 @@
       @media (width<800px) {
         text-align: center;
         width: 65%;
-        @include flex-box($flex-dir: column);
+        @include index.flex-box($flex-dir: column);
         img {
           width: 100%;
           border-radius: 0.5rem 0.5rem 0 0;
@@ -278,10 +279,10 @@
   // bottom: 0;
   width: 100%;
   height: 50vh;
-  @include res-grid(100%);
+  @include index.res-grid(100%);
   background-color: #050524;
   .web-details {
-    @include res-grid;
+    @include index.res-grid;
     column-gap: 30%;
     padding-left: 1rem;
     background-color: grey;
@@ -289,20 +290,18 @@
     .info {
       // background-color: transparent;
       background-color: rgb(196, 182, 182);
+      ul {
+        width: 20vw;
+        padding-top: 2%;
+        text-align: left;
+        list-style: none;
+        li {
+          padding-bottom: 2%;
+          color: white;
+        }
+      }
     }
   }
-}
-
-.info ul {
-  width: 20vw;
-  padding-top: 2%;
-  text-align: left;
-  list-style: none;
-}
-
-.info li {
-  padding-bottom: 2%;
-  color: white;
 }
 
 .footer span {

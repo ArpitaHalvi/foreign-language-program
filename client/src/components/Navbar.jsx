@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-// import { Menu } from "@mui/icons-material/Menu";
 import "./Navbar.scss";
 import {
   HomeOutlined,
@@ -22,46 +21,46 @@ const Navbar = () => {
         <nav className="navbar">
           <ul>
             <li>
-              <HomeOutlined className="navbar-icons" />
               <NavLink
                 to="/"
                 className={({ isActive }) =>
                   `${isActive ? "active-link" : "a"}`
                 }
               >
+                <HomeOutlined className="navbar-icons" />
                 Home
               </NavLink>
             </li>
             <li>
-              <InfoOutlined className="navbar-icons" />
               <NavLink
                 to="/about"
                 className={({ isActive }) =>
                   `${isActive ? "active-link" : "a"}`
                 }
               >
+                <InfoOutlined className="navbar-icons" />
                 About
               </NavLink>
             </li>
             <li>
-              <SquareFootOutlined className="navbar-icons" />
               <NavLink
                 to="/olympiads"
                 className={({ isActive }) =>
                   `${isActive ? "active-link" : "a"}`
                 }
               >
+                <SquareFootOutlined className="navbar-icons" />
                 Olympiads
               </NavLink>
             </li>
             <li>
-              <SchoolOutlined className="navbar-icons" />
               <NavLink
                 to="/courses"
                 className={({ isActive }) =>
                   `${isActive ? "active-link" : "a"}`
                 }
               >
+                <SchoolOutlined className="navbar-icons" />
                 Courses
               </NavLink>
             </li>

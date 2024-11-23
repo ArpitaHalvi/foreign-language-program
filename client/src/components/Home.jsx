@@ -1,4 +1,3 @@
-import React from "react";
 import "./Home.scss";
 import IntroPart from "../components/IntroPart";
 import DetailsPart from "../components/DetailsPart";

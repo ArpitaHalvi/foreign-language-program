@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./components/Home.scss";
 // import './App.scss';
 // import AOS from "aos";
 // import "aos/dist/aos.css";
@@ -32,6 +31,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/olympiads" element={<Olympiads />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

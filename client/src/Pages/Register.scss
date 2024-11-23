@@ -1,9 +1,9 @@
-@import "../index.scss";
+@use "../index" as index;
 
 .register-page {
   width: 100%;
   height: 90vh;
-  @include res-grid();
+  @include index.res-grid;
   background: url("../assets/images/mountain-minimal.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -17,7 +17,7 @@
     flex-direction: column;
     form {
       width: 60%;
-      @include flex-box($align-items: flex start, $flex-dir: column);
+      @include index.flex-box($align-items: flex start, $flex-dir: column);
       background-color: #ffffff5e;
       border-radius: 0.5rem;
       padding: 3rem;
@@ -45,7 +45,7 @@
       }
       select {
         padding: 0.6rem;
-        border-radius: .4rem;
+        border-radius: 0.4rem;
         border: none;
         margin-bottom: 1rem;
         font-size: 1.2rem;
@@ -53,10 +53,9 @@
     }
   }
   @media (width<=1000px) {
-    @include res-grid(100%);
+    @include index.res-grid(100%);
   }
 }
-
 
 /* form #select-label{
     margin-bottom: 1.6rem;

@@ -1,20 +1,26 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const feedbackSchema = require("./feedback-model");
 
 const courseSchema = new Schema({
-    name: {
-        type: String,
-        enum: ["Olympiads", "A1-A2 Level", "B1-B2 Level", "Professional Course", "Delf Preparation", "TCF & TEF Preparation"],
-
+  title: {
+    type: String,
+    enum: ["olympiad", "fast-track course", "delf junior", "delf tcf-tef"],
+    required: true,
+  },
+  enrolledUsers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User", // Referencing to the user model
     },
-    reviews: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Feedback'
-        }
-    ],
-})
-
+  ],
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Feedback", // Referencing to the Feedback model
+    },
+  ],
+});
 
 const Course = model("Course", courseSchema);
 module.exports = Course;

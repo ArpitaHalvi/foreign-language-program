@@ -3,22 +3,21 @@
 // .parseAsync(data:unknown):Promise<T>
 
 const validate = (schema) => async (req, res, next) => {
-    try {
-        const parseBody = await schema.parseAsync(req.body);
-        req.body = parseBody;
-        next();
-    } catch (e) {
-        // status code 422 - server is unable to process the request because of invalid data.
-        const status = 422;
-        const message = "Fill the form correctly";
-        const extraDetails = e.errors[0].message;
-        const error = { status, message, extraDetails };
-        console.log(error);
-        // res.status(400).json({ msg: message });
-        next(error);
-    }
-}
+  try {
+    const parseBody = await schema.parseAsync(req.body);
+    req.body = parseBody;
+    next();
+  } catch (e) {
+    // status code 422 - server is unable to process the request because of invalid data.
+    const status = 422;
+    const message = "Fill the form correctly";
+    const extraDetails = e.errors[0].message;
+    const error = { status, message, extraDetails };
+    // console.log(error);
+    next(error);
+  }
+};
 
 module.exports = {
-    validate
-}
+  validate,
+};
