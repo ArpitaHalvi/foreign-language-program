@@ -1,5 +1,4 @@
 import "./Olympiads.scss";
-import globe from "../assets/images/study.jpg";
 import { NavLink } from "react-router-dom";
 
 export default function Olympiads() {
@@ -8,19 +7,22 @@ export default function Olympiads() {
       <div className="olympiad-part">
         <h2 className="olym-heading">Welcome Students!</h2>
         <div className="olym-info">
-          <p>
-            If You are a student studying in 5th, 6th, 7th or 8th standard then
-            you must try our olympiad.
-          </p>
+          <div>
+            <p>
+              If You are a student studying in 5th, 6th, 7th or 8th standard
+              then you must try our olympiad preparation course.
+            </p>
+            <blockquote>
+              &quot;From Bonjour to Victory - Your Olympiad Starts Here!&quot;
+              <br />- Foreign Language Program
+            </blockquote>
+          </div>
           <div className="olympiad">
             <div className="olym-img">
-              <img src={globe} alt="" />
-            </div>
-            <button className="join-btn">
-              <NavLink to="/register" className="">
-                JOIN NOW
+              <NavLink to="/register">
+                Start Now <span>&raquo;</span>
               </NavLink>
-            </button>
+            </div>
           </div>
         </div>
       </div>

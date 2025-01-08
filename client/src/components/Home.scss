@@ -5,6 +5,7 @@
 // border-radius: 30% 70% 30% 70%/ 30% 30% 70% 70%;
 // background-color: #dcd8d871;
 // background-color: #a9c8e3;
+// border-radius: 30% 70% 70% 30%/ 30% 30% 70% 70%;
 
 /* ************ INTRO PART ************ */
 .intro-part {
@@ -12,16 +13,14 @@
   width: 100%;
   height: 90vh;
   .explore-france {
+    width: 100%;
     @include index.flex-box;
     padding: 2rem;
     .map {
-      border: 1px solid #c7c5c5;
+      width: 90%;
+      height: 100%;
+      border: 1px solid black;
       filter: drop-shadow(5px 5px 5px grey);
-      border-radius: 30% 70% 70% 30%/ 30% 30% 70% 70%;
-      img {
-        @include index.img-setting($object-fit: cover);
-        border-radius: 30% 70% 70% 30%/ 30% 30% 70% 70%;
-      }
     }
   }
   .motive {
@@ -30,13 +29,10 @@
     text-align: right;
     @include index.flex-box($align-items: flex-end, $flex-dir: column);
     .greeting {
+      width: 90%;
       color: #050523;
       text-transform: capitalize;
-      padding: 1rem;
       font-size: 5rem;
-      // background: linear-gradient(to right,#050523,#13579b,#050523);
-      // color: transparent;
-      // background-clip: text;
       color: #191952;
     }
     .aim {
@@ -46,75 +42,128 @@
       text-transform: capitalize;
     }
   }
-}
-
-/* ************** DETAILS PART **************** */
-.details-part {
-  width: 100%;
-  padding: 1rem;
-  @include index.res-grid($col-width: 100%);
-  .collab-heading {
-    font-weight: 400;
-    letter-spacing: 0.7rem;
-    padding-top: 1rem;
-    font-size: 1.5rem;
+  @media (width<=900px) {
+    @include index.res-grid(100%);
+    height: auto;
     text-align: center;
-    text-shadow: 10px 10px 20px #52528c;
-  }
-  .collab {
-    width: 100%;
-    padding: 3rem 0;
-    @include index.res-grid;
-    .partners {
-      width: 80%;
-      padding: 1rem;
-      box-shadow: 10px 10px 10px grey;
-      border-radius: 0.4rem;
-      img {
-        @include index.img-setting;
-      }
-    }
-  }
-}
-
-@media (width<=1000px) {
-  .intro-part {
-    @include index.res-grid($col-width: 100%);
-    height: fit-content;
     .explore-france {
       order: 2;
     }
     .motive {
-      @include index.flex-box($flex-dir: column);
+      width: 80%;
       text-align: center;
+      .greeting {
+        width: 100%;
+        font-size: 4rem;
+      }
       .aim {
-        width: 80%;
-        font-size: 1.4rem;
+        font-size: 1.1rem;
       }
     }
   }
-  .details-part {
-    .collab {
-      @include index.res-grid($col-width: 100%);
-      gap: 2rem;
-    }
+}
+
+/* ************** DETAILS PART **************** */
+
+.details-part {
+  width: 100%;
+  padding: 1rem;
+  @include index.flex-box($flex-dir: column);
+  position: relative;
+  overflow: hidden;
+  gap: 2rem;
+  .collab-heading {
+    font-size: 3rem;
+    color: #191952;
   }
-  @media (width<=700px) {
-    .details-part {
-      .collab-heading {
-        width: 60%;
-        font-size: 1.5rem;
-        @media (width<=600px) {
-          width: 80%;
+  .collab {
+    width: 100%;
+    padding: 1rem;
+    @include index.flex-box;
+    gap: 10rem;
+    animation: slide 15s linear infinite;
+    .partner {
+      @include index.img-setting($width: 30%);
+      height: 100%;
+      &:nth-of-type(2) {
+        width: 10%;
+      }
+      @media (width<=500px) {
+        width: 50%;
+        object-fit: cover;
+        &:nth-of-type(2) {
+          width: 100%;
+          object-fit: contain;
         }
       }
-      .collab {
-        .partners {
-          width: 90%;
-          height: 25vh;
-          @media (width<=500px) {
-            width: 100%;
-            height: 23vh;
+    }
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+// ******************* SERVICES PART *******************
+
+.service-section {
+  width: 100%;
+  @include index.flex-box($flex-dir: column);
+  padding: 2rem;
+  gap: 1rem;
+  h2 {
+    font-size: 3rem;
+    color: #191952;
+    padding: 1rem 1rem 2rem 1rem;
+  }
+  .services {
+    @include index.flex-box;
+    gap: 2rem;
+    .service {
+      border-radius: 5px;
+      padding: 2rem;
+      @include index.flex-box($flex-dir: column, $align-items: flex-start);
+      gap: 0.5rem;
+      background-color: aliceblue;
+      .service-icon {
+        font-size: 4rem;
+        color: #191952;
+      }
+      h3 {
+        font-size: 1.5rem;
+        color: #191952;
+      }
+      p {
+        @include index.flex-box($align-items: flex-start);
+        font-size: 1.3rem;
+        gap: 0.5rem;
+        .check-icon {
+          color: dodgerblue;
+        }
+      }
+    }
+  }
+  @media (width<=1020px) {
+    .services {
+      flex-direction: column;
+      gap: 2rem;
+      .service {
+        width: 80%;
+        @media (width<=500px) {
+          width: 100%;
+          .service-icon {
+            font-size: 3rem;
+          }
+          h3 {
+            font-size: 1.2rem;
+          }
+          p {
+            font-size: 1.1rem;
           }
         }
       }
@@ -122,192 +171,273 @@
   }
 }
 
-/* COURSES */
-/* .course{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    column-gap: 2vw;
-    row-gap: 5vh;
-    width: 100%;
-    margin-bottom: 2%;
-    height: 140vh;
-    overflow-y: hidden;
-    background-color: rgb(19, 44, 44);
-    background-color: rgba(220, 216, 216, 0.442);
-    background-color: #f1faee; 
-} */
-
-/* .course-item{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    width: 40vw;
-    height: 35vh;
-    margin: 5% auto auto 9.5%;
-} */
-
-.decor {
-  /* background-color: cornflowerblue; */
-  /* background: linear-gradient(rgb(226, 20, 20),rgb(218, 25, 25),rgb(252, 64, 64)); */
-  background-color: #c1121f;
-  width: 20vw;
-  height: auto;
-  border-radius: 5px 0 0 5px;
-  border: 2px solid rgb(220, 218, 218);
-  border-right: none;
-}
-
-.details {
-  /* background-color: rgba(214, 204, 204, 0.75); */
-  /* background-color: whitesmoke; */
-  background-color: white;
-  width: 20vw;
-  height: auto;
-  border-radius: 0 5px 5px 0;
-  padding-inline-start: 2%;
-  position: relative;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  border: 2px solid rgb(220, 218, 218);
-  border-left: none;
-}
-
-.details p {
-  font-size: 2.5rem;
-  font-weight: none;
-  text-transform: uppercase;
-}
-
-.details span {
-  font-size: 1.2rem;
-}
-
-#join-btn {
-  width: 7vw;
-  padding: 2%;
-  color: white;
-  border-radius: 5px;
-  font-size: 1.3rem;
-  border: none;
-  position: absolute;
-  bottom: 5vh;
-  left: 6.5vw;
-  background-color: rgb(6, 6, 42);
-  cursor: pointer;
-}
-
-#join-btn:hover {
-  background-color: transparent;
-  border: 2px solid rgb(6, 6, 42);
-  color: rgb(6, 6, 42);
-  transform: scale(1.005);
-  /* transition-duration: 500ms; */
-}
-
-// ****************** FEEDBACK STYLES *********************
-
-.feedback-part {
+// ****************** ANNOUNCEMENTS STYLES *********************
+.announcements-section {
+  width: 100%;
+  padding: 2rem;
   @include index.flex-box($flex-dir: column);
-  h2 {
-    text-align: center;
-    text-transform: uppercase;
-    padding: 2rem;
-    font-size: 1.5rem;
-    font-weight: 400;
-    text-shadow: 10px 10px 15px rgb(82, 82, 140);
-    letter-spacing: 0.4rem;
-  }
-  .feedback-box {
+  gap: 1rem;
+  .announcements {
     width: 100%;
-    @include index.flex-box;
-    padding: 2rem;
-    // background-color: #c1121f;
-    .feedback {
-      width: 50%;
-      @include index.flex-box;
-      background-color: plum;
-      box-shadow: 5px 5px 10px grey;
-      border-radius: 0.5rem;
-      img {
-        @include index.img-setting($width: 30%, $object-fit: cover);
-        height: 100%;
-        border-radius: 0.5rem 0 0 0.5rem;
+    @include index.res-grid;
+    div {
+      @include index.flex-box($align-items: flex-start, $flex-dir: column);
+      gap: 1rem;
+      h3 {
+        font-size: 4rem;
+        color: #191952;
+        @include index.animation-slide-right;
       }
-      .student-feedback {
+      p {
+        width: 70%;
+        font-size: 1.3rem;
+        @include index.animation-slide-right;
+      }
+    }
+    .announcement {
+      width: 100%;
+      background-color: white;
+      .slick-dots {
+        color: #050523;
+      }
+      .slick-list {
+        @include index.flex-box;
+      }
+      .slick-track {
+        @include index.flex-box;
+      }
+      .slick-slider {
+        width: 100%;
+        @include index.flex-box;
+        .slick-slide {
+          width: 100%;
+          @include index.flex-box;
+          img {
+            @include index.img-setting;
+            filter: drop-shadow(5px 5px 5px grey);
+          }
+        }
+      }
+    }
+  }
+  @media (width<=1100px) {
+    .announcements {
+      @include index.res-grid(100%);
+      gap: 3rem;
+      div {
+        h3 {
+          font-size: 3rem;
+        }
+        p {
+          width: 90%;
+          font-size: 1.1rem;
+        }
+      }
+      h3 {
+        width: 100%;
+        font-size: 1.1rem;
+      }
+      .announcement {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// **************** TESTIMONIALS STYLES ****************
+
+.testimony-part {
+  width: 100%;
+  padding: 2rem;
+  @include index.flex-box($flex-dir: column);
+  background: url("/feedback-bg.svg");
+  background-size: contain;
+  h2 {
+    font-size: 3rem;
+    color: #191952;
+    text-align: center;
+  }
+  .slick-dots {
+    color: #050523;
+  }
+  .slick-list {
+    @include index.flex-box($align-items: flex-start);
+  }
+  .slick-track {
+    @include index.flex-box;
+  }
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 30px;
+    border-radius: 2px;
+    color: #050523;
+    &:hover {
+      background-color: #050523;
+    }
+  }
+  .slick-next {
+    right: -15px;
+  }
+  .slick-slider {
+    width: 80%;
+    @include index.flex-box;
+    height: auto;
+    .slick-slide {
+      @include index.flex-box;
+      flex-wrap: nowrap;
+    }
+    @media (width<=500px) {
+      width: 95%;
+    }
+    .testimony-box {
+      @include index.flex-box;
+      padding: 2rem;
+      .testimony-header {
+        background-color: #050524;
+        width: 100%;
+        padding: 2rem;
+        border-radius: 0.5rem 0.5rem 0 0;
+        box-shadow: 5px 5px 5px 5px grey;
+      }
+      .student-testimony {
         padding: 1rem;
-        border-radius: 0 0.5rem 0.5rem 0;
+        border-radius: 0 0 0.5rem 0.5rem;
         background-color: white;
-        .feedback-text {
-          padding: 2.35rem 0;
-          font-size: 1.3rem;
+        box-shadow: 5px 5px 5px 5px grey;
+        .testimony-text {
+          padding: 1rem 0;
+          font-size: 1.2rem;
+          text-align: center;
         }
         .student-name {
-          font-size: 1.3rem;
+          border-top: 1px solid #050523;
+          padding-top: 1rem;
+          font-size: 1.1rem;
+          text-align: left;
+          color: grey;
+          font-style: italic;
         }
-      }
-      @media (1000px<width<=1200px) {
-        width: 60%;
-      }
-      @media (800px<=width<=1000px) {
-        width: 70%;
-      }
-      @media (width<800px) {
-        text-align: center;
-        width: 65%;
-        @include index.flex-box($flex-dir: column);
-        img {
-          width: 100%;
-          border-radius: 0.5rem 0.5rem 0 0;
+        @media (width<=500px) {
+          .testimony-text,
+          .student-name {
+            font-size: 1.1rem;
+          }
         }
-        .student-feedback {
-          border-radius: 0 0 0.5rem 0.5rem;
-        }
-      }
-      @media (width<=500px) {
-        width: 80%;
-        text-align: center;
       }
     }
   }
   @media (width<500px) {
     h2 {
-      width: 80%;
+      width: 70%;
+      font-size: 2.3rem;
     }
   }
 }
 
 /* **************** FOOTER STYLE ******************* */
 .footer {
-  // bottom: 0;
   width: 100%;
-  height: 50vh;
-  @include index.res-grid(100%);
-  background-color: #050524;
+  @include index.flex-box($flex-dir: column, $justify-content: space-between);
+  background-color: #050523;
+  padding: 1rem;
   .web-details {
+    width: 100%;
     @include index.res-grid;
-    column-gap: 30%;
-    padding-left: 1rem;
-    background-color: grey;
-    // background-color: transparent;
-    .info {
-      // background-color: transparent;
-      background-color: rgb(196, 182, 182);
+    padding: 2rem;
+    // background-color: plum;
+    .contact-info {
+      @include index.flex-box;
+      padding: 1rem;
+      align-self: flex-start;
       ul {
-        width: 20vw;
-        padding-top: 2%;
-        text-align: left;
-        list-style: none;
+        @include index.flex-box($flex-dir: column, $align-items: flex-start);
+        gap: 1rem;
         li {
-          padding-bottom: 2%;
-          color: white;
+          color: #dcdcdc;
+          @include index.flex-box;
+          gap: 1rem;
+          font-size: 1.2rem;
+        }
+      }
+    }
+    .web-links {
+      width: 100%;
+      @include index.flex-box;
+      // background-color: pink;
+      ul {
+        @include index.flex-box($flex-dir: column, $align-items: flex-start);
+        gap: 0.5rem;
+        li {
+          @include index.flex-box;
+          gap: 1rem;
+          font-size: 1.2rem;
+          a {
+            color: #dcdcdc;
+          }
+        }
+      }
+    }
+    @media (width<=700px) {
+      @include index.res-grid(100%);
+      gap: 1rem;
+      .contact-info {
+        place-self: flex-start;
+        ul li {
+          font-size: 1.1rem;
+        }
+      }
+      .web-links {
+        justify-content: flex-start;
+        padding: 1rem;
+        border-top: 1px solid grey;
+        ul li {
+          font-size: 1.1rem;
         }
       }
     }
   }
-}
-
-.footer span {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: end;
-  color: white;
+  .copyright {
+    width: 100%;
+    @include index.flex-box($flex-dir: column);
+    color: #dcdcdc;
+    font-size: 1.2rem;
+    gap: 2rem;
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid grey;
+    // background-color: plum;
+    .query {
+      width: 100%;
+      @include index.res-grid;
+      p {
+        width: 80%;
+      }
+      .contact-page {
+        width: 100%;
+        background: none;
+        .contact-form {
+          width: 95%;
+          color: black;
+          box-shadow: none;
+        }
+      }
+    }
+    .copy {
+      width: 100%;
+      font-size: 1rem;
+    }
+    @media (width<=850px) {
+      .query {
+        font-size: 1.1rem;
+        @include index.res-grid(100%);
+        gap: 2rem;
+        p {
+          margin-top: 5%;
+        }
+        .contact-page {
+          background-size: contain;
+        }
+      }
+    }
+  }
 }

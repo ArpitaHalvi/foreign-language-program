@@ -1,119 +1,110 @@
 // @import "../index.scss";
 @use "../index" as index;
 
+// background: linear-gradient(160deg, #0033a0, #7ea8d9, #f0f0f0);
+// background: linear-gradient(120deg, #050523, #08084e, #b8b4b4);
+// background: linear-gradient(150deg, #4169e1, #d3d3d3, #4682b4);
+
 /* ******************** COURSE HEAD ****************** */
 .courses {
   width: 100%;
   position: relative;
-  .course-section {
-    position: absolute;
-    left: 1.5vw;
-    top: 30vh;
-    padding: 1rem;
-    width: 22%;
+  // .course-heading {
+  //   position: absolute;
+  //   left: 1.5vw;
+  //   top: 30vh;
+  //   padding: 1rem;
+  //   width: 22%;
+  //   text-transform: uppercase;
+  //   font-size: 4rem;
+  //   color: #050523;
+  //   line-height: 4rem;
+  //   font-weight: 400;
+  //   @media (500px<width<=700px) {
+  //     font-size: 2.5rem;
+  //     line-height: 2.5rem;
+  //   }
+  //   @media (width<=500px) {
+  //     font-size: 2rem;
+  //     line-height: 2rem;
+  //   }
+  // }
+  .course-head {
+    width: 60%;
+    height: 40vh;
+    float: right;
+    background-color: #050523;
+  }
+  .course-heading {
     text-transform: uppercase;
-    font-size: 4rem;
     color: #050523;
-    line-height: 4rem;
+    position: absolute;
+    font-size: 5rem;
+    // line-height: 4rem;
+    // background-color: #b8b4b4;
     font-weight: 400;
-    @media (500px<width<=700px) {
+    left: 21.6%;
+    margin-top: 7%;
+    span {
+      color: #f2f0f0;
+    }
+    @media (500px<width<=1200px) {
+      height: 30vh;
       font-size: 2.5rem;
-      line-height: 2.5rem;
     }
     @media (width<=500px) {
-      font-size: 2rem;
-      line-height: 2rem;
+      font-size: 3rem;
+      left: 5%;
+      margin-top: 25%;
     }
   }
 }
 
-/* *************************** COURSE RENDER *********************** */
-.all-courses {
-  max-width: 100%;
-  display: grid;
-  /* grid-template-rows: repeat(3,1fr); */
-  /* gap: .2rem; */
-  //   background-color: #f1faee;
-  background-color: bisque;
-}
-
-.course-box {
-  background-color: dodgerblue;
-}
-
-.course-box:nth-of-type(2) {
-  background-color: blue;
-}
-
-.course {
-  width: 20%;
-  height: fit-content;
-  @include index.flex-box($flex-dir: column);
-  /* grid-template-rows: repeat(2,1fr); */
-  padding: 1.8rem;
-  margin: 3vh auto;
-  /* border-radius: .5rem; */
-  /* border-radius: 50%; */
-  /* border-radius: 40% 20% / 10% 40%; */
-  border-radius: 30% 70% 30% 70%/ 30% 30% 70% 70%;
-  transition: 0.2s;
-  background-color: white;
-  background-color: blue;
-  box-shadow: 5px 5px 20px grey;
-  text-align: center;
-  a {
-    @include index.flex-box($flex-dir: column);
-    gap: 1.2rem;
-    text-decoration: none;
-    color: black;
-  }
-  .course-title {
-    font-size: 1.8rem;
-    font-weight: 400;
-    letter-spacing: 0.3rem;
-    line-height: 2.2rem;
-    transition: all 500ms;
-  }
-}
-
-// *********************** COURSE DETAILS ***************************
+// ************** COURSE DETAILS *****************
 .box {
   width: 100%;
   padding: 1.5rem 0;
+  height: 90vh;
+  @include index.flex-box;
+  background: url("/olympiad-bg.svg");
+  background-size: contain;
   .course-details {
     width: 90%;
-    margin: 0 auto;
-    background-color: #f0fcff;
     @include index.res-grid(calc(100% / 3));
     padding: 1rem;
-    border-radius: 4px;
-    border: 1px solid #dedddd;
     .course-item {
       width: 80%;
       background-color: white;
       border-radius: 0.5rem;
       filter: drop-shadow(5px 5px 5px grey);
       .course-img {
-        img {
-          @include index.img-setting;
-          border-radius: 0.5rem 0.5rem 0 0;
-          &:hover {
-            filter: brightness(60%);
-          }
+        width: 100%;
+        height: 30vh;
+        border-radius: 0.5rem 0.5rem 0 0;
+        padding: 1rem;
+        font-size: 1.7rem;
+        text-transform: uppercase;
+        @include index.flex-box;
+        background: linear-gradient(120deg, #191970, #afeeee);
+        color: #f4f4f4;
+        h3 {
+          font-weight: 400;
+        }
+        &:hover {
+          filter: brightness(60%);
         }
       }
       .course-info {
         @include index.flex-box($flex-dir: column);
-        padding: 0.5rem;
-        background-color: plum;
+        padding: 0.8rem;
+        // background-color: plum;
         .course-data {
           width: 100%;
           @include index.flex-box($flex-dir: column);
           .course-name {
             width: 100%;
             font-size: 1.4rem;
-            font-weight: 400;
-            background-color: aqua;
+            text-transform: capitalize;
             @media (width<=1040px) {
               font-size: 1.2rem;
             }
@@ -122,7 +113,6 @@
           .duration {
             width: 100%;
             font-size: 1.25rem;
-            background-color: aqua;
             display: flex;
             justify-content: space-between;
             margin: 4% 0;
@@ -138,62 +128,297 @@
             background: linear-gradient(to right, black, grey);
             background-clip: text;
             color: transparent;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             align-self: first baseline;
           }
         }
-        .join-btn-container {
+        .btn-container {
           width: 100%;
-          background-color: aqua;
-          .join-btn {
-            width: 50%;
-            border-radius: 0.4rem;
-            border: none;
-            background: linear-gradient(to right, blue, dodgerblue);
-            font-size: 1.1rem;
-            a {
-              color: white;
-            }
-            @media (width<=800px) {
-              width: 60%;
-            }
-            @media (width<=700px) {
-              width: 50%;
-            }
+          @include index.flex-box($justify-content: space-between);
+          gap: 0.5rem;
+          .join-btn,
+          .show-btn {
+            text-align: center;
+            @include index.join-btn;
+            background: #191970;
+            padding: 0.5rem;
+            color: white;
+          }
+          .show-btn {
+            background-color: transparent;
+            border: 1px solid #050523;
+            color: #050523;
           }
         }
       }
-      @media (500px<width<=900px) {
+      @media (700px<=width<=900px) {
         width: 60%;
+      }
+      @media (900px<=width<=1280px) {
+        width: 50%;
+      }
+    }
+    @media (width<=1280px) {
+      @include index.res-grid;
+      gap: 2rem;
+    }
+  }
+  @media (width<=1280px) {
+    height: auto;
+  }
+}
+
+// ***************** EACH COURSES ***********************
+.course-page {
+  width: 100%;
+  @include index.flex-box($flex-dir: column);
+  background: url("/feedback-bg.svg");
+  background-position: center;
+  background-size: contain;
+  gap: 1rem;
+  .course-part {
+    width: 100%;
+    @include index.flex-box($align-items: flex-start, $flex-dir: column);
+    gap: 0.5rem;
+    padding: 4rem 2rem;
+    background: linear-gradient(160deg, #042979, #709ccf, #c5c5c5);
+    color: white;
+    h2 {
+      font-size: 3rem;
+      text-transform: capitalize;
+      margin-bottom: 2%;
+      text-shadow: 5px 5px black;
+    }
+    p {
+      width: 50%;
+      font-size: 1.2rem;
+      &:nth-of-type(3) {
+        margin-top: 2%;
+        font-size: 1.1rem;
+      }
+    }
+    .desc {
+      ul {
+        @include index.flex-box($flex-dir: column, $align-items: flex-start);
+        gap: 0.5rem;
+        li {
+          @include index.flex-box;
+          gap: 0.5rem;
+          .check-icon {
+            filter: drop-shadow(5px 5px 1px black);
+          }
+        }
       }
     }
     .further-info {
-      @include index.flex-box($flex-dir: column);
-      margin: 10% auto;
-      font-size: 1.3rem;
-      padding: 1rem;
-      gap: 1rem;
-      text-align: center;
-      a {
-        color: black;
-      }
-      .syllabus-pdf {
-        color: #673597;
+      width: 100%;
+      @include index.flex-box($flex-dir: column, $align-items: flex-start);
+      .syllabus {
+        font-size: 1.1rem;
+        font-style: italic;
+        margin-top: 1rem;
+        a {
+          padding: 0.5rem;
+          color: white;
+        }
       }
       .contact-us {
-        @include index.flex-box;
-        gap: 1rem;
-        padding: 0.8rem;
+        margin: 0.5% 0;
+        @include index.flex-box($justify-content: flex-start);
+        color: #050523;
+        color: white;
+        gap: 0.2rem;
+      }
+    }
+    .course-links {
+      width: 30%;
+      @include index.flex-box($justify-content: flex-start);
+      gap: 1rem;
+      a {
+        width: 40%;
+        text-align: center;
+        border: 1px solid white;
         border-radius: 5px;
-        background-color: #dedddd;
+        color: white;
+        padding: 0.5rem;
+        transition: all 500ms;
         &:hover {
-          background-color: #b8b4b4;
+          background-color: white;
+          color: black;
+        }
+      }
+    }
+    @media (width<=1200px) {
+      p {
+        width: 90%;
+        font-size: 1.1rem;
+      }
+      .course-links {
+        width: 40%;
+        @media (width<=900px) {
+          width: 50%;
+        }
+        @media (width<=750px) {
+          width: 80%;
+          a {
+            width: 60%;
+          }
+        }
+      }
+    }
+  }
+  .feedback-part {
+    width: 100%;
+    @include index.res-grid;
+    padding: 1rem;
+    .feedback-form {
+      width: 80%;
+      background-color: white;
+      filter: drop-shadow(5px 5px 5px grey);
+      border-radius: 5px;
+      form {
+        width: 100%;
+        @include index.flex-box($flex-dir: column);
+        border: 1px solid black;
+        border-radius: 5px;
+        h2 {
+          width: 100%;
+          text-align: center;
+          font-size: 1.2rem;
+          letter-spacing: 0.2rem;
+          padding: 1rem;
+          font-weight: 400;
+          text-transform: capitalize;
+          border-radius: 5px 5px 0 0;
+          background-color: #cfcdcd;
+          background-color: #709ccf;
+          border-bottom: 1px solid black;
+        }
+        .rating-box {
+          @include index.flex-box;
+          gap: 1rem;
+          padding: 1rem;
+          div {
+            @include index.flex-box;
+            gap: 0.3rem;
+            padding: 0.4rem;
+            input {
+              margin-top: 5%;
+              accent-color: darkblue;
+            }
+            label {
+              font-size: 1.1rem;
+            }
+          }
+          @media (width<=1300px) {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 0.5rem;
+          }
+        }
+        .feedback-box {
+          width: 100%;
+          padding: 1rem;
+          @include index.flex-box($flex-dir: column, $align-items: flex-start);
+          textarea {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            resize: none;
+            outline: none;
+          }
+        }
+        .feedback-btn {
+          padding: 0.7rem;
+          border-radius: 5px;
+          font-size: 1.1rem;
+          margin-bottom: 3%;
+          border: none;
+          background-color: #709ccf;
+          color: white;
+          cursor: pointer;
+        }
+      }
+    }
+    .feedbacks {
+      width: 100%;
+      @include index.flex-box;
+      padding: 2rem;
+      // background-color: #25242428;
+      border-radius: 5px;
+      .feedback {
+        width: 80%;
+        padding: 1rem;
+        @include index.flex-box(
+          $flex-dir: column,
+          $justify-content: space-around
+        );
+        gap: 1rem;
+        h2 {
+          font-size: 2rem;
+          font-weight: 400;
+        }
+        .slick-dots {
+          color: #050523;
+        }
+        .slick-list {
+          @include index.flex-box($align-items: flex-start);
+        }
+        .slick-track {
+          @include index.flex-box;
+        }
+        .slick-prev:before,
+        .slick-next:before {
+          font-size: 30px;
+          border-radius: 2px;
+          color: #050523;
+          &:hover {
+            background-color: #050523;
+          }
+        }
+        .slick-prev {
+          left: -50px;
+        }
+        .slick-next {
+          right: -38px;
+        }
+        .slick-slider {
+          width: 100%;
+          // background-color: plum;
+          @include index.flex-box;
+          padding: 1rem;
+          filter: drop-shadow(5px 5px 5px grey);
+          .slick-slide {
+            flex-wrap: nowrap;
+            div {
+              width: 100%;
+              @include index.flex-box($flex-dir: column);
+              gap: 1rem;
+              border-radius: 5px;
+              padding: 1rem;
+              background-color: white;
+              p {
+                font-size: 1.1rem;
+                align-self: flex-start;
+              }
+              .user {
+                align-self: flex-start;
+              }
+            }
+          }
+        }
+        @media (width<500px) {
+          width: 100%;
         }
       }
     }
     @media (width<=900px) {
-      @include index.res-grid;
+      @include index.res-grid(100%);
       gap: 2rem;
+      .feedback-form {
+        width: 90%;
+      }
     }
   }
 }

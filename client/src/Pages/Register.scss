@@ -3,73 +3,81 @@
 .register-page {
   width: 100%;
   height: 90vh;
-  @include index.res-grid;
-  background: url("../assets/images/mountain-minimal.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  @include index.flex-box;
+  background: linear-gradient(150deg, #050523, #131398);
   .register-form {
-    width: 100%;
-    height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    width: 45%;
+    @include index.flex-box($flex-dir: column);
+    background-color: white;
+    border-radius: 5px;
+    padding: 1rem;
+    .register-heading {
+      font-size: 2rem;
+      text-align: center;
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
     form {
-      width: 60%;
-      @include index.flex-box($align-items: flex start, $flex-dir: column);
-      background-color: #ffffff5e;
-      border-radius: 0.5rem;
-      padding: 3rem;
-      gap: 0.5rem;
-      border: 1px solid #dcd8d8;
-      filter: drop-shadow(5px 5px 5px grey);
-      .register-heading {
-        font-size: 2rem;
-        text-align: center;
-        font-weight: 400;
-        margin-bottom: 2rem;
+      width: 100%;
+      @include index.flex-box($flex-dir: column);
+      padding: 1rem;
+      .form-inputs {
+        width: 100%;
+        @include index.res-grid;
+        padding: 0.5rem 0;
+        div {
+          width: 100%;
+          @include index.flex-box($align-items: flex-start, $flex-dir: column);
+          label {
+            font-size: 1.5rem;
+          }
+          input {
+            width: 99.5%;
+            padding: 0.6rem;
+            border-radius: 5px;
+            border: 0.1rem solid #a4a0a0;
+            font-size: 1.2rem;
+          }
+        }
+        @media (width<=500px) {
+          @include index.res-grid(100%);
+        }
       }
       label {
         font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-      }
-      input {
-        padding: 0.3rem;
-        outline: none;
-        border: none;
-        background-color: transparent;
-        border-bottom: 0.1rem solid black;
-        margin-bottom: 0.4rem;
-        font-size: 1.2rem;
+        align-self: flex-start;
+        margin: 2% 0 1% 0;
       }
       select {
+        width: 100%;
         padding: 0.6rem;
         border-radius: 0.4rem;
-        border: none;
-        margin-bottom: 1rem;
         font-size: 1.2rem;
       }
+      .register-btn {
+        padding: 0.5rem;
+        margin: 2rem auto 1rem auto;
+        width: 40%;
+        font-size: 1.2rem;
+        border-radius: 0.4rem;
+        border: none;
+        color: white;
+        background: linear-gradient(to right, rgb(19, 19, 152), dodgerblue);
+        @media (width<=500px) {
+          width: 50%;
+        }
+      }
+    }
+    @media (width<=1200px) {
+      width: 60%;
+    }
+    @media (width<=900px) {
+      width: 80%;
+    }
+    @media (width<=700px) {
+      width: 90%;
     }
   }
-  @media (width<=1000px) {
-    @include index.res-grid(100%);
-  }
-}
-
-/* form #select-label{
-    margin-bottom: 1.6rem;
-} */
-
-.register-btn {
-  padding: 0.5rem;
-  margin: 2rem auto;
-  width: 50%;
-  font-size: 1.2rem;
-  border-radius: 0.4rem;
-  border: none;
-  color: white;
-  background: linear-gradient(to right, rgb(19, 19, 152), dodgerblue);
 }
 
 .qr-part {

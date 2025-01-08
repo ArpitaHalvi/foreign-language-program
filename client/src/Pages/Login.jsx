@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Login.scss";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAuth } from "../store/auth";
 
 const initialData = {
   email: "",
@@ -10,6 +12,7 @@ const initialData = {
 export default function Login() {
   const [user, setUser] = useState(initialData);
   const navigate = useNavigate();
+  const { storeTokenInLS } = useAuth();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -31,13 +34,21 @@ export default function Login() {
         },
         body: JSON.stringify(user),
       });
-      console.log(response);
+      const res_data = await response.json();
       if (response.ok) {
+        // Storing the token in Local Storage
+        storeTokenInLS(res_data.token);
         setUser(initialData);
-        navigate("/");
+        toast.success("Successfully Logged In!", {
+          onClose: navigate("/"),
+        });
+      } else {
+        toast.error(
+          res_data.extraDetails ? res_data.extraDetails : res_data.message
+        );
       }
     } catch (err) {
-      console.log(err);
+      toast.error("Error while logging In. Please Try again later!");
     }
   };
   return (
@@ -47,7 +58,7 @@ export default function Login() {
           <h2>Welcome Back!</h2>
           <p>Login to unlock your learning journey.</p>
         </div>
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit} method="post">
           <h2>LOGIN</h2>
           <label htmlFor="email">Email</label>
           <input

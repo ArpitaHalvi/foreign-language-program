@@ -1,0 +1,533 @@
+@use "../index.scss" as index;
+
+@mixin collection {
+  @include index.flex-box($flex-dir: column, $align-items: flex-start);
+  width: 100%;
+  height: 100%;
+}
+
+@mixin collection-heading {
+  width: 100%;
+  height: 10%;
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding: 1rem;
+  border-bottom: 1px solid grey;
+}
+
+@mixin collection-body {
+  width: 100%;
+  height: 90%;
+  @include index.flex-box(
+    $align-items: flex-start,
+    $justify-content: flex-start,
+    $flex-dir: column
+  );
+  gap: 1rem;
+  overflow-y: scroll;
+  padding: 1rem;
+}
+
+@mixin table-heading {
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+  padding: 0.7rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  background-color: grey;
+  color: white;
+}
+
+@mixin table-body {
+  font-size: 1.2rem;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 0.5rem;
+  text-transform: capitalize;
+  color: black;
+}
+
+@mixin email-link {
+  color: darkblue;
+  text-transform: none;
+}
+
+.admin-panel {
+  width: 100%;
+  height: 90vh;
+  padding: 1rem;
+  background-color: #050524;
+  @include index.flex-box;
+  color: white;
+  .side-bar {
+    width: 20%;
+    padding: 1rem;
+    height: 100%;
+    border: 1px solid grey;
+    border-radius: 5px 0 0 5px;
+    @include index.flex-box($flex-dir: column, $justify-content: space-around);
+    h2 {
+      font-size: 2rem;
+      font-weight: 400;
+    }
+    .admin-navbar {
+      @include index.flex-box;
+      width: 100%;
+      ul {
+        width: 60%;
+        @include index.flex-box($flex-dir: column);
+        gap: 2rem;
+        padding: 1rem;
+        li {
+          width: 100%;
+          a {
+            width: 100%;
+            @include index.flex-box($flex-dir: column);
+            border: 2px solid grey;
+            border-radius: 5px;
+            padding: 0.5rem;
+            color: white;
+            transition: all 200ms ease-in-out;
+            &:hover {
+              background-color: white;
+              color: black;
+            }
+          }
+        }
+      }
+    }
+  }
+  .admin-collections {
+    width: 80%;
+    height: 100%;
+    padding: 1rem;
+    border: 1px solid grey;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    @include index.flex-box;
+    // **************** ADMIN USERS *******************
+    .admin-users {
+      @include collection;
+      h2 {
+        @include collection-heading;
+      }
+      .all-users {
+        @include collection-body;
+        .user {
+          width: 100%;
+          background-color: white;
+          border-radius: 5px;
+          thead {
+            tr {
+              th {
+                @include table-heading;
+              }
+            }
+          }
+          tbody {
+            tr {
+              td {
+                @include table-body;
+                &:nth-last-child(1) {
+                  border-right: none;
+                }
+              }
+              .ph-no {
+                text-align: right;
+              }
+              .email-link {
+                @include email-link;
+              }
+            }
+            .buttons {
+              @include index.flex-box;
+            }
+            button {
+              padding: 0.5rem;
+              border: none;
+              border-radius: 5px;
+              @include index.flex-box;
+              color: white;
+              font-size: 1.1rem;
+              box-sizing: border-box;
+              border: 1px solid transparent;
+            }
+            .del-btn {
+              background-color: crimson;
+              cursor: pointer;
+              &:hover {
+                background-color: transparent;
+                color: crimson;
+                border-color: crimson;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (width<=1200px) {
+    flex-direction: column;
+    height: auto;
+    .side-bar {
+      width: 100%;
+      border: none;
+      .admin-navbar {
+        ul {
+          width: 100%;
+          padding: 2rem;
+          flex-direction: row;
+          justify-content: space-evenly;
+          li {
+            a {
+              padding: 1rem;
+            }
+          }
+        }
+        @media (width<800px) {
+          ul {
+            flex-wrap: wrap;
+            li {
+              width: 50%;
+            }
+          }
+        }
+      }
+    }
+    .admin-collections {
+      width: 100%;
+      border: 1px solid grey;
+    }
+  }
+}
+
+// ******************* ADMIN COURSES *********************
+.admin-courses {
+  @include collection;
+  h2 {
+    @include collection-heading;
+  }
+  .all-courses {
+    width: 100%;
+    height: 90%;
+    overflow-y: scroll;
+    padding: 1rem;
+    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    .course {
+      width: 100%;
+      height: fit-content;
+      background-color: white;
+      color: black;
+      border-radius: 5px;
+      h3 {
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-transform: capitalize;
+        background: linear-gradient(120deg, crimson, dodgerblue);
+        color: white;
+        padding: 0.7rem;
+        border-radius: 5px 5px 0 0;
+      }
+      .course-body {
+        border-radius: 0 0 5px 5px;
+        @include index.flex-box($flex-dir: column, $align-items: flex-start);
+        gap: 0.2rem;
+        padding: 1rem;
+        font-size: 1.2rem;
+      }
+      .course-footer {
+        @include index.flex-box;
+        gap: 1rem;
+        border-top: 1px solid black;
+        padding: 0.2rem;
+        button,
+        a {
+          padding: 0.5rem;
+        }
+        .op-btns {
+          color: white;
+          border: none;
+          border-radius: 5px;
+          background-color: transparent;
+        }
+        .del-btn {
+          color: crimson;
+          &:hover {
+            background-color: #ffd2db;
+          }
+        }
+        .edit-btn {
+          color: dodgerblue;
+          &:hover {
+            background-color: #c3dffb;
+          }
+        }
+      }
+    }
+    @media (width<=800px) {
+      height: 90vh;
+      grid-template-columns: repeat(2, 1fr);
+      .course {
+        .course-body {
+          font-size: 1.1rem;
+        }
+      }
+    }
+    @media (width<=600px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
+
+// ************** COURSE UPDATE FORM ***************
+.update-section {
+  width: 100%;
+  padding: 1rem;
+  height: 100%;
+  // background-color: pink;
+  @include index.flex-box($flex-dir: column);
+  gap: 2rem;
+  h2 {
+    font-size: 2rem;
+    text-transform: capitalize;
+    font-weight: 400;
+  }
+  form {
+    width: 40%;
+    background-color: white;
+    padding: 3rem;
+    border-radius: 5px;
+    @include index.flex-box($flex-dir: column);
+    gap: 2rem;
+    div {
+      width: 100%;
+      label {
+        width: 100%;
+        font-size: 1.3rem;
+        color: black;
+      }
+      input {
+        width: 100%;
+        padding: 0.5rem;
+        outline: none;
+        border: none;
+        font-size: 1.3rem;
+        border-radius: 5px;
+        border: 1px solid grey;
+      }
+    }
+    button {
+      padding: 0.6rem;
+      border-radius: 5px;
+      border: none;
+      background-color: #06065f;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+  }
+}
+
+// ************** ADMIN REGISTRATIONS ***************
+.admin-registrations {
+  @include collection;
+  h2 {
+    @include collection-heading;
+  }
+  .all-registrations {
+    @include collection-body;
+    .registration {
+      width: 100%;
+      background-color: white;
+      border-radius: 5px;
+      thead {
+        tr {
+          th {
+            @include table-heading;
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            @include table-body;
+            span {
+              width: 100%;
+              text-transform: none;
+            }
+            &:nth-last-child(1) {
+              border-right: none;
+            }
+          }
+          .green {
+            background-color: #65ff65;
+            color: white;
+          }
+          .red {
+            background-color: #ff7c97;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ************** ADMIN CONTACTS ***************
+.admin-contacts {
+  @include collection;
+  h2 {
+    @include collection-heading;
+  }
+  .all-contacts {
+    @include collection-body;
+    .contact {
+      width: 100%;
+      background-color: white;
+      border-radius: 5px;
+      thead {
+        tr {
+          th {
+            @include table-heading;
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            @include table-body;
+            .del-btn {
+              @include index.flex-box;
+              gap: 0.5rem;
+              padding: 0.5rem;
+              border-radius: 5px;
+              font-size: 1.1rem;
+              background-color: transparent;
+              color: crimson;
+              border: none;
+              cursor: pointer;
+              transition: all 200ms ease-in-out;
+              &:hover {
+                background-color: crimson;
+                color: white;
+              }
+            }
+          }
+          .email-link {
+            @include email-link;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ************** ADMIN FEEDBACKS ***************
+.admin-feedbacks {
+  @include collection;
+  h2 {
+    @include collection-heading;
+  }
+  .all-feedbacks {
+    @include collection-body;
+    .feedback {
+      width: 100%;
+      background-color: white;
+      border-radius: 5px;
+      thead {
+        tr {
+          th {
+            @include table-heading;
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            @include table-body;
+          }
+          .email-link {
+            @include email-link;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ************** MODAL STYLES ***************
+.modal-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #00000097;
+  @include index.flex-box;
+  z-index: 1000;
+  .modal-content {
+    padding: 5rem;
+    border-radius: 5px;
+    width: 60%;
+    height: 65%;
+    position: relative;
+    left: 22%;
+    @include index.flex-box;
+    .modal-close {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 35px;
+      height: 35px;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 50%;
+      font-size: 1.8rem;
+    }
+    // ************** ADMIN UPLOADS ***************
+    .upload-section {
+      width: 100%;
+      height: 100%;
+      padding: 2rem;
+      @include index.flex-box;
+      .design-purpose {
+        width: 40%;
+        height: 100%;
+        padding: 1rem;
+        border-radius: 5px 0 0 5px;
+        background: linear-gradient(120deg, dodgerblue, darkblue, #050523);
+        color: white;
+        font-size: 1.5rem;
+      }
+      form {
+        width: 60%;
+        height: 100%;
+        @include index.flex-box($flex-dir: column, $align-items: flex-start);
+        gap: 2rem;
+        padding: 1rem;
+        background-color: white;
+        border-radius: 0 5px 5px 0;
+        input {
+          width: 100%;
+          padding: 0.5rem;
+          font-size: 1.2rem;
+          border-radius: 5px;
+          border: 1px solid grey;
+        }
+        button {
+          font-size: 1.2rem;
+          cursor: pointer;
+          border-radius: 5px;
+          padding: 0.5rem 1rem;
+          background: #06065f;
+          border: 2px solid #050543;
+          color: white;
+        }
+      }
+    }
+  }
+}

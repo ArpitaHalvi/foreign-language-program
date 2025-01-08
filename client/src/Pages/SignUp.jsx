@@ -2,18 +2,26 @@ import { useState } from "react";
 import "./SignUp.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Login } from "@mui/icons-material";
+import { toast } from "react-toastify";
+import { useAuth } from "../store/auth";
 
 const initialData = {
   fullname: "",
   email: "",
-  username: "",
+  phoneNumber: "",
   password: "",
   gender: "",
 };
 
+const cleanPhNum = (phone) => {
+  return phone.replace(/[^0-9]/g, "");
+};
+
 export default function SignUp() {
   const [data, setData] = useState(initialData);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { storeTokenInLS } = useAuth();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => {
@@ -25,22 +33,38 @@ export default function SignUp() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Cleaning up the phone number
+    const phNumber = cleanPhNum(data.phoneNumber);
+    const dataToSend = {
+      ...data,
+      phoneNumber: phNumber,
+    };
     try {
       const response = await fetch(`http://localhost:5000/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(dataToSend),
       });
-      console.log(response);
-      // If status the is ok the user is registered successfully
+      const res_data = await response.json();
+      console.log("Data from server: ", res_data);
+      // If status is ok the user is registered successfully
       if (response.ok) {
+        // Storing the token in Local Storage
+        storeTokenInLS(res_data.token);
         setData(initialData);
-        navigate("/login");
+        toast.success("Signed Up Successfully.", {
+          onClose: navigate("/"),
+        });
+      } else {
+        toast.error(
+          res_data.extraDetails ? res_data.extraDetails : res_data.message
+        );
       }
     } catch (err) {
-      console.log(err);
+      setError(err.message);
+      toast.error(error);
     }
   };
 
@@ -50,7 +74,7 @@ export default function SignUp() {
         <h2>Sign Up to Unlock the world of french learning!</h2>
         <div className="acc-already">
           <p>
-            Already have an account?
+            Already have an account ?
             <NavLink to="/login">
               <Login /> Login
             </NavLink>
@@ -60,9 +84,11 @@ export default function SignUp() {
       <div className="signup-form">
         <h2>Sign Up</h2>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="fullname">Fullname</label>
+          <label htmlFor="fullname" aria-label="Your Fullname">
+            Fullname
+          </label>
           <input
-            type="fullname"
+            type="text"
             id="fullname"
             name="fullname"
             className="signup-inputs"
@@ -73,7 +99,9 @@ export default function SignUp() {
             placeholder="Your fullname"
             autoComplete="off"
           />
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" aria-label="Your Email">
+            Email
+          </label>
           <input
             type="email"
             id="email"
@@ -86,20 +114,24 @@ export default function SignUp() {
             placeholder="Your email"
             autoComplete="off"
           />
-          <label htmlFor="username">Username</label>
+          <label htmlFor="phoneNumber" aria-label="Your Phone Number">
+            Phone Number
+          </label>
           <input
-            type="username"
-            id="username"
-            name="username"
+            type="tel"
+            id="phoneNumber"
+            name="phoneNumber"
             className="signup-inputs"
-            value={data.username}
+            value={data.phoneNumber}
             onChange={handleChange}
             required
             aria-required
-            placeholder="Your username"
+            placeholder="e.g., +91 9999999999"
             autoComplete="off"
           />
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" aria-label="Your Password">
+            Password
+          </label>
           <input
             type="password"
             id="password"
@@ -112,8 +144,11 @@ export default function SignUp() {
             aria-required
             autoComplete="off"
           />
-          <label htmlFor="gender">Gender</label>
+          <label htmlFor="gender" aria-label="Your gender">
+            Gender
+          </label>
           <select
+            id="gender"
             name="gender"
             value={data.gender}
             onChange={handleChange}
@@ -129,13 +164,6 @@ export default function SignUp() {
             SIGN UP
           </button>
         </form>
-        {/* <div className="other-signup-options">
-          <div className="google">
-            <Google />
-            <LinkedIn />
-            <Facebook />
-          </div>
-        </div> */}
       </div>
     </section>
   );

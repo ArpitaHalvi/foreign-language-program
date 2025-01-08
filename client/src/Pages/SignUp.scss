@@ -4,7 +4,7 @@
   width: 100%;
   height: 90vh;
   background: linear-gradient(120deg, #050523, #131398);
-  @include index.res-grid();
+  @include index.res-grid;
   @media (width<1000px) {
     @include index.res-grid(100%);
     height: fit-content;
@@ -13,7 +13,6 @@
   .signup-greet {
     @include index.flex-box($align-items: flex-end, $flex-dir: column);
     gap: 1rem;
-    // background-color: plum;
     padding: 1rem;
     color: white;
     h2 {
@@ -71,6 +70,7 @@
     height: 100%;
     padding: 1rem;
     background-color: white;
+    border-radius: 5px;
     place-self: flex-end;
     @include index.flex-box($flex-dir: column);
     h2 {
@@ -117,7 +117,7 @@
       }
     }
     @media (width<=600px) {
-      width: 80%;
+      width: 90%;
       h2 {
         font-size: 2rem;
       }

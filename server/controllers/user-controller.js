@@ -1,25 +1,25 @@
 const User = require("../models/user-model");
 
 // REGISTERING THE USER
-const register = async (req, res, next) => {
+async function register(req, res, next) {
   try {
     // res.send(req.body);
-    const { fullname, email, username, password, gender } = req.body;
+    const { fullname, email, phoneNumber, password, gender } = req.body;
     // CHECKING IF THE USER ALREADY EXISTS
     const existingUser = await User.findOne({ email: email });
     if (existingUser) {
-      return res.status(400).send("Email already exists.");
+      return res.status(400).json({ message: "Email already exists." });
     } else {
       const user = await User.create({
         fullname,
         email,
-        username,
+        phoneNumber,
         password,
         gender,
       });
-      console.log(user);
+      // console.log(user);
       res.status(201).json({
-        msg: "Registered successfully",
+        message: "Registered successfully",
         token: user.generateToken(),
         userId: user._id.toString(),
       });
@@ -28,7 +28,7 @@ const register = async (req, res, next) => {
     // console.log("Sorry cannot register. Something went wrong.", e);
     next(e);
   }
-};
+}
 
 // LOGGING IN THE USER
 const login = async (req, res, next) => {
@@ -41,19 +41,29 @@ const login = async (req, res, next) => {
       const user = await userExist.comparePassword(password);
       if (user) {
         res.status(200).json({
-          msg: "Logged in successfully.",
+          message: "Logged in successfully.",
           token: userExist.generateToken(),
           userId: userExist._id.toString(),
         });
       } else {
-        res.status(401).json({ msg: "Invalid Email or password." });
+        res.status(401).json({ message: "Invalid Email or password." });
       }
     } else {
-      res.status(400).json("Invalid credentials.");
+      res.status(400).json({ message: "Invalid credentials." });
     }
   } catch (e) {
-    // res.status(500).json("Internal server error.");
-    console.log(e);
+    // console.log(e);
+    next(e);
+  }
+};
+
+// To send the user data
+const user = async (req, res, next) => {
+  try {
+    const userData = req.user;
+    // console.log("User data from user route: ", userData);
+    return res.status(200).json({ userData });
+  } catch (e) {
     next(e);
   }
 };
@@ -61,4 +71,5 @@ const login = async (req, res, next) => {
 module.exports = {
   register,
   login,
+  user,
 };

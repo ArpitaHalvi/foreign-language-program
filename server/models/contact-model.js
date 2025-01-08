@@ -8,7 +8,6 @@ const contactSchema = new Schema({
   email: {
     type: String,
     required: [true, "Must enter your email id."],
-    unique: true,
   },
   message: {
     type: String,

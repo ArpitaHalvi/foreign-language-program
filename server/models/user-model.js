@@ -13,9 +13,9 @@ const userSchema = new Schema({
     required: [true, "Enter your email first."],
     unique: true,
   },
-  username: {
+  phoneNumber: {
     type: String,
-    required: [true, "Enter your username first."],
+    required: [true, "Enter your number first."],
     unique: true,
   },
   password: {
@@ -67,7 +67,7 @@ userSchema.methods.generateToken = function () {
       },
       process.env.JWT_SECRET_KEY,
       {
-        expiresIn: "30d",
+        expiresIn: "1d",
       }
     );
   } catch (error) {

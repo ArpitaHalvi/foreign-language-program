@@ -1,13 +1,16 @@
-import "./PageNotFound.scss";
+import "./StatusPageStyles.scss";
 import { NavLink } from "react-router-dom";
+import { ArrowForward } from "@mui/icons-material";
 
 export default function PageNotFound() {
   return (
-    <section className="error-page">
+    <section className="page-not-found">
       <h1>404</h1>
       <p>Sorry! This page does not exist.</p>
       <div className="btns">
-        <NavLink to="/">RETURN TO HOME</NavLink>
+        <NavLink to="/">
+          Return to home <ArrowForward />
+        </NavLink>
       </div>
     </section>
   );

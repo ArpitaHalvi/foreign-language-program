@@ -1,22 +1,39 @@
-import paris from "../assets/images/paris.jpg";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 export default function Feedback() {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
+  };
   return (
-    <div className="feedback-part">
-      <h2>WHAT OUR STUDENTS SAY</h2>
-      <div className="feedback-box">
-        <div className="feedback">
-          <img src={paris} alt="" />
-          <div className="student-feedback">
-            <p className="feedback-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-              recusandae itaque sint nobis totam repudiandae ratione
-              necessitatibus quo voluptates laboriosam.
-            </p>
-            <p className="student-name">Aarti Shah (BCA Student)</p>
-          </div>
+    <section className="feedback">
+      <h2>Reviews</h2>
+      <Slider {...settings}>
+        <div>
+          <p>⭐⭐⭐⭐</p>
+          <p className="content">
+            &quot;I loved this courses. Ma&apos;am was so interactive and was
+            very friendly.&quot;
+          </p>
+          <p className="user">- Monalisa</p>
         </div>
-      </div>
-    </div>
+        <div>
+          <p>⭐⭐⭐⭐</p>
+          <p className="content">
+            &quot;I loved this courses. Ma&apos;am was so interactive and was
+            very friendly.&quot;
+          </p>
+          <p className="user">- Monalisa</p>
+        </div>
+      </Slider>
+    </section>
   );
 }

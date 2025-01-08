@@ -1,0 +1,83 @@
+@use "../index" as index;
+
+.contact-page {
+  @include index.flex-box;
+  height: 90vh;
+  background: url("/contact-bg.svg");
+  background-size: cover;
+  .contact-form {
+    width: 45%;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px grey;
+    @include index.flex-box($flex-dir: column);
+    h2 {
+      font-size: 2rem;
+      font-weight: 400;
+      padding: 1rem;
+      text-transform: capitalize;
+    }
+    form {
+      width: 100%;
+      @include index.flex-box($flex-dir: column);
+      padding: 1rem;
+      .form-inputs {
+        width: 100%;
+        @include index.res-grid;
+        padding: 0.5rem 0;
+        // background-color: plum;
+        div {
+          width: 100%;
+          // background-color: aliceblue;
+          @include index.flex-box($flex-dir: column);
+          label {
+            font-size: 1.2rem;
+          }
+          input {
+            width: 98%;
+            margin-top: 1%;
+            padding: 0.7rem;
+            border-radius: 5px;
+            border: 1px solid grey;
+            font-size: 1.2rem;
+          }
+        }
+        @media (width<=500px) {
+          @include index.res-grid(100%);
+        }
+      }
+      label {
+        margin: 2% 0 1% 0;
+        font-size: 1.2rem;
+        align-self: flex-start;
+      }
+      textarea {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        resize: none;
+      }
+      .contact-btn {
+        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+        margin-top: 3%;
+        background-color: black;
+        border-radius: 5px;
+        color: white;
+      }
+    }
+    @media (width<=1200px) {
+      width: 60%;
+    }
+    @media (width<=900px) {
+      width: 80%;
+    }
+    @media (width<=700px) {
+      width: 90%;
+    }
+    
+  }
+}

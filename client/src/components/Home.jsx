@@ -1,21 +1,21 @@
-import "./Home.scss";
 import IntroPart from "../components/IntroPart";
 import DetailsPart from "../components/DetailsPart";
-import CourseHead from "../components/CourseHead";
-import Feedback from "../components/Feedback";
-import AllCourses from "./AllCourses";
+import Testimonials from "../components/Testimonials";
 import Footer from "./Footer";
+import "./Courses.scss";
+import Services from "./Services";
+import Announcements from "./Announcements";
+import Eligibility from "./Eligibility";
 
 export default function Home() {
   return (
     <>
       <IntroPart />
-      <CourseHead />
-      <AllCourses />
-      <hr />
+      <Services />
       <DetailsPart />
-      <hr />
-      <Feedback />
+      <Announcements />
+      <Eligibility />
+      <Testimonials />
       <Footer />
     </>
   );

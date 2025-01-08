@@ -1,25 +1,35 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.scss";
 import {
+  Close,
   HomeOutlined,
   InfoOutlined,
   Menu,
   SchoolOutlined,
   SquareFootOutlined,
 } from "@mui/icons-material";
+import { useState } from "react";
+import { useAuth } from "../store/auth";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const { isLoggedIn, user, loading } = useAuth();
+  // Show nothing until user data is loading
+  if (loading) return <div>Loading....</div>;
+  const isAdmin = user?.isAdmin;
+
   return (
     <>
       {/* head */}
       <header className="head">
         <div className="logo">
-          {/* <img src="" alt="LOGO" /> */}
-          <h1>flp</h1>
+          <img src="/logo.jpeg" alt="LOGO" />
+          {/* <h1>flp</h1> */}
         </div>
         {/* nav menus */}
         <nav className="navbar">
-          <ul>
+          <ul className={`nav-links ${isOpen && "open"}`}>
             <li>
               <NavLink
                 to="/"
@@ -64,19 +74,83 @@ const Navbar = () => {
                 Courses
               </NavLink>
             </li>
+            <li className="res-nav-btns">
+              {isLoggedIn ? (
+                isAdmin ? (
+                  <>
+                    <NavLink to="/admin">
+                      <button className="nav-btns" id="admin-btn">
+                        Admin Panel
+                      </button>
+                    </NavLink>
+                    <NavLink to="/logout">
+                      <button id="logout-btn" className="nav-btns">
+                        Logout
+                      </button>
+                    </NavLink>
+                  </>
+                ) : (
+                  <NavLink to="/logout">
+                    <button id="logout-btn" className="nav-btns">
+                      Logout
+                    </button>
+                  </NavLink>
+                )
+              ) : (
+                <>
+                  <NavLink to="/register">
+                    <button className="register-btn">Enroll Now</button>
+                  </NavLink>
+                  <NavLink to="/signup">
+                    <button className="signup-btn">Sign Up</button>
+                  </NavLink>
+                </>
+              )}
+            </li>
           </ul>
-          <div className="navigation register">
-            <NavLink to="/register">
-              <button id="register-btn">Enroll Now</button>
-            </NavLink>
-            <NavLink to="/signup">
-              <button id="signup-btn">Sign Up</button>
-            </NavLink>
+          <div className="navigation">
+            {isLoggedIn ? (
+              isAdmin ? (
+                <>
+                  <NavLink to="/admin">
+                    <button className="nav-btns" id="admin-btn">
+                      Admin Panel
+                    </button>
+                  </NavLink>
+                  <NavLink to="/logout">
+                    <button id="logout-btn" className="nav-btns">
+                      Logout
+                    </button>
+                  </NavLink>
+                </>
+              ) : (
+                <NavLink to="/logout">
+                  <button id="logout-btn" className="nav-btns">
+                    Logout
+                  </button>
+                </NavLink>
+              )
+            ) : (
+              <>
+                <NavLink to="/register">
+                  <button id="register-btn" className="nav-btns">
+                    Enroll Now
+                  </button>
+                </NavLink>
+                <NavLink to="/signup">
+                  <button id="signup-btn" className="nav-btns">
+                    Sign Up
+                  </button>
+                </NavLink>
+              </>
+            )}
           </div>
-          <div className="menu">
-            <button>
+          <div onClick={toggleMenu} className="menu">
+            {isOpen ? (
+              <Close className="menu-icon" />
+            ) : (
               <Menu className="menu-icon" />
-            </button>
+            )}
           </div>
         </nav>
       </header>

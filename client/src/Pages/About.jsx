@@ -1,38 +1,52 @@
-import React from "react";
+import Reports from "../components/Reports";
 import "./About.scss";
 
 export default function About() {
   return (
     <section className="about-section">
-      <div className="about-part">
+      <div className="about-us">
+        <h2>
+          Building Cultures, <br /> One Language at a Time.
+        </h2>
+        <h3>
+          <i>
+            &quot;Bienvenue! we&apos;re thrilled to have you here. Embark on an
+            enriching journey to master the French language and explore its
+            vibrant culture with us!&quot;
+          </i>
+        </h3>
+        <p>
+          French is spoken in many countries- not just in France! It is the
+          official language in Switzerland, Belgium, Canada, Seychelles,
+          Morocco, Ivory Coast- just to name a few. In fact, it is the only
+          language spoken on all five continents. French people are very proud
+          of their language and will immediately warm to you if you speak it-
+          even if you make a few mistakes. Since there are no hard consonants in
+          the French language, it is easy on the ear. It is a language of
+          precision and musicality.
+        </p>
+        <p>
+          We aim to teach you how to read, write and speak French. This
+          international language will open up a host of opportunities for
+          students and learners alike. The tourism, hotel and other hospitality
+          industry, airlines, international banks, technical and artistic
+          collaborations and teaching are some of the areas where knowledge of
+          the French language and culture can help you. Other than that one can
+          enjoy French literature and cinema, understand research papers in
+          Mathematics and allied subjects.
+        </p>
         <div className="instructor">
-          <img src="" alt="" />
-          <p className="instructor-desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel,
-            recusandae! Ut eius maxime quia tempora corrupti deleniti cum qui,
-            voluptatibus provident voluptate. Aliquid sapiente consequuntur
-            perferendis vitae cum explicabo cupiditate quasi eos ipsa, aperiam,
-            sint voluptatum excepturi quia pariatur soluta facilis tenetur
-            praesentium ea. In quo eaque repellat quibusdam sit, nam et ipsum
-            minima nemo, natus facere laborum similique. Ex dolor ut sequi.
-            Neque a provident asperiores nobis nihil, consequuntur excepturi
-            corporis molestias, perspiciatis et enim possimus nesciunt tenetur
-            debitis ipsa non ipsum veritatis unde in dolorem, quae pariatur
-            dolorum suscipit odio? Possimus harum, magnam eligendi maxime ab
-            excepturi distinctio. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Sapiente aliquid ea modi commodi ipsam odit non
-            eaque aut nulla iure labore expedita, quaerat, molestias illum totam
-            nam voluptates dolores eius tempore deserunt error! Cumque corporis
-            illum a quos debitis minima dolorum, temporibus tempora unde
-            voluptate maiores, ex eaque expedita doloribus? Iure perspiciatis
-            maxime molestias atque! Nisi iure facere dolorum, mollitia
-            consequatur explicabo, nulla id minus nesciunt labore natus!
-            Corporis est voluptatem quas, quam aspernatur officiis nihil saepe
-            minus reiciendis nam deleniti recusandae itaque magni eveniet
-            nostrum unde numquam culpa ad quae dolore, dignissimos quos.
+          <h4>Your Instructor</h4>
+          <h5>Mrs. Sonal Chaturvedi</h5>
+          <p>
+            Language Consultant (French)– Accounted Experience in
+            Translation,Teaching & consulting with NGOs, Schools, Education
+            Institutes and Organizations. Social Consultants- Diverse Ability in
+            early childhood Education & Socialwork.
           </p>
         </div>
       </div>
+      <Reports />
     </section>
   );
 }

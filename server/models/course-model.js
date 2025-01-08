@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const feedbackSchema = require("./feedback-model");
+const { Schema, model } = require("mongoose");
 
 const courseSchema = new Schema({
   title: {
@@ -8,16 +6,26 @@ const courseSchema = new Schema({
     enum: ["olympiad", "fast-track course", "delf junior", "delf tcf-tef"],
     required: true,
   },
+  duration: {
+    type: String,
+    required: true,
+  },
+  fee: {
+    type: Number,
+    required: true,
+  },
   enrolledUsers: [
     {
       type: Schema.Types.ObjectId,
       ref: "User", // Referencing to the user model
+      default: [],
     },
   ],
   reviews: [
     {
       type: Schema.Types.ObjectId,
       ref: "Feedback", // Referencing to the Feedback model
+      default: [],
     },
   ],
 });

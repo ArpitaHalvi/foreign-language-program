@@ -6,6 +6,7 @@
   height: 10vh;
   background-color: white;
   color: #f1faee;
+  position: relative;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -14,10 +15,9 @@
     @include index.flex-box($justify-content: flex-start);
     width: 30%;
     padding-left: 2rem;
-    // background-color: blueviolet;
-    // img{
-    //     @include img-setting;
-    // }
+    img {
+      @include index.img-setting($width: 20%);
+    }
     h1 {
       font-size: 2.5rem;
       background: linear-gradient(to right, #050523, #2a2a71);
@@ -28,24 +28,15 @@
   .navbar {
     @include index.flex-box($justify-content: space-between);
     padding: 0 1rem;
-    // background-color: #407777;
     width: 70%;
     ul {
       width: 60%;
       @include index.flex-box($justify-content: space-between);
-      // background-color: aquamarine;
       li {
         @include index.flex-box;
-        // background-color: chartreuse;
         .navbar-icons {
           color: #04042d;
         }
-        // &:hover {
-        //   border-bottom: 2px solid #050523;
-        //   transition-timing-function: ease-in-out;
-        //   transition-duration: 0.1s;
-        //   transition: background-color 300ms;
-        // }
         a {
           @include index.flex-box;
           gap: 0.5rem;
@@ -54,18 +45,38 @@
           transition: border-bottom;
         }
       }
+      .res-nav-btns {
+        @include index.flex-box;
+        width: 80%;
+        display: none;
+        gap: 1rem;
+        a {
+          width: 80%;
+          button {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            border: 1px solid #050523;
+            background-color: transparent;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+          }
+        }
+      }
     }
     .navigation {
       @include index.flex-box;
       gap: 2rem;
-      #register-btn,
-      #signup-btn {
+      .nav-btns {
         padding: 0.5rem 1rem;
         color: #050523;
         font-size: 1.2rem;
         border: 2px solid #050543;
         border-radius: 0.3rem;
         cursor: pointer;
+        background-color: transparent;
         &:hover {
           background-color: #090950;
           border: none;
@@ -79,14 +90,13 @@
     }
     .menu {
       display: none;
-      button {
-        padding: 0.1rem 0.3rem;
-        border-radius: 0.3rem;
-        border: 1px solid #050523;
-        .menu-icon {
-          width: 2.5rem;
-          height: 2.5rem;
-        }
+      padding: 0.1rem 0.3rem;
+      border-radius: 0.3rem;
+      cursor: pointer;
+      .menu-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        color: black;
       }
     }
   }
@@ -94,31 +104,55 @@
 
 .active-link {
   border-bottom: 2px solid #050523;
-  animation: 2s link-animate ease-in forwards;
-}
-
-@keyframes link-animate {
-  0% {
-    border-bottom-width: 25%;
-  }
-  50% {
-    border-bottom-width: 50%;
-  }
-  75% {
-    border-bottom-width: 75%;
-  }
-  100% {
-    border-bottom-width: 100%;
-  }
 }
 
 @media (width<=1150px) {
   .head {
     .navbar {
+      width: 100%;
+      z-index: 1;
       @include index.flex-box($justify-content: flex-end);
-      ul,
       .navigation {
         display: none;
+      }
+      .nav-links {
+        display: none;
+        width: 100%;
+        height: 100vh;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 2rem;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: linear-gradient(#050523, #090950, #141480);
+        transform: translateY(-100%); // Hidden initially
+        transition: transition 0.3s ease-in-out;
+        &.open {
+          display: flex; // Show links when open
+          transform: translateY(0);
+        }
+        li {
+          margin: 10px 0;
+          a {
+            color: #d8d8d8;
+            .navbar-icons {
+              color: #d8d8d8;
+            }
+          }
+        }
+        .res-nav-btns {
+          width: 50%;
+          display: flex;
+          @media (width<600px) {
+            width: 80%;
+          }
+        }
+        @media (width<=700px) {
+          width: 100%;
+        }
       }
       .menu {
         display: block;
