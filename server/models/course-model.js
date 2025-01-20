@@ -3,15 +3,15 @@ const { Schema, model } = require("mongoose");
 const courseSchema = new Schema({
   title: {
     type: String,
-    enum: ["olympiad", "fast-track course", "delf junior", "delf tcf-tef"],
-    required: true,
-  },
-  duration: {
-    type: String,
+    // enum: ["olympiad", "fast-track course", "delf junior", "delf tcf-tef"],
     required: true,
   },
   fee: {
     type: Number,
+    required: true,
+  },
+  duration: {
+    type: String,
     required: true,
   },
   enrolledUsers: [

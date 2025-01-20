@@ -24,6 +24,9 @@ import AdminFeedbacks from "./components/AdminFeedbacks.jsx";
 import AdminContacts from "./components/AdminContacts.jsx";
 import "./components/AdminStyles.scss";
 import CourseUpdate from "./components/CourseUpdate.jsx";
+import AddCourse from "./components/AddCourse.jsx";
+import ContactLink from "./components/ContactLink.jsx";
+import UploadSyllabus from "./components/UploadSyllabus.jsx";
 
 function App() {
   AOS.init({
@@ -45,18 +48,20 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/olympiads" element={<Olympiads />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/admin" element={<AdminPanel />}>
             <Route path="users" element={<AdminUsers />} />
             <Route path="courses" element={<AdminCourses />} />
             <Route path="courses/:id/edit" element={<CourseUpdate />} />
+            <Route path="courses/add" element={<AddCourse />} />
             <Route path="registrations" element={<AdminRegistrations />} />
             <Route path="feedbacks" element={<AdminFeedbacks />} />
             <Route path="contacts" element={<AdminContacts />} />
+            <Route path="syllabus" element={<UploadSyllabus />} />
           </Route>
         </Routes>
+        <ContactLink />
       </BrowserRouter>
     </>
   );

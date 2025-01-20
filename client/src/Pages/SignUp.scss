@@ -9,6 +9,9 @@
     @include index.res-grid(100%);
     height: fit-content;
     padding: 1rem;
+    .signup-form {
+      border-radius: 5px;
+    }
   }
   .signup-greet {
     @include index.flex-box($align-items: flex-end, $flex-dir: column);
@@ -70,7 +73,6 @@
     height: 100%;
     padding: 1rem;
     background-color: white;
-    border-radius: 5px;
     place-self: flex-end;
     @include index.flex-box($flex-dir: column);
     h2 {

@@ -25,10 +25,10 @@ export default function Courses() {
   if (!courses) return <StatusPage />;
   return (
     <div className="box">
-      <section className="course-details">
+      <section className="course-details" data-aos="fade-in">
         {courses.map((c) => {
           return (
-            <div className="course-item" key={c._id} data-aos="slide-down">
+            <div className="course-item" key={c._id}>
               <div className="course-img">
                 <h3>Start Now!</h3>
               </div>

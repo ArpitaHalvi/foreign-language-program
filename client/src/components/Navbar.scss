@@ -127,7 +127,7 @@
         position: absolute;
         top: 100%;
         right: 0;
-        background: linear-gradient(#050523, #090950, #141480);
+        @include index.bg-pattern;
         transform: translateY(-100%); // Hidden initially
         transition: transition 0.3s ease-in-out;
         &.open {

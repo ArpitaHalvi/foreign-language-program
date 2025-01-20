@@ -2,10 +2,28 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 import { Delete } from "@mui/icons-material";
+import ConfirmModal from "./ConfirmModal";
 
 export default function AdminContacts() {
   const [contacts, setContacts] = useState([]);
   const { authorizationToken } = useAuth();
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [selectedContactId, setSelectedContactId] = useState(null);
+  const openConfirmModal = (id) => {
+    setIsConfirmModalOpen(true);
+    setSelectedContactId(id);
+  };
+
+  const closeConfirmModal = () => {
+    setSelectedContactId(null);
+    setIsConfirmModalOpen(false);
+  };
+  const confirmDelete = async () => {
+    if (selectedContactId) {
+      await deleteContact(selectedContactId);
+    }
+    closeConfirmModal();
+  };
   const deleteContact = async (id) => {
     try {
       const response = await fetch(
@@ -51,6 +69,11 @@ export default function AdminContacts() {
   }, [authorizationToken]);
   return (
     <section className="admin-contacts">
+      <ConfirmModal
+        isOpen={isConfirmModalOpen}
+        isClose={closeConfirmModal}
+        onConfirm={confirmDelete}
+      />
       <h2>CONTACTS</h2>
       <div className="all-contacts">
         <table className="contact">
@@ -77,7 +100,7 @@ export default function AdminContacts() {
                     <td>{message}</td>
                     <td>
                       <button
-                        onClick={() => deleteContact(_id)}
+                        onClick={() => openConfirmModal(_id)}
                         className="del-btn"
                       >
                         <Delete /> Delete

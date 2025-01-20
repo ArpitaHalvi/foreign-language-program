@@ -3,9 +3,33 @@ export default function DetailsPart() {
     <section className="details-part">
       <h3 className="collab-heading">Professional Network</h3>
       <div className="collab">
-        <img src="/podar-schl.jpg" alt="LOGO" className="partner" />
-        <img src="/SAC-logo.jpeg" alt="LOGO" className="partner" />
-        <img src="/podar-schl.jpg" alt="LOGO" className="partner" />
+        <div>
+          <a
+            href="https://staloysiuscollege.ac.in"
+            className="partner"
+            title="St. Aloysius College, Jabalpur"
+          >
+            <img src="/aloysius-logo2.png" alt="LOGO" />
+          </a>
+        </div>
+        <div>
+          <a
+            href="https://www.podareducation.org"
+            className="partner"
+            title="Podar International School, Jabalpur"
+          >
+            <img src="/podar-schl2.png" alt="LOGO" />
+          </a>
+        </div>
+        <div>
+          <a
+            href="https://csjmu.ac.in"
+            className="partner"
+            title="Chatrapati Shahuji Maharaj University, Kanpur"
+          >
+            <img src="/csjm-uni.png" alt="LOGO" />
+          </a>
+        </div>
       </div>
     </section>
   );

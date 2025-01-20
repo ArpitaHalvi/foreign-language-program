@@ -6,11 +6,16 @@ import Feedback from "./Feedback";
 import { ArrowForward, CheckTwoTone } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import StatusPage from "../Pages/StatusPage";
+import { useAuth } from "../store/auth";
+import UploadSyllabus from "./UploadSyllabus";
+import Modal from "./Modal";
 
 export default function EachCourse() {
   const { id } = useParams(); // Get the Id from the route
   const [course, setCourse] = useState(null);
   const [error, setError] = useState("");
+  const { user } = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -37,7 +42,7 @@ export default function EachCourse() {
           Duration: {course.duration} | Online | Paid (Rs.{course.fee})
         </p>
         <p>Instructor: Mrs. Sonal Chaturvedi</p>
-        <p className="desc">
+        <div className="desc">
           <ul>
             <li>
               <CheckTwoTone className="check-icon" />
@@ -58,15 +63,37 @@ export default function EachCourse() {
               instructors and possibly the French-speaking population.
             </li>
           </ul>
-        </p>
+        </div>
         <div className="further-info">
           <p className="syllabus">
             All courses will have the same syllabus and can be found here -
             <NavLink to="/syllabus" className="syllabus-pdf">
               SYLLABUS
             </NavLink>
+            {user.isAdmin && (
+              <>
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="crud-btns upload-btn"
+                >
+                  Upload
+                </button>
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="crud-btns update-btn"
+                >
+                  Change
+                </button>
+                <Modal
+                  isOpen={isModalOpen}
+                  onClose={() => setIsModalOpen(false)}
+                >
+                  <UploadSyllabus />
+                </Modal>
+              </>
+            )}
           </p>
-          <NavLink to="/contact" className="contact-us">
+          <NavLink to="/contact" className="contact-link">
             CONTACT US
             <ArrowForward className="contact-icon" />
           </NavLink>

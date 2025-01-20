@@ -1,12 +1,30 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
-import { Delete, Edit } from "@mui/icons-material";
+import { Add, Delete, Edit } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import ConfirmModal from "./ConfirmModal";
 
 export default function AdminCourses() {
   const [courses, setCourses] = useState([]);
   const { authorizationToken } = useAuth();
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [selectedCourseId, setSelectedCourseId] = useState(null);
+  const openConfirmModal = (id) => {
+    setIsConfirmModalOpen(true);
+    setSelectedCourseId(id);
+  };
+
+  const closeConfirmModal = () => {
+    setSelectedCourseId(null);
+    setIsConfirmModalOpen(false);
+  };
+  const confirmDelete = async () => {
+    if (selectedCourseId) {
+      await deleteCourse(selectedCourseId);
+    }
+    closeConfirmModal();
+  };
   const deleteCourse = async (id) => {
     try {
       const response = await fetch(
@@ -52,6 +70,11 @@ export default function AdminCourses() {
   }, []);
   return (
     <section className="admin-courses">
+      <ConfirmModal
+        isOpen={isConfirmModalOpen}
+        isClose={closeConfirmModal}
+        onConfirm={confirmDelete}
+      />
       <h2>COURSES</h2>
       <div className="all-courses">
         {courses.length > 0 ? (
@@ -77,7 +100,7 @@ export default function AdminCourses() {
                 <div className="course-footer">
                   <button
                     className="del-btn op-btns"
-                    onClick={() => deleteCourse(_id)}
+                    onClick={() => openConfirmModal(_id)}
                   >
                     <Delete className="op-icons" />
                   </button>
@@ -94,6 +117,11 @@ export default function AdminCourses() {
         ) : (
           <p>No Courses Found.</p>
         )}
+        <div className="add-course">
+          <Link to="/admin/courses/add">
+            <Add className="add-icon" /> Add Course
+          </Link>
+        </div>
       </div>
     </section>
   );

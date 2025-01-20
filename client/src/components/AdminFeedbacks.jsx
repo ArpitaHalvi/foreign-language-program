@@ -6,10 +6,10 @@ export default function AdminFeedbacks() {
   const [feedbacks, setFeedbacks] = useState([]);
   const { authorizationToken } = useAuth();
   useEffect(() => {
-    const fetchContacts = async () => {
+    const fetchFeedbacks = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/admin/feedbacks`,
+          "http://localhost:5000/api/admin/feedbacks",
           {
             method: "GET",
             headers: {
@@ -17,18 +17,20 @@ export default function AdminFeedbacks() {
             },
           }
         );
-        const res_data = await response.json();
+        console.log("Feedback data:", response);
         if (response.ok) {
-          console.log(res_data);
+          const res_data = await response.json();
           setFeedbacks(res_data);
+          console.log(res_data);
         } else {
-          toast.error("Error while fetching contacts");
+          toast.error("Error while fetching feedbacks");
         }
       } catch (e) {
+        console.log("Error: ", e);
         toast.error(e);
       }
     };
-    fetchContacts();
+    fetchFeedbacks();
   }, [authorizationToken]);
   return (
     <section className="admin-feedbacks">
@@ -52,11 +54,21 @@ export default function AdminFeedbacks() {
                 return (
                   <tr key={_id}>
                     <td>{index + 1}.</td>
-                    <td>{courseId.title}</td>
-                    <td>{userId.fullname}</td>
-                    <td className="email-link">
-                      <a href={`mailto:${userId.email}`}>{userId.email}</a>
-                    </td>
+                    {userId && courseId ? (
+                      <>
+                        <td>{courseId.title}</td>
+                        <td>{userId.fullname}</td>
+                        <td className="email-link">
+                          <a href={`mailto:${userId.email}`}>{userId.email}</a>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td>Not found.</td>
+                        <td>Not found.</td>
+                        <td>Not found.</td>
+                      </>
+                    )}
                     <td>{rating}</td>
                     <td>{content}</td>
                   </tr>

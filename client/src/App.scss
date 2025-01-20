@@ -11,6 +11,41 @@
   @include index.res-grid;
   width: 100%;
   height: 90vh;
+  @include index.bg-pattern;
+  .motive {
+    width: 100%;
+    padding: 2rem;
+    @include index.flex-box($flex-dir: column, $align-items: flex-start);
+    gap: 1.5rem;
+    color: white;
+    .greeting {
+      width: 90%;
+      text-transform: capitalize;
+      font-size: 5rem;
+      background: linear-gradient(120deg, grey, whitesmoke, white);
+      background-clip: text;
+      color: transparent;
+    }
+    .aim {
+      font-size: 1.2rem;
+      text-transform: capitalize;
+    }
+    a {
+      padding: 0.8rem 1rem;
+      background-color: transparent;
+      border: 1px solid white;
+      border-radius: 50px;
+      @include index.flex-box;
+      gap: 0.5rem;
+      font-size: 1.3rem;
+      color: white;
+      transition: 0.2s ease;
+      &:hover {
+        background-color: white;
+        color: black;
+      }
+    }
+  }
   .explore-france {
     width: 100%;
     @include index.flex-box;
@@ -18,44 +53,23 @@
     .map {
       width: 90%;
       height: 100%;
-      border: 1px solid black;
       filter: drop-shadow(5px 5px 5px grey);
-    }
-  }
-  .motive {
-    width: 100%;
-    padding: 1rem;
-    text-align: right;
-    @include index.flex-box($align-items: flex-end, $flex-dir: column);
-    .greeting {
-      width: 90%;
-      color: #050523;
-      text-transform: capitalize;
-      font-size: 5rem;
-      color: #191952;
-    }
-    .aim {
-      padding: 1rem;
-      font-size: 1.2rem;
-      color: #050523;
-      text-transform: capitalize;
     }
   }
   @media (width<=900px) {
     @include index.res-grid(100%);
     height: auto;
     text-align: center;
-    .explore-france {
-      order: 2;
-    }
     .motive {
       width: 80%;
       text-align: center;
+      align-items: center;
       .greeting {
         width: 100%;
         font-size: 4rem;
       }
       .aim {
+        width: 70%;
         font-size: 1.1rem;
       }
     }
@@ -79,24 +93,52 @@
     width: 100%;
     padding: 1rem;
     @include index.flex-box;
-    gap: 5rem;
-    .partner {
-      @include index.img-setting($width: 30%);
-      height: 100%;
-      &:nth-of-type(2) {
-        width: 10%;
+    gap: 1rem;
+    div {
+      width: 100%;
+      @include index.flex-box;
+      padding: 3rem;
+      background-color: transparent;
+      border-radius: 5px;
+      transition: background-color 0.2s ease-in;
+      .partner {
+        padding: 5rem;
+        img {
+          @include index.img-setting($width: 100%);
+          filter: drop-shadow(5px 5px 5px grey);
+          &:hover {
+            scale: 1.5;
+          }
+        }
+      }
+      &:hover {
+        background-color: aliceblue;
+      }
+      @media (width<=1300px) {
+        padding: 1rem;
+        @media (width<1200px) {
+          .partner {
+            padding: 3rem;
+            @media (width<1000px) {
+              padding: 1rem;
+            }
+          }
+        }
       }
     }
   }
-  @media (width<=600px) {
+  @media (width<=700px) {
     .collab {
-      gap: 2rem;
-      .partner {
-        width: 35%;
-        object-fit: cover;
-        &:nth-of-type(2) {
-          width: 20%;
-          object-fit: contain;
+      flex-direction: column;
+      gap: 0;
+      div {
+        .partner {
+          padding: 4rem;
+          img {
+            &:hover {
+              scale: none;
+            }
+          }
         }
       }
     }
@@ -165,7 +207,7 @@
   }
 }
 
-// ****************** ANNOUNCEMENTS STYLES *********************
+// *************** ANNOUNCEMENTS STYLES *****************
 .announcements-section {
   width: 100%;
   padding: 2rem;
@@ -185,7 +227,7 @@
         width: 70%;
         font-size: 1.3rem;
       }
-      .upload-brochure {
+      .upload-btn {
         padding: 0.5rem;
         font-size: 1.2rem;
         border-radius: 5px;
@@ -199,6 +241,11 @@
     .announcement {
       width: 100%;
       background-color: white;
+      @include index.flex-box;
+      div {
+        @include index.flex-box;
+        font-size: 1.3rem;
+      }
       .slick-dots {
         color: #050523;
       }
@@ -213,10 +260,32 @@
         @include index.flex-box;
         .slick-slide {
           width: 100%;
+          position: relative;
           @include index.flex-box;
+          // background-color: pink;
+          padding: 1rem;
           img {
             @include index.img-setting;
             filter: drop-shadow(5px 5px 5px grey);
+          }
+          p {
+            width: 100%;
+            padding: 3rem;
+          }
+          .delete-btn {
+            position: absolute;
+            bottom: 2px;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            background-color: #fcd136;
+            border-radius: 5px;
+            border: 2px solid white;
+            cursor: pointer;
+            z-index: 10;
+            filter: drop-shadow(2px 2px 5px #00000080);
+            &:hover {
+              background-color: #f0cd4c;
+            }
           }
         }
       }
@@ -349,7 +418,8 @@
       @include index.flex-box;
       padding: 2rem;
       .testimony-header {
-        background-color: #050524;
+        // background-color: #050524;
+        background-color: #06064d;
         width: 100%;
         padding: 2rem;
         border-radius: 0.5rem 0.5rem 0 0;
@@ -394,7 +464,8 @@
 .footer {
   width: 100%;
   @include index.flex-box($flex-dir: column, $justify-content: space-between);
-  background-color: #050523;
+  // background-color: #050523;
+  @include index.bg-pattern;
   padding: 1rem;
   .web-details {
     width: 100%;
@@ -492,5 +563,33 @@
         }
       }
     }
+  }
+}
+
+// ----------------- CONTACT US LINK STYLES ---------------
+.contact-us {
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  // background-color: aliceblue;
+  background-color: #050523;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  @include index.flex-box;
+  padding: 2%;
+  filter: drop-shadow(3px 3px 5px #282727);
+  a {
+    // width: 100%;
+    // color: #050523;
+    color: white;
+  }
+  @media (width<1200px) {
+    width: 60px;
+    height: 60px;
+    // filter: none;
+  }
+  &:hover {
+    scale: 1.1;
   }
 }

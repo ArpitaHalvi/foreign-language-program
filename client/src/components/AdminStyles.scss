@@ -121,6 +121,7 @@
             tr {
               th {
                 @include table-heading;
+                @include index.bg-pattern;
               }
             }
           }
@@ -220,15 +221,17 @@
       height: fit-content;
       background-color: white;
       color: black;
-      border-radius: 5px;
+      border-radius: 7px;
       h3 {
         font-size: 1.2rem;
         font-weight: 400;
         text-transform: capitalize;
-        background: linear-gradient(120deg, crimson, dodgerblue);
         color: white;
-        padding: 0.7rem;
+        @include index.bg-pattern;
+        // background: linear-gradient(120deg, crimson, dodgerblue);
+        padding: 1rem;
         border-radius: 5px 5px 0 0;
+        border: 1px solid #c0c0c0;
       }
       .course-body {
         border-radius: 0 0 5px 5px;
@@ -266,6 +269,20 @@
         }
       }
     }
+    .add-course {
+      background-color: rgba(128, 128, 128, 0.292);
+      height: 29vh;
+      border-radius: 5px;
+      border: 2px solid grey;
+      padding: 1rem;
+      @include index.flex-box;
+      a {
+        color: whitesmoke;
+        @include index.flex-box($flex-dir: column);
+        font-size: 1.2rem;
+        gap: 0.5rem;
+      }
+    }
     @media (width<=800px) {
       height: 90vh;
       grid-template-columns: repeat(2, 1fr);
@@ -286,7 +303,6 @@
   width: 100%;
   padding: 1rem;
   height: 100%;
-  // background-color: pink;
   @include index.flex-box($flex-dir: column);
   gap: 2rem;
   h2 {
@@ -316,16 +332,26 @@
         font-size: 1.3rem;
         border-radius: 5px;
         border: 1px solid grey;
+        margin-top: 2%;
       }
     }
     button {
-      padding: 0.6rem;
+      padding: 0.6rem 1.5rem;
       border-radius: 5px;
       border: none;
       background-color: #06065f;
       color: white;
       font-size: 1.3rem;
       cursor: pointer;
+    }
+  }
+  @media (width<1000px) {
+    form {
+      width: 90%;
+      @media (width<500px) {
+        padding: 1.5rem;
+        width: 100%;
+      }
     }
   }
 }
@@ -346,6 +372,7 @@
         tr {
           th {
             @include table-heading;
+            @include index.bg-pattern;
           }
         }
       }
@@ -391,6 +418,7 @@
         tr {
           th {
             @include table-heading;
+            @include index.bg-pattern;
           }
         }
       }
@@ -440,6 +468,7 @@
         tr {
           th {
             @include table-heading;
+            @include index.bg-pattern;
           }
         }
       }
@@ -492,14 +521,14 @@
     .upload-section {
       width: 100%;
       height: 100%;
-      padding: 2rem;
+      // padding: 0.5rem;
       @include index.flex-box;
       .design-purpose {
         width: 40%;
         height: 100%;
         padding: 1rem;
         border-radius: 5px 0 0 5px;
-        background: linear-gradient(120deg, dodgerblue, darkblue, #050523);
+        @include index.bg-pattern;
         color: white;
         font-size: 1.5rem;
       }
@@ -526,6 +555,47 @@
           background: #06065f;
           border: 2px solid #050543;
           color: white;
+          @include index.flex-box;
+          gap: 0.5rem;
+          .file-upload {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  @media (width<1300px) {
+    .modal-content {
+      width: 80%;
+      left: 10%;
+      padding: 3rem;
+      .upload-section {
+        padding: 1rem;
+      }
+      @media (width<950px) {
+        width: 100%;
+        left: 0;
+        padding: 5rem;
+        .modal-close {
+          top: 10px;
+          right: 10px;
+        }
+      }
+      @media (width<700px) {
+        padding: 5rem 1rem;
+        .upload-section {
+          flex-direction: column;
+          .design-purpose {
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+          }
+          form {
+            width: 100%;
+            border-radius: 0 0 5px 5px;
+            align-items: center;
+          }
         }
       }
     }

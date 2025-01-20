@@ -1,20 +1,21 @@
+import { CheckTwoTone } from "@mui/icons-material";
 import Reports from "../components/Reports";
 import "./About.scss";
 
 export default function About() {
   return (
     <section className="about-section">
+      <h2>
+        Building Cultures, <br /> One Language at a Time.
+      </h2>
+      <h3>
+        <i>
+          &quot;Bienvenue! we&apos;re thrilled to have you here. Embark on an
+          enriching journey to master the French language and explore its
+          vibrant culture with us!&quot;
+        </i>
+      </h3>
       <div className="about-us">
-        <h2>
-          Building Cultures, <br /> One Language at a Time.
-        </h2>
-        <h3>
-          <i>
-            &quot;Bienvenue! we&apos;re thrilled to have you here. Embark on an
-            enriching journey to master the French language and explore its
-            vibrant culture with us!&quot;
-          </i>
-        </h3>
         <p>
           French is spoken in many countries- not just in France! It is the
           official language in Switzerland, Belgium, Canada, Seychelles,
@@ -35,16 +36,26 @@ export default function About() {
           enjoy French literature and cinema, understand research papers in
           Mathematics and allied subjects.
         </p>
-        <div className="instructor">
-          <h4>Your Instructor</h4>
-          <h5>Mrs. Sonal Chaturvedi</h5>
-          <p>
-            Language Consultant (French)– Accounted Experience in
-            Translation,Teaching & consulting with NGOs, Schools, Education
-            Institutes and Organizations. Social Consultants- Diverse Ability in
-            early childhood Education & Socialwork.
-          </p>
-        </div>
+      </div>
+      <div className="instructor">
+        <h4>The Instructor</h4>
+        <h5>Mrs. Sonal Chaturvedi</h5>
+        <ul>
+          <li>
+            <CheckTwoTone className="tick-style" />
+            Language Consultant (French)– Accounted Experience in Translation
+          </li>
+          <li>
+            <CheckTwoTone className="tick-style" />
+            Teaching & consulting with NGOs, Schools, Education Institutes and
+            Organizations
+          </li>
+          <li>
+            <CheckTwoTone className="tick-style" />
+            Social Consultants- Diverse Ability in early childhood Education &
+            Socialwork.
+          </li>
+        </ul>
       </div>
       <Reports />
     </section>

@@ -5,61 +5,6 @@
 // background: linear-gradient(120deg, #050523, #08084e, #b8b4b4);
 // background: linear-gradient(150deg, #4169e1, #d3d3d3, #4682b4);
 
-/* ******************** COURSE HEAD ****************** */
-.courses {
-  width: 100%;
-  position: relative;
-  // .course-heading {
-  //   position: absolute;
-  //   left: 1.5vw;
-  //   top: 30vh;
-  //   padding: 1rem;
-  //   width: 22%;
-  //   text-transform: uppercase;
-  //   font-size: 4rem;
-  //   color: #050523;
-  //   line-height: 4rem;
-  //   font-weight: 400;
-  //   @media (500px<width<=700px) {
-  //     font-size: 2.5rem;
-  //     line-height: 2.5rem;
-  //   }
-  //   @media (width<=500px) {
-  //     font-size: 2rem;
-  //     line-height: 2rem;
-  //   }
-  // }
-  .course-head {
-    width: 60%;
-    height: 40vh;
-    float: right;
-    background-color: #050523;
-  }
-  .course-heading {
-    text-transform: uppercase;
-    color: #050523;
-    position: absolute;
-    font-size: 5rem;
-    // line-height: 4rem;
-    // background-color: #b8b4b4;
-    font-weight: 400;
-    left: 21.6%;
-    margin-top: 7%;
-    span {
-      color: #f2f0f0;
-    }
-    @media (500px<width<=1200px) {
-      height: 30vh;
-      font-size: 2.5rem;
-    }
-    @media (width<=500px) {
-      font-size: 3rem;
-      left: 5%;
-      margin-top: 25%;
-    }
-  }
-}
-
 // ************** COURSE DETAILS *****************
 .box {
   width: 100%;
@@ -116,6 +61,7 @@
             display: flex;
             justify-content: space-between;
             margin: 4% 0;
+            text-transform: capitalize;
             @media (width<=1040px) {
               font-size: 1.1rem;
             }
@@ -172,9 +118,6 @@
 .course-page {
   width: 100%;
   @include index.flex-box($flex-dir: column);
-  background: url("/feedback-bg.svg");
-  background-position: center;
-  background-size: contain;
   gap: 1rem;
   .course-part {
     width: 100%;
@@ -182,6 +125,7 @@
     gap: 0.5rem;
     padding: 4rem 2rem;
     background: linear-gradient(160deg, #042979, #709ccf, #c5c5c5);
+    @include index.bg-pattern;
     color: white;
     h2 {
       font-size: 3rem;
@@ -198,6 +142,8 @@
       }
     }
     .desc {
+      font-size: 1.1rem;
+      margin: 1% 0 0.5% 0;
       ul {
         @include index.flex-box($flex-dir: column, $align-items: flex-start);
         gap: 0.5rem;
@@ -214,15 +160,31 @@
       width: 100%;
       @include index.flex-box($flex-dir: column, $align-items: flex-start);
       .syllabus {
+        width: 100%;
         font-size: 1.1rem;
         font-style: italic;
         margin-top: 1rem;
+        // background-color: pink;
         a {
           padding: 0.5rem;
           color: white;
         }
+        .crud-btns {
+          padding: 0.4rem 0.7rem;
+          font-size: 1.1rem;
+          border-radius: 5px;
+          border: none;
+          margin: 1% 0;
+        }
+        .upload-btn {
+          background-color: dodgerblue;
+          margin-right: 1%;
+        }
+        .update-btn {
+          background-color: #ffc107;
+        }
       }
-      .contact-us {
+      .contact-link {
         margin: 0.5% 0;
         @include index.flex-box($justify-content: flex-start);
         color: #050523;
@@ -271,6 +233,7 @@
     width: 100%;
     @include index.res-grid;
     padding: 1rem;
+    background-color: white;
     .feedback-form {
       width: 80%;
       background-color: white;
@@ -290,9 +253,9 @@
           font-weight: 400;
           text-transform: capitalize;
           border-radius: 5px 5px 0 0;
-          background-color: #cfcdcd;
-          background-color: #709ccf;
+          background-color: #06064d;
           border-bottom: 1px solid black;
+          color: white;
         }
         .rating-box {
           @include index.flex-box;
@@ -335,7 +298,7 @@
           font-size: 1.1rem;
           margin-bottom: 3%;
           border: none;
-          background-color: #709ccf;
+          background-color: #06064d;
           color: white;
           cursor: pointer;
         }

@@ -1,4 +1,6 @@
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 const express = require("express");
 const cors = require("cors");
@@ -35,9 +37,9 @@ mongoose
     console.log("Error ocurred while connecting to database.", e);
   });
 
-app.get("/", (req, res) => {
-  res.send("HOME PAGE");
-});
+// app.get("/", (req, res) => {
+//   res.send("HOME PAGE");
+// });
 
 app.use("/api/auth", userRoutes); // USER ROUTES
 app.use("/api/form", contactRoutes); // CONTACT FORM ROUTE

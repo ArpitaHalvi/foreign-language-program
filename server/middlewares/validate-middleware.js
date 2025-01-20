@@ -13,7 +13,8 @@ const validate = (schema) => async (req, res, next) => {
     const status = 422;
     const message = "Fill the form correctly";
     let extraDetails = "Validation Failed";
-    if (e.error && e.error.length > 0) {
+    // console.log("Error from validate middleware: ", e);
+    if (e.errors && e.errors.length > 0) {
       extraDetails = e.errors[0].message;
     }
     const error = { status, message, extraDetails };

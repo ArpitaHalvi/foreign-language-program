@@ -39,6 +39,7 @@ const signUpSchema = loginSchema.extend({
   enrolledCourses: z.array(z.string()).optional(),
 });
 
+// Enrollment Schema
 const enrollmentSchema = z.object({
   userId: z.string(),
   courseId: z.string(),
@@ -53,6 +54,7 @@ const enrollmentSchema = z.object({
   isCompleted: z.boolean().optional().default(false), // Defaults to false if not provided
 });
 
+// Contact Schema
 const contactSchema = z.object({
   fullname: z
     .string({ message: "Fullname is required." })
@@ -72,26 +74,9 @@ const contactSchema = z.object({
     .max(255, { message: "Message should be less than 255 characters." }),
 });
 
-const feedbackSchema = z.object({
-  courseId: z.string().min(1, "Course Id is required."),
-  userId: z.string().min(1, "User Id is required."),
-  rating: z
-    .number({ required_error: "Rating must be between 1 and 5." })
-    .min(1, { message: "Rating should be atleast 1." })
-    .max(5, { message: "Rating should be less than 5." }),
-  content: z
-    .string({ required_error: "Content cannot be empty." })
-    .min(5, { message: "Content must be of atleast 5 characters." }),
-  createdAt: z
-    .date()
-    .optional()
-    .default(() => new Date()),
-});
-
 module.exports = {
   signUpSchema,
   loginSchema,
   enrollmentSchema,
   contactSchema,
-  feedbackSchema,
 };

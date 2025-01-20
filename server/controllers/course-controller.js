@@ -4,9 +4,9 @@ const courses = async (req, res, next) => {
   try {
     const course = await Course.find().skip(1);
     if (!course) {
-      return res.status(404).json({ message: "No Courses." });
+      return res.status(404).json({ message: "No Courses found." });
     } else {
-      res.json(course);
+      res.status(200).json(course);
     }
   } catch (e) {
     next(e);
@@ -20,7 +20,7 @@ const eachCourse = async (req, res, next) => {
     if (!course) {
       return res.status(404).json({ message: "Course Not Found." });
     } else {
-      res.json(course);
+      res.status(200).json(course);
     }
   } catch (err) {
     next(err);

@@ -2,10 +2,28 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
 import { Delete } from "@mui/icons-material";
+import ConfirmModal from "./ConfirmModal";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
   const { authorizationToken } = useAuth();
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const openConfirmModal = (id) => {
+    setIsConfirmModalOpen(true);
+    setSelectedUserId(id);
+  };
+
+  const closeConfirmModal = () => {
+    setSelectedUserId(null);
+    setIsConfirmModalOpen(false);
+  };
+  const confirmDelete = async () => {
+    if (selectedUserId) {
+      await deleteUser(selectedUserId);
+    }
+    closeConfirmModal();
+  };
   const deleteUser = async (id) => {
     try {
       const response = await fetch(
@@ -51,6 +69,11 @@ export default function AdminUsers() {
   }, []);
   return (
     <section className="admin-users">
+      <ConfirmModal
+        isOpen={isConfirmModalOpen}
+        isClose={closeConfirmModal}
+        onConfirm={confirmDelete}
+      />
       <h2>USERS</h2>
       <div className="all-users">
         <table className="user">
@@ -101,7 +124,7 @@ export default function AdminUsers() {
                     <td className="buttons">
                       <button
                         className="del-btn"
-                        onClick={() => deleteUser(_id)}
+                        onClick={() => openConfirmModal(_id)}
                       >
                         <Delete /> Delete
                       </button>

@@ -10,13 +10,14 @@ import {
 } from "@mui/icons-material";
 import { useState } from "react";
 import { useAuth } from "../store/auth";
+import StatusPage from "../Pages/StatusPage";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
   const { isLoggedIn, user, loading } = useAuth();
   // Show nothing until user data is loading
-  if (loading) return <div>Loading....</div>;
+  if (loading) return <StatusPage />;
   const isAdmin = user?.isAdmin;
 
   return (
