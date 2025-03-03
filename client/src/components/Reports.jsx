@@ -6,6 +6,8 @@ import UploadReport from "./UploadReport";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import ConfirmModal from "./ConfirmModal";
+import PDFViewer from "./PDFViewer";
+// import ErrorMsg from "./ErrorMsg";
 
 export default function Reports() {
   const { user, authorizationToken } = useAuth();
@@ -15,6 +17,8 @@ export default function Reports() {
   const [reports, setReports] = useState([]);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [selectedReportId, setSelectedReportId] = useState(null);
+  const [selectedPdfLink, setSelectedPdfLink] = useState(null);
+  const [openPDF, setOpenPDF] = useState(false);
 
   const openConfirmModal = (id) => {
     setSelectedReportId(id);
@@ -33,31 +37,6 @@ export default function Reports() {
     closeConfirmModal();
   };
 
-  const deleteReport = async (id) => {
-    try {
-      setLoading(true);
-      const response = await fetch(
-        `http://localhost:5000/api/admin/reports/${id}/delete`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
-      if (response.ok) {
-        fetchReports();
-        setLoading(false);
-        toast.success("Deleted Successfully.");
-      } else {
-        setError("Failed to delete.");
-        setLoading(false);
-      }
-    } catch (e) {
-      setLoading(false);
-      setError("Error occured.");
-    }
-  };
   const fetchReports = async () => {
     try {
       setLoading(true);
@@ -67,8 +46,9 @@ export default function Reports() {
           Authorization: authorizationToken,
         },
       });
-      console.log("Reports data: ", response);
+      // console.log("Reports data: ", response);
       const res_data = await response.json();
+      // console.log("Reports data: ", res_data);
       if (response.ok) {
         setReports(res_data);
         setLoading(false);
@@ -86,8 +66,42 @@ export default function Reports() {
   useEffect(() => {
     fetchReports();
   }, []);
+
+  const deleteReport = async (id) => {
+    try {
+      setLoading(true);
+      const response = await fetch(
+        `http://localhost:5000/api/admin/report/${id}/delete`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: authorizationToken,
+          },
+        }
+      );
+      console.log(response);
+      if (response.ok) {
+        fetchReports();
+        setLoading(false);
+        toast.success("Deleted Successfully.");
+      } else {
+        setError("Failed to delete.");
+        setLoading(false);
+      }
+    } catch (e) {
+      setLoading(false);
+      setError("Error occured.");
+    }
+  };
+
+  const openPdfViewer = (pdfLink) => {
+    setOpenPDF(true);
+    setSelectedPdfLink(pdfLink);
+  };
+
   return (
     <section className="reports-section">
+      {/* {error && <ErrorMsg msg={error} />} */}
       <ConfirmModal
         isOpen={isConfirmModalOpen}
         isClose={closeConfirmModal}
@@ -96,7 +110,7 @@ export default function Reports() {
       <div>
         <h2>Have a look through our work.</h2>
         <h3>Explore our work through detailed reports.</h3>
-        {user.isAdmin && (
+        {user && user.isAdmin && (
           <>
             <button className="upload-btn" onClick={() => setIsModalOpen(true)}>
               Upload Report
@@ -120,11 +134,14 @@ export default function Reports() {
               const { _id, title, pdfLink } = report;
               return (
                 <li key={_id}>
-                  <Link to={pdfLink} className="pdf-link">
+                  <Link
+                    className="pdf-link"
+                    onClick={() => openPdfViewer(pdfLink)}
+                  >
                     {title}
                     <ArrowForward />
                   </Link>
-                  {user.isAdmin && (
+                  {user?.isAdmin && (
                     <button
                       onClick={() => openConfirmModal(_id)}
                       title="Delete?"
@@ -138,6 +155,13 @@ export default function Reports() {
           </ul>
         )}
       </div>
+      {selectedPdfLink && (
+        <PDFViewer
+          isOpen={openPDF}
+          pdfLink={selectedPdfLink}
+          onClose={() => setOpenPDF(false)}
+        />
+      )}
     </section>
   );
 }

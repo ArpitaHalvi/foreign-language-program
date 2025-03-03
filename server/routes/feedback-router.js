@@ -1,12 +1,12 @@
 const express = require("express");
+const router = express.Router();
 const { feedbacks, feedback } = require("../controllers/feedback-controller");
 const { validate } = require("../middlewares/validate-middleware");
-const { feedbackSchema } = require("../Validators/auth-validator");
+const { feedbackSchema } = require("../Validators/content-validator");
 const { authMiddleware } = require("../middlewares/auth-middleware");
-const router = express.Router();
 
 router
-  .route("/")
+  .route("/:courseId/feedback")
   .get(feedbacks)
   .post(authMiddleware, validate(feedbackSchema), feedback);
 

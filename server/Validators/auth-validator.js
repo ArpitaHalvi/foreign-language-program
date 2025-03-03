@@ -41,17 +41,23 @@ const signUpSchema = loginSchema.extend({
 
 // Enrollment Schema
 const enrollmentSchema = z.object({
-  userId: z.string(),
-  courseId: z.string(),
-  paymentStatus: z
-    .enum(["pending", "paid", "failed"])
-    .optional()
-    .default("pending"),
-  registrationDate: z
-    .date()
-    .optional()
-    .default(() => new date()), // Defaults to the current date if not provided,
-  isCompleted: z.boolean().optional().default(false), // Defaults to false if not provided
+  fullname: z
+    .string({ message: "Fullname is required." })
+    .trim()
+    .min(6, { message: "Fullname must be of atleast 6 characters." })
+    .max(255, { message: "Fullname should be less than 255 chracters." }),
+  email: z
+    .string({ required_error: "Email is required." })
+    .trim()
+    .email({ message: "Invalid email address." })
+    .min(5, { message: "Email must be of at least 5 characters." })
+    .max(255, { message: "Email should be less than 255 characters." }),
+  courseName: z
+    .string({ message: "Please select a course title." })
+    .trim()
+    .min(5, {
+      message: "Course title must be of atleast 5 characters",
+    }),
 });
 
 // Contact Schema

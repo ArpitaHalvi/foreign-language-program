@@ -10,6 +10,7 @@ const fs = require("fs");
 const upload = require("../cloudinary/multer");
 const { error } = require("console");
 const Syllabus = require("../models/syllabus-model");
+const PaymentScreenshot = require("../models/paymentss-model");
 
 // FETCHING THE RECORDS FOR THE PARTCULAR COLLECTIONS
 const fetchUsers = async (req, res, next) => {
@@ -121,6 +122,17 @@ const fetchRegistrations = async (req, res, next) => {
     next(e);
   }
 };
+
+const deleteRegistration = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    await Registration.deleteOne({ _id: id });
+    res.status(200).json({ message: "Registration deleted successfully." });
+  } catch (e) {
+    next(e);
+  }
+};
+
 const fetchFeedbacks = async (req, res, next) => {
   try {
     const feedbacks = await Feedback.find()
@@ -135,6 +147,17 @@ const fetchFeedbacks = async (req, res, next) => {
     next(e);
   }
 };
+
+const deleteFeedback = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    await Feedback.deleteOne({ _id: id });
+    res.status(200).json({ message: "Feedback deleted successfully." });
+  } catch (e) {
+    next(e);
+  }
+};
+
 const fetchContacts = async (req, res, next) => {
   try {
     const contacts = await Contact.find();
@@ -154,6 +177,137 @@ const deleteContacts = async (req, res, next) => {
     const id = req.params.id;
     await Contact.deleteOne({ _id: id });
     res.status(200).json({ message: "Contact deleted successfully." });
+  } catch (e) {
+    next(e);
+  }
+};
+
+// Fetching Screnshots
+const fetchPaymentScreenshots = async (req, res, next) => {
+  try {
+    // const payments = await Registration.find();
+    const payments = await PaymentScreenshot.find().populate(
+      "registeredUser",
+      "paymentStatus"
+    );
+    console.log(payments);
+    if (!payments) {
+      return res
+        .status(500)
+        .json({ message: "Error while fetching payment screenshots." });
+    }
+    return res.status(200).json(payments);
+  } catch (e) {
+    next(e);
+  }
+};
+
+// Uploading Payment Screenshot
+const uploadPaymentScreenshot = async (req, res, next) => {
+  try {
+    const userID = req.userId;
+    console.log("userId from controller: ", userID);
+    const courseID = req.body.courseId;
+    console.log("CourseId from controller: ", courseID);
+    // const registeredUser = await Registration.findOne({ userId: userID });
+    const registeredUser = await Registration.findOne({
+      userId: userID,
+      courseId: courseID,
+    });
+    console.log("Registered User: ", registeredUser);
+    // Checking if the user currently logged in has registered or not
+    if (!registeredUser) {
+      // console.log("User is not registered.");
+      return res
+        .status(403)
+        .json({ message: "Please register yourself first." });
+    }
+    if (!req.file) {
+      return res.status(400).json({ message: "No file provided for upload." });
+    }
+    // Uploading the file to cloudinary
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: "payments", // cloudinary folder name
+    });
+    // Checking if cloudinary returned a valid result
+    if (!result.secure_url || !result.public_id) {
+      return res.status(500).json({ message: "Cloudinary upload failed." });
+    }
+    // Deleting the file from the local server after successfully uploading the file to cloudinary
+    try {
+      fs.unlinkSync(req.file.path);
+      console.log(req.file.path, "File deleted successfully.");
+    } catch (err) {
+      console.error("Error deleting file:", err);
+    }
+    // Saving the file details in the database
+    const payment = await PaymentScreenshot.create({
+      registeredUser: registeredUser._id,
+      imageUrl: result.secure_url,
+      publicId: result.public_id,
+    });
+    console.log("Payment details: ", payment);
+    if (!payment) {
+      return res
+        .status(500)
+        .json({ message: "Failed to upload payment screenshot." });
+    }
+    res.status(201).json({ message: "Screenshot uploaded successfully." });
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+};
+
+// Update Payment Status
+const updatePaymentStatus = async (req, res, next) => {
+  try {
+    const paymentStatus = req.body;
+    console.log("req.body: ", req.body);
+    const paymentId = req.params.id;
+    console.log("req.params: ", req.params.id);
+    const payment = await PaymentScreenshot.findById(paymentId).populate(
+      "registeredUser"
+    );
+    if (!payment) {
+      res.status(404).json({ message: "Payment Not Found!" });
+    }
+    console.log("Payment: ", payment);
+    const updatedRegistration = await Registration.findByIdAndUpdate(
+      { _id: payment.registeredUser._id },
+      { $set: paymentStatus },
+      { new: true }
+    );
+    console.log("Updated registration: ", updatedRegistration);
+    if (!updatedRegistration) {
+      return res.status(404).json({ message: "Registered user not found." });
+    }
+    res.status(200).json({
+      message: "Payment Status updated successfully!",
+      updatedRegistration,
+    });
+    const publicID = payment.publicId;
+    const paymentDeleted = await cloudinary.uploader.destroy(publicID);
+    await PaymentScreenshot.findByIdAndDelete(paymentId);
+    if (!paymentDeleted) {
+      res.status(500).json({ message: "Unable to delete payment screenshot." });
+      console.log("Payment screenshot not deleted!");
+    }
+    console.log("Payment screenshot deleted!");
+    return res.status(200).json({ message: "Payment screenshot deleted." });
+  } catch (e) {
+    next(e);
+  }
+};
+
+// Deleting the payment screenshot
+const deletePaymentScreenshot = async (id) => {
+  try {
+    const payment = await PaymentScreenshot.findById(id);
+    const publicID = payment.publicId;
+    await cloudinary.uploader.destroy(publicID);
+    await PaymentScreenshot.findByIdAndDelete(id);
+    // return res.status(200).json({ message: "Screenshot deleted successfully" });
   } catch (e) {
     next(e);
   }
@@ -213,16 +367,11 @@ const uploadBrochure = async (req, res, next) => {
 const deleteBrochure = async (req, res, next) => {
   const { id } = req.params;
   try {
-    try {
-      const brochure = await Brochure.findById(id);
-      const publicID = brochure.publicId;
-      await cloudinary.uploader.destroy(publicID);
-      await Brochure.findByIdAndDelete(id);
-      res.status(200).json({ message: "Brochure deleted successfully" });
-    } catch (error) {
-      console.error("Error deleting brochure:", error);
-      res.status(500).json({ message: "Failed to delete brochure" });
-    }
+    const brochure = await Brochure.findById(id);
+    const publicID = brochure.publicId;
+    await cloudinary.uploader.destroy(publicID);
+    await Brochure.findByIdAndDelete(id);
+    return res.status(200).json({ message: "Brochure deleted successfully" });
   } catch (e) {
     next(e);
   }
@@ -235,7 +384,7 @@ const fetchReports = async (req, res, next) => {
     if (!reports) {
       return res.status(500).json({ message: "Error while fetching reports." });
     }
-    console.log("reports: ", reports);
+    // console.log("reports: ", reports);
     return res.status(200).json(reports);
   } catch (e) {
     next(e);
@@ -244,16 +393,17 @@ const fetchReports = async (req, res, next) => {
 
 // Uploading Report
 const uploadReport = async (req, res, next) => {
-  console.log(req);
+  // console.log(req);
   try {
     if (!req.file) {
       return res.status(400).json({ message: "No file provided for upload." });
     }
-    console.log("Req.file", req.file);
+    // console.log("Req.file", req.file);
     const result = await cloudinary.uploader.upload(req.file.path, {
       folder: "reports", // cloudinary folder name
+      resource_type: "raw", // setting the type of file as raw
     });
-    console.log("Result", result);
+    // console.log("Result", result);
     if (!result.secure_url || !result.public_id) {
       return res.status(500).json({ message: "Cloudinary upload failed." });
     }
@@ -277,6 +427,24 @@ const uploadReport = async (req, res, next) => {
   }
 };
 
+// Deleting the report
+const deleteReport = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const report = await Report.findById(id);
+    const publicID = report.publicId;
+    console.log(report, publicID);
+    const res1 = await cloudinary.uploader.destroy(publicID);
+    const res2 = await Report.findOneAndDelete({ _id: id });
+    // if (!res1) {
+    //   console.log("Could not delete the report from cloudinary.");
+    // }
+    return res.status(200).json({ message: "Report deleted successfully." });
+  } catch (e) {
+    next(e);
+  }
+};
+
 // Syllabus
 const uploadSyllabus = async (req, res, next) => {
   try {
@@ -286,6 +454,7 @@ const uploadSyllabus = async (req, res, next) => {
     // console.log("Req.file", req.file);
     const result = await cloudinary.uploader.upload(req.file.path, {
       folder: "syllabus", // cloudinary folder name
+      resource_type: "raw",
     });
     // console.log("Result", result);
     if (!result.secure_url || !result.public_id) {
@@ -310,6 +479,38 @@ const uploadSyllabus = async (req, res, next) => {
   }
 };
 
+// Update Syllabus
+const updateSyllabus = async (req, res, next) => {
+  try {
+    // if (!req.file) {
+    //   return res.status(400).json({ message: "No file provided for upload." });
+    // }
+    // // console.log("Req.file", req.file);
+    // const result = await cloudinary.uploader.upload(req.file.path, {
+    //   folder: "syllabus", // cloudinary folder name
+    // });
+    // // console.log("Result", result);
+    // if (!result.secure_url || !result.public_id) {
+    //   return res.status(500).json({ message: "Cloudinary upload failed." });
+    // }
+    // try {
+    //   fs.unlinkSync(req.file.path);
+    //   console.log(req.file.path, "File deleted successfully.");
+    // } catch (err) {
+    //   console.error("Error deleting file:", err);
+    // }
+    // const syllabus = await Syllabus.create({
+    //   pdfLink: result.secure_url,
+    //   publicId: result.public_id,
+    // });
+    // if (!syllabus) {
+    //   return res.status(500).json({ message: "Failed to upload syllabus." });
+    // }
+    // res.status(201).json({ message: "Syllabus uploaded successfully." });
+  } catch (e) {
+    next(e);
+  }
+};
 // Fetching syllabus
 const fetchSyllabus = async (req, res, next) => {
   try {
@@ -334,14 +535,21 @@ module.exports = {
   editCourses,
   deleteCourses,
   fetchRegistrations,
+  deleteRegistration,
   fetchFeedbacks,
+  deleteFeedback,
   fetchContacts,
   deleteContacts,
+  fetchPaymentScreenshots,
+  uploadPaymentScreenshot,
+  updatePaymentStatus,
+  deletePaymentScreenshot,
   fetchBrochures,
   uploadBrochure,
   deleteBrochure,
   fetchReports,
   uploadReport,
+  deleteReport,
   uploadSyllabus,
   fetchSyllabus,
 };

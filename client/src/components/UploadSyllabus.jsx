@@ -51,8 +51,8 @@ export default function UploadSyllabus() {
       <form onSubmit={handleSubmit}>
         <input
           type="file"
-          name="pdfLink"
-          id="pdfLink"
+          name="file"
+          id="file"
           accept=".pdf"
           required
           onChange={(e) => setFile(e.target.files[0])}

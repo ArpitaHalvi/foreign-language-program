@@ -13,6 +13,19 @@ const courses = async (req, res, next) => {
   }
 };
 
+const olympiad = async (req, res, next) => {
+  try {
+    const course = await Course.find().limit(1);
+    if (!course) {
+      return res.status(404).json({ message: "No Courses found." });
+    } else {
+      res.status(200).json(course);
+    }
+  } catch (e) {
+    next(e);
+  }
+};
+
 const eachCourse = async (req, res, next) => {
   const { id } = req.params;
   try {
@@ -27,4 +40,4 @@ const eachCourse = async (req, res, next) => {
   }
 };
 
-module.exports = { courses, eachCourse };
+module.exports = { courses, eachCourse, olympiad };

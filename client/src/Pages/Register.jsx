@@ -1,111 +1,206 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Register.scss";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
+import { ArrowForward, CheckCircle } from "@mui/icons-material";
+import Modal from "../components/Modal";
+import UploadPaymentSS from "../components/UploadPaymentSS";
+import SeatSure from "../modals/SeatSure";
 
 const initialData = {
   fullname: "",
   email: "",
-  enrolledCourses: "",
+  courseName: "",
 };
 
 export default function Register() {
-  const [user, setUser] = useState(initialData);
-
+  const [userData, setUserData] = useState(initialData);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [cardFlipped, setCardFlipped] = useState(false);
+  const [showQr, setShowQr] = useState(false);
+  const [paymentDone, setPaymentDone] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [courseId, setCourseId] = useState("");
+  const navigate = useNavigate();
+  const { authorizationToken } = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openSeatSure, setOpenSeatSure] = useState(false);
+  const [wasSeatSureOpen, setWasSeatSureOpen] = useState(false);
+  const handleTransitionEnd = () => {
+    // if (e.propertyName === "transform") {
+    //   setShowQr(true);
+    // }
+    if (cardFlipped) {
+      setShowQr(true);
+    } else {
+      setShowQr(false);
+    }
+  };
   const handleInput = (e) => {
     const { name, value } = e.target;
-
-    setUser((prevData) => {
+    setUserData((prevData) => {
       return {
         ...prevData,
         [name]: value,
       };
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user);
+    console.log(userData);
     try {
       const response = await fetch(`http://localhost:5000/api/auth/enroll`, {
         method: "POST",
         headers: {
+          Authorization: authorizationToken,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(userData),
       });
-      console.log(response);
+      // console.log(response);
+      if (response.status === 401) {
+        toast.error("Please login!", { onClose: navigate("/login") });
+        return;
+      }
+      const res_data = await response.json();
+      console.log(res_data);
       if (response.ok) {
-        setUser(initialData);
-        toast.success("Enrollment Completed Successfully!");
+        setUserData(initialData);
+        setFormSubmitted(true);
+        setCourseId(res_data.newRegistration.courseId);
+        setProgress(50);
       } else {
-        toast.error("Error while enrolling try again!");
+        toast.error(
+          res_data.extraDetails ? res_data.extraDetails : res_data.message
+        );
       }
     } catch (err) {
       toast.error(err.message, "An error occured. Try Again!");
     }
   };
+  const handlePaymentCompletion = () => {
+    setProgress(100);
+    setPaymentDone(true);
+    setOpenSeatSure(true);
+  };
+
+  useEffect(() => {
+    if (wasSeatSureOpen && !openSeatSure) {
+      navigate(`/courses/${courseId}`);
+    }
+  }, [openSeatSure, courseId, navigate, wasSeatSureOpen]);
+
+  const handleCloseSeatSure = () => {
+    setWasSeatSureOpen(true);
+    setOpenSeatSure(false);
+  };
 
   return (
     <section className="register-page">
-      <div className="register-form">
-        <h2 className="register-heading">REGISTER NOW</h2>
-        <form method="post" onSubmit={handleSubmit}>
-          <div className="form-inputs">
-            <div>
-              <label htmlFor="fullname">Fullname</label>
-              <input
-                type="text"
-                name="fullname"
-                id="fullname"
-                required
-                value={user.fullname}
-                onChange={handleInput}
-                autoComplete="off"
-                placeholder="Your fullname"
-              />
+      <div className="progress-bar">
+        <div className="progress" style={{ width: `${progress}%` }}></div>
+      </div>
+      {!formSubmitted ? (
+        <div className="register-form">
+          <h2 className="register-heading">REGISTER NOW</h2>
+          <form method="post" onSubmit={handleSubmit}>
+            <div className="form-inputs">
+              <div>
+                <label htmlFor="fullname">Fullname</label>
+                <input
+                  type="text"
+                  name="fullname"
+                  id="fullname"
+                  required
+                  value={userData.fullname}
+                  onChange={handleInput}
+                  autoComplete="off"
+                  placeholder="Your fullname"
+                />
+              </div>
+              <div>
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  value={userData.email}
+                  onChange={handleInput}
+                  autoComplete="off"
+                  placeholder="Your email"
+                />
+              </div>
             </div>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                required
-                value={user.email}
-                onChange={handleInput}
-                autoComplete="off"
-                placeholder="Your email"
-              />
+            {/* $$$$$$$$$$$$$$$ EMAIL CONFIRMATION FUNCTIONALITY $$$$$$$$$$$$$$$$$$*/}
+            <label htmlFor="courseName" id="select-label">
+              Select your course
+            </label>
+            <select
+              name="courseName"
+              id="courseName"
+              required
+              value={userData.courseName}
+              onChange={handleInput}
+              autoComplete="off"
+            >
+              <option value="">Choose a course</option>
+              <option value="olympiad">Olympiad</option>
+              <option value="fast-track course">Fast-Track Course</option>
+              <option value="delf junior">DELF Junior</option>
+              <option value="delf tcf-tef">DELF TCF TEF Preparation</option>
+            </select>
+            <button type="submit" className="register-btn">
+              REGISTER
+            </button>
+          </form>
+        </div>
+      ) : (
+        <div className="qr-part">
+          <p>
+            You&apos;re almost there! Just one step left - complete the payment
+            by scanning the QR code.
+          </p>
+          <div className="payment-container">
+            <div
+              onClick={() => setCardFlipped(!cardFlipped)}
+              className={`qr-code ${cardFlipped && "flip-card"}`}
+              onTransitionEnd={handleTransitionEnd}
+            >
+              <div className={`${showQr && "show-qr"}`}>
+                {!cardFlipped && (
+                  <p>
+                    TAP TO SEE QR <ArrowForward />
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className="payment-confirmation">
+              <button
+                className="upload-btn"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Upload Screenshot
+              </button>
+              <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                <UploadPaymentSS
+                  setPaymentStatus={setPaymentDone}
+                  courseId={courseId}
+                />
+              </Modal>
+              <button
+                onClick={handlePaymentCompletion}
+                className={`payment-btn ${!paymentDone && "not-allowed"}`}
+                disabled={!paymentDone}
+              >
+                Confirm Payment <CheckCircle className="check-icon" />
+              </button>
+              <SeatSure isOpen={openSeatSure} onClose={handleCloseSeatSure} />
             </div>
           </div>
-          {/* $$$$$$$$$$$$$$$$$$$$$$$$$$ EMAIL CONFIRMATION FUNCTIONALITY $$$$$$$$$$$$$$$$$$$$$$$$$$$*/}
-          <label htmlFor="enrolledCourses" id="select-label">
-            Select your course
-          </label>
-          <select
-            name="enrolledCourses"
-            id="enrolledCourses"
-            required
-            value={user.enrolledCourses}
-            onChange={handleInput}
-            autoComplete="off"
-          >
-            <option value="">Choose a course</option>
-            <option value="olympiad">Olympiad</option>
-            <option value="fast-track course">Fast-Track Course</option>
-            <option value="delf junior">DELF Junior</option>
-            <option value="delf tcf-tef">DELF TCF TEF Preparation</option>
-          </select>
-          <button type="submit" className="register-btn">
-            REGISTER
-          </button>
-        </form>
-      </div>
-      {/* <div className="qr-part">
-        <div className="qr-code">
-          <p>Fill the form and pay the fees.</p>
         </div>
-      </div> */}
+      )}
     </section>
   );
 }

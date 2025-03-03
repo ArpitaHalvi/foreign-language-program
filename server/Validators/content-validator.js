@@ -1,19 +1,14 @@
 const { z } = require("zod");
 
 const feedbackSchema = z.object({
-  courseId: z.string().min(1, "Course Id is required."),
-  userId: z.string().min(1, "User Id is required."),
   rating: z
-    .number({ required_error: "Rating must be between 1 and 5." })
+    .string({ required_error: "Rating must be between 1 and 5." })
     .min(1, { message: "Rating should be atleast 1." })
-    .max(5, { message: "Rating should be less than 5." }),
+    .max(5, { message: "Rating should be less than 5." })
+    .transform((val) => Number(val)),
   content: z
     .string({ required_error: "Content cannot be empty." })
     .min(5, { message: "Content must be of atleast 5 characters." }),
-  createdAt: z
-    .date()
-    .optional()
-    .default(() => new Date()),
 });
 
 const courseSchema = z.object({
@@ -62,9 +57,31 @@ const reportSchema = fileSchema.extend({
     .min(5, "Public ID must be at least 5 characters long."),
 });
 
+const paymentssSchema = z.object({
+  imageUrl: z
+    .string({ required_error: "Image link is required." })
+    .url("Invalid URL format. Please provide a valid image link."),
+  courseId: z
+    .string({ required_error: "CourseId is required." })
+    .trim()
+    .regex(/^[0-9a-fA-F]{24}$/, "Invalid Course ID format."),
+});
+
+const syllabusSchema = z.object({
+  pdfLink: z
+    .string({ required_error: "PDF link is required." })
+    .url("Invalid URL format. Please provide a valid pdf link."),
+  publicId: z
+    .string()
+    .trim()
+    .min(5, "Public ID must be at least 5 characters long."),
+});
+
 module.exports = {
   feedbackSchema,
   courseSchema,
   brochureSchema,
   reportSchema,
+  paymentssSchema,
+  syllabusSchema,
 };

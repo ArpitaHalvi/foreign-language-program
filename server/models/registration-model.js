@@ -16,23 +16,13 @@ const registrationSchema = new Schema({
     enum: ["pending", "paid", "failed"],
     default: "pending",
   },
-  //   paymentMethod: {
-  //     type: String,
-  //     enum: ["credit_card", "paypal", "bank_transfer"],
-  //   },
-  //   transactionId: {
-  //     type: String,
-  //     required: function () {
-  //       return this.paymentStatus === "completed";
-  //     },
-  //   },
   registrationDate: {
     type: Date,
     default: Date.now,
   },
   isCompleted: {
     type: Boolean,
-    default: false, // Indicates whether the user has completed the course or not.s
+    default: false, // Indicates whether the user has completed the course or not
   },
 });
 

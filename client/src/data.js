@@ -17,6 +17,6 @@ export const testimonials = [
   {
     id: 4,
     name: "Arpita Halvi (BCA student at St. Aloysius College)",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae aliquid tenetur itaque possimus aliquam. Aliquid ipsum architecto temporibus suscipit exercitationem natus, nisi ipsam aut, hic sint, dolorum dolores atque deserunt sunt laborum in. Assumenda sit possimus cumque placeat? Molestiae quis temporibus aliquam possimus excepturi autem ipsam fuga deleniti quod accusantium!",
+    text: "It was an incredible experience learning from Sonal Ma'am. She not only shared her extensive academic knowledge but also demonstrated remarkable counseling skills. Her constant support and encouragement helped me seize every opportunity and believe in myself. She made learning French exciting and always provided constructive feedback, pushing me to improve. I will be forever grateful to Sonal Ma'am, and I’m glad that my French journey began under her guidance.",
   },
 ];

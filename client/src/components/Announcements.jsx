@@ -98,7 +98,7 @@ export default function Announcements() {
   }, []);
   return (
     <section className="announcements-section">
-      {user.isAdmin && (
+      {user && user.isAdmin && (
         <ConfirmModal
           isOpen={isConfirmModalOpen}
           isClose={closeConfirmModal}
@@ -112,7 +112,7 @@ export default function Announcements() {
             &quot;Stay ahead with updates on courses, events, and exclusive
             opportunities- your gateway of mastering French.&quot;
           </p>
-          {user.isAdmin && (
+          {user && user.isAdmin && (
             <>
               <button
                 className="upload-btn"
@@ -139,24 +139,22 @@ export default function Announcements() {
               <Slider {...settings}>
                 {brochures.map((brochure) => {
                   return (
-                    <>
-                      {user.isAdmin && (
-                        <>
-                          <button
-                            onClick={() => openConfirmModal(brochure._id)}
-                            className="delete-btn"
-                          >
-                            Delete
-                          </button>
-                        </>
-                      )}
+                    <div key={brochure._id} className="brochure">
                       <img
                         src={brochure.imageUrl}
                         alt="Brochure Image"
                         key={brochure._id}
                         loading="lazy"
                       />
-                    </>
+                      {user && user.isAdmin && (
+                        <button
+                          onClick={() => openConfirmModal(brochure._id)}
+                          className="delete-btn"
+                        >
+                          Delete
+                        </button>
+                      )}
+                    </div>
                   );
                 })}
               </Slider>

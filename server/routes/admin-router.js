@@ -19,6 +19,13 @@ const {
   deleteBrochure,
   uploadSyllabus,
   fetchSyllabus,
+  deleteReport,
+  deleteRegistration,
+  deleteFeedback,
+  uploadPaymentScreenshot,
+  fetchPaymentScreenshots,
+  deletePaymentScreenshot,
+  updatePaymentStatus,
 } = require("../controllers/admin-controller");
 const { authMiddleware } = require("../middlewares/auth-middleware");
 const adminMiddleware = require("../middlewares/admin-middleware");
@@ -26,6 +33,8 @@ const {
   courseSchema,
   brochureSchema,
   reportSchema,
+  paymentssSchema,
+  syllabusSchema,
 } = require("../Validators/content-validator");
 const { validate } = require("../middlewares/validate-middleware");
 const upload = require("../cloudinary/multer");
@@ -53,9 +62,15 @@ router
 router
   .route("/registrations")
   .get(authMiddleware, adminMiddleware, fetchRegistrations);
+router
+  .route("/registrations/delete/:id")
+  .delete(authMiddleware, adminMiddleware, deleteRegistration);
 
 // Feedback Routes
 router.route("/feedbacks").get(authMiddleware, adminMiddleware, fetchFeedbacks);
+router
+  .route("/feedbacks/delete/:id")
+  .delete(authMiddleware, adminMiddleware, deleteFeedback);
 
 // Contact Routes
 router.route("/contacts").get(authMiddleware, adminMiddleware, fetchContacts);
@@ -84,8 +99,38 @@ router
   .route("/brochure/:id/delete")
   .delete(authMiddleware, adminMiddleware, deleteBrochure);
 
+//Payment Screenshort Route
+router
+  .route("/payments")
+  .get(authMiddleware, adminMiddleware, fetchPaymentScreenshots);
+router.route("/paymentScreenShot").post(
+  authMiddleware,
+  upload.single("file"),
+  (req, res, next) => {
+    // Adding the file data to req.body for validation
+    if (req.file) {
+      req.body.imageUrl = req.file.path; // Set imageUrl from uploaded file
+      req.body.publicId = req.file.filename; // Or use Cloudinary's publicId if available
+    }
+    console.log("CourseId from admin router: ", req.body.courseId);
+    next();
+  },
+  validate(paymentssSchema),
+  (req, res, next) => {
+    console.log("CourseId after validating the paymentSchema: ", req.body.courseId);
+    next();
+  },
+  uploadPaymentScreenshot
+);
+router
+  .route("/payments/:id/delete")
+  .delete(authMiddleware, adminMiddleware, deletePaymentScreenshot);
+router
+  .route("/payments/:id/update")
+  .patch(authMiddleware, adminMiddleware, updatePaymentStatus);
+
 //Report Routes
-router.route("/reports").get(authMiddleware, fetchReports);
+router.route("/reports").get(fetchReports);
 router.route("/report").post(
   authMiddleware,
   adminMiddleware,
@@ -102,9 +147,12 @@ router.route("/report").post(
   validate(reportSchema),
   uploadReport
 );
+router
+  .route("/report/:id/delete")
+  .delete(authMiddleware, adminMiddleware, deleteReport);
 
-router.route("syllabus").get(authMiddleware, fetchSyllabus);
-router.route("syllabus").post(
+router.route("/syllabus").get(authMiddleware, fetchSyllabus);
+router.route("/syllabus").post(
   authMiddleware,
   adminMiddleware,
   upload.single("file"),
@@ -117,7 +165,7 @@ router.route("syllabus").post(
     }
     next();
   },
-  validate(reportSchema),
+  validate(syllabusSchema),
   uploadSyllabus
 );
 

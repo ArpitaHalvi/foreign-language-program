@@ -10,14 +10,15 @@ import {
 } from "@mui/icons-material";
 import { useState } from "react";
 import { useAuth } from "../store/auth";
-import StatusPage from "../Pages/StatusPage";
+// import StatusPage from "../Pages/StatusPage";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
-  const { isLoggedIn, user, loading } = useAuth();
+  // const { isLoggedIn, user, loading } = useAuth();
+  const { isLoggedIn, user } = useAuth();
   // Show nothing until user data is loading
-  if (loading) return <StatusPage />;
+  // if (loading) return <StatusPage />;
   const isAdmin = user?.isAdmin;
 
   return (
@@ -155,7 +156,6 @@ const Navbar = () => {
           </div>
         </nav>
       </header>
-      {/* <script src="./Navbar.js"></script>  */}
     </>
   );
 };

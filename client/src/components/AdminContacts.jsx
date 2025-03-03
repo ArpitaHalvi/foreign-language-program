@@ -36,7 +36,7 @@ export default function AdminContacts() {
         }
       );
       if (response.ok) {
-        toast.success("Successfully deleted the contact.");
+        toast.success("Successfully deleted contact.");
         fetchContacts();
       } else {
         toast.error("Error while deleting the contact.");
@@ -76,28 +76,30 @@ export default function AdminContacts() {
       />
       <h2>CONTACTS</h2>
       <div className="all-contacts">
-        <table className="contact">
-          <thead>
-            <tr>
-              <th>S. No.</th>
-              <th>Fullname</th>
-              <th>Email</th>
-              <th>Message</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts.length > 0 ? (
-              contacts.map((contact, index) => {
+        {contacts.length > 0 ? (
+          <table className="contact">
+            <thead>
+              <tr>
+                <th>S. No.</th>
+                <th>Fullname</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {contacts.map((contact, index) => {
                 const { _id, fullname, email, message } = contact;
                 return (
                   <tr key={_id}>
                     <td>{index + 1}</td>
                     <td>{fullname}</td>
                     <td className="email-link">
-                      <a href={`mailto:${email}`}> {email}</a>
+                      <a href={`mailto:${email}`} className="email-link">
+                        {email}
+                      </a>
                     </td>
-                    <td>{message}</td>
+                    <td className="user-msg">{message}</td>
                     <td>
                       <button
                         onClick={() => openConfirmModal(_id)}
@@ -108,14 +110,12 @@ export default function AdminContacts() {
                     </td>
                   </tr>
                 );
-              })
-            ) : (
-              <tr>
-                <td>No Contacts Found.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <p>No Contacts Found.</p>
+        )}
       </div>
     </section>
   );

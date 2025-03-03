@@ -79,23 +79,14 @@ export default function AdminCourses() {
       <div className="all-courses">
         {courses.length > 0 ? (
           courses.map((course) => {
-            const { _id, title, fee, duration, enrolledUsers } = course;
+            const { _id, title, fee, duration } = course;
             return (
               <div className="course" key={_id}>
                 <h3>{title}</h3>
                 <div className="course-body">
                   <p>Fee - Rs. {fee}</p>
                   <p>Duration - {duration}</p>
-                  <p>
-                    Enrolled Users -
-                    {enrolledUsers && enrolledUsers.length > 0 ? (
-                      enrolledUsers.map((user) => {
-                        return <span key={user._id}> {user.fullname}</span>;
-                      })
-                    ) : (
-                      <span> No students</span>
-                    )}
-                  </p>
+                  <p>Mode: Online</p>
                 </div>
                 <div className="course-footer">
                   <button

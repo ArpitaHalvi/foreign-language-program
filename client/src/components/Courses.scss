@@ -118,7 +118,6 @@
 .course-page {
   width: 100%;
   @include index.flex-box($flex-dir: column);
-  gap: 1rem;
   .course-part {
     width: 100%;
     @include index.flex-box($align-items: flex-start, $flex-dir: column);
@@ -164,7 +163,6 @@
         font-size: 1.1rem;
         font-style: italic;
         margin-top: 1rem;
-        // background-color: pink;
         a {
           padding: 0.5rem;
           color: white;
@@ -175,22 +173,29 @@
           border-radius: 5px;
           border: none;
           margin: 1% 0;
+          cursor: pointer;
         }
         .upload-btn {
           background-color: dodgerblue;
           margin-right: 1%;
+          &:hover {
+            background-color: #177ee5;
+          }
         }
         .update-btn {
           background-color: #ffc107;
+          &:hover {
+            background-color: #e4ae0b;
+          }
         }
       }
-      .contact-link {
-        margin: 0.5% 0;
-        @include index.flex-box($justify-content: flex-start);
-        color: #050523;
-        color: white;
-        gap: 0.2rem;
-      }
+      // .contact-link {
+      //   margin: 0.5% 0;
+      //   @include index.flex-box($justify-content: flex-start);
+      //   color: #050523;
+      //   color: white;
+      //   gap: 0.2rem;
+      // }
     }
     .course-links {
       width: 30%;
@@ -224,6 +229,21 @@
           width: 80%;
           a {
             width: 60%;
+            margin-top: 5%;
+          }
+        }
+      }
+    }
+    @media (width<=500px) {
+      h2 {
+        font-size: 2.5rem;
+      }
+      .desc {
+        margin-top: 5%;
+        ul {
+          gap: 0.7rem;
+          li {
+            font-size: 1rem;
           }
         }
       }
@@ -233,7 +253,7 @@
     width: 100%;
     @include index.res-grid;
     padding: 1rem;
-    background-color: white;
+    background-color: aliceblue;
     .feedback-form {
       width: 80%;
       background-color: white;
@@ -264,13 +284,29 @@
           div {
             @include index.flex-box;
             gap: 0.3rem;
-            padding: 0.4rem;
+            padding: 0.5rem;
+            // background-color: pink;
             input {
-              margin-top: 5%;
-              accent-color: darkblue;
+              transform: scale(2);
+              position: relative;
+              opacity: 0;
+              &:checked {
+                scale: 1.2;
+              }
             }
             label {
-              font-size: 1.1rem;
+              position: absolute;
+              cursor: pointer;
+              .star-icon {
+                font-size: 2.5rem;
+                color: #e8e813;
+                filter: drop-shadow(2px 2px grey);
+                transition: all 0.2s ease;
+                &:hover {
+                  scale: 1.2;
+                  transform: translateY(-10%);
+                }
+              }
             }
           }
           @media (width<=1300px) {
@@ -308,7 +344,6 @@
       width: 100%;
       @include index.flex-box;
       padding: 2rem;
-      // background-color: #25242428;
       border-radius: 5px;
       .feedback {
         width: 80%;
@@ -321,6 +356,11 @@
         h2 {
           font-size: 2rem;
           font-weight: 400;
+        }
+        .no-reviews {
+          text-align: center;
+          width: 70%;
+          font-size: 1.05rem;
         }
         .slick-dots {
           color: #050523;
@@ -361,18 +401,32 @@
               border-radius: 5px;
               padding: 1rem;
               background-color: white;
-              p {
-                font-size: 1.1rem;
+              .stars {
                 align-self: flex-start;
+              }
+              .star-styles {
+                font-size: 2rem;
+                color: #e8e813;
+                filter: drop-shadow(2px 2px grey);
+              }
+              .content {
+                margin: 2% 0;
+                font-size: 1.1rem;
+                @media (width< 500px) {
+                  font-size: 1rem;
+                }
               }
               .user {
                 align-self: flex-start;
+                font-style: italic;
+                color: grey;
               }
             }
           }
         }
         @media (width<500px) {
           width: 100%;
+          padding: 0.5rem;
         }
       }
     }

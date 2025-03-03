@@ -45,6 +45,7 @@ const login = async (req, res, next) => {
           token: userExist.generateToken(),
           userId: userExist._id.toString(),
         });
+        // console.log("Token: ", userExist.generateToken());
       } else {
         res.status(401).json({ message: "Invalid Email or password." });
       }

@@ -1,15 +1,17 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuth } from "../store/auth";
+import { Star } from "@mui/icons-material";
 
 const initialFeedback = {
   rating: "",
   content: "",
 };
 
-export default function FeedbackForm() {
+export default function FeedbackForm({ courseId }) {
   const [feedback, setFeedback] = useState(initialFeedback);
-  const { id } = useParams();
+  const { authorizationToken } = useAuth();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFeedback((prev) => {
@@ -23,20 +25,24 @@ export default function FeedbackForm() {
     e.preventDefault();
     try {
       const res = await fetch(
-        `http://localhost:5000/api/courses/${id}/feedback`,
+        `http://localhost:5000/api/course/${courseId}/feedback`,
         {
           method: "POST",
           headers: {
+            Authorization: authorizationToken,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(feedback),
         }
       );
+      console.log("Response from feedback: ", res);
+      const res_data = await res.json();
       if (res.ok) {
-        setFeedback(initialFeedback);
         toast.success("Feedback Sent successfully!");
+        setFeedback(initialFeedback);
+        e.target.reset();
       } else {
-        toast.error("Error while submitting feedback!");
+        toast.error(res_data.message || "Error while sending feedback!");
       }
     } catch (e) {
       toast.error("An error occurred please try again later!");
@@ -44,81 +50,34 @@ export default function FeedbackForm() {
   };
   return (
     <div className="feedback-form" id="feedback-form">
-      <form method="post" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <h2>Leave your Feedback!</h2>
         <div className="rating-box">
-          <div>
-            <input
-              type="radio"
-              name="rating"
-              id="rating1"
-              onChange={handleChange}
-              value={feedback.rating}
-              title="Terrible"
-              required
-              aria-required
-            />
-            <label htmlFor="rating1">1 star</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="rating"
-              id="rating2"
-              onChange={handleChange}
-              value={feedback.rating}
-              title="Not Good"
-              required
-              aria-required
-            />
-            <label htmlFor="rating2">2 stars</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="rating"
-              id="rating3"
-              onChange={handleChange}
-              value={feedback.rating}
-              title="Average"
-              required
-              aria-required
-            />
-            <label htmlFor="rating3">3 stars</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="rating"
-              id="rating4"
-              onChange={handleChange}
-              value={feedback.rating}
-              title="Very Good"
-              required
-              aria-required
-            />
-            <label htmlFor="rating4">4 stars</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="rating"
-              id="rating5"
-              onChange={handleChange}
-              value={feedback.rating}
-              title="Amazing"
-              required
-              aria-required
-            />
-            <label htmlFor="rating5">5 stars</label>
-          </div>
+          {[1, 2, 3, 4, 5].map((value) => {
+            return (
+              <div key={value}>
+                <input
+                  type="radio"
+                  name="rating"
+                  id={`rating${value}`}
+                  value={value}
+                  onChange={handleChange}
+                  required
+                  aria-required
+                />
+                <label htmlFor={`rating${value}`}>
+                  <Star className="star-icon" />
+                </label>
+              </div>
+            );
+          })}
         </div>
         <div className="feedback-box">
           <textarea
             name="content"
             id="review-text"
-            onChange={handleChange}
             value={feedback.content}
+            onChange={handleChange}
             placeholder="Write your review."
             rows="5"
             required

@@ -3,6 +3,7 @@ import "./Contact.scss";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
+import ErrorMsg from "../components/ErrorMsg";
 
 const initialData = {
   fullname: "",
@@ -15,6 +16,8 @@ export default function Contact() {
   const [userData, setUserData] = useState(true);
   const navigate = useNavigate();
   const { user } = useAuth();
+  const [error, setError] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
   if (userData && user) {
     setContactData({
       fullname: user.fullname,
@@ -55,19 +58,32 @@ export default function Contact() {
       const res_data = await response.json();
       if (response.ok) {
         setContactData(initialData);
+        setModalOpen(false);
         toast.success("Message Sent Successfully!", {
           onClose: () => navigate("/"),
         });
       } else {
-        toast.error(res_data.extradetails ? res_data.extradetails : res_data.message);
+        setModalOpen(true);
+        // toast.error(
+        //   res_data.extradetails ? res_data.extradetails : res_data.message
+        // );
+        setError(
+          res_data.extradetails ? res_data.extradetails : res_data.message
+        );
       }
     } catch (err) {
-      toast.error("An error occurred. Please try again later.");
+      // toast.error("An error occurred. Please try again later.");
+      setError(err.message);
     }
   };
 
   return (
     <section className="contact-page">
+      <ErrorMsg
+        msg={error}
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+      />
       <div className="contact-form">
         <h2 className="contact-heading">Get in Touch</h2>
         <form method="post" onSubmit={handleSubmit}>

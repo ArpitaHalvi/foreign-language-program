@@ -11,7 +11,7 @@ export default function Footer() {
           <ul>
             <li>
               <Phone />
-              +91 7654875372
+              +91 9200720230
             </li>
             <li>
               <Mail />

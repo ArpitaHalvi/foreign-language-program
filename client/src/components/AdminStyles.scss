@@ -48,12 +48,47 @@
 }
 
 @mixin email-link {
-  color: darkblue;
   text-transform: none;
+  color: #0909ac;
+}
+
+@mixin del-btn {
+  @include index.flex-box;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  background-color: transparent;
+  color: crimson;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  &:hover {
+    background-color: crimson;
+    color: white;
+  }
+}
+
+@mixin del-btn-2 {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background-color: #fdc9d3;
+  color: crimson;
+  transition: all 500ms ease;
+  &:hover {
+    border-color: crimson;
+    background-color: crimson;
+    color: white;
+  }
 }
 
 .admin-panel {
   width: 100%;
+  min-height: 90vh;
   height: 90vh;
   padding: 1rem;
   background-color: #050524;
@@ -76,7 +111,7 @@
       ul {
         width: 60%;
         @include index.flex-box($flex-dir: column);
-        gap: 2rem;
+        gap: 1rem;
         padding: 1rem;
         li {
           width: 100%;
@@ -92,6 +127,10 @@
               background-color: white;
               color: black;
             }
+          }
+          .active-collection {
+            background-color: white;
+            color: black;
           }
         }
       }
@@ -137,29 +176,33 @@
                 text-align: right;
               }
               .email-link {
-                @include email-link;
+                a {
+                  @include email-link;
+                }
+              }
+              .enrolled-courses {
+                padding: 0;
+                ul {
+                  li {
+                    font-size: 1.1rem;
+                    // color: #0f5ca9;
+                    padding: 0.3rem;
+                    // background-color: #f5e8ea;
+                    @include index.flex-box($justify-content: flex-start);
+                    gap: 0.5rem;
+                    .sq-icon {
+                      font-size: 0.6rem;
+                    }
+                  }
+                }
+              }
+              &:hover {
+                background-color: #00000015;
               }
             }
             .buttons {
-              @include index.flex-box;
-            }
-            button {
-              padding: 0.5rem;
-              border: none;
-              border-radius: 5px;
-              @include index.flex-box;
-              color: white;
-              font-size: 1.1rem;
-              box-sizing: border-box;
-              border: 1px solid transparent;
-            }
-            .del-btn {
-              background-color: crimson;
-              cursor: pointer;
-              &:hover {
-                background-color: transparent;
-                color: crimson;
-                border-color: crimson;
+              .del-btn {
+                @include del-btn-2;
               }
             }
           }
@@ -167,7 +210,7 @@
       }
     }
   }
-  @media (width<=1200px) {
+  @media (width<=1300px) {
     flex-direction: column;
     height: auto;
     .side-bar {
@@ -187,9 +230,9 @@
         }
         @media (width<800px) {
           ul {
-            flex-wrap: wrap;
+            @include index.res-grid(45%);
             li {
-              width: 50%;
+              width: 100%;
             }
           }
         }
@@ -198,6 +241,30 @@
     .admin-collections {
       width: 100%;
       border: 1px solid grey;
+      .admin-users {
+        @media (width<=900px) {
+          .all-users {
+            .user {
+              tbody {
+                tr {
+                  td {
+                    font-size: 1.1rem;
+                  }
+                  .enrolled-courses {
+                    ul li {
+                      width: 30vw;
+                      font-size: 1rem;
+                      @media (width<=500px) {
+                        width: 35vw;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -383,9 +450,15 @@
             span {
               width: 100%;
               text-transform: none;
+              .email-link {
+                @include email-link;
+              }
             }
             &:nth-last-child(1) {
               border-right: none;
+            }
+            .del-btn {
+              @include del-btn;
             }
           }
           .green {
@@ -395,6 +468,25 @@
           .red {
             background-color: #ff7c97;
             color: white;
+          }
+          .pending {
+            background-color: #ffdd9d;
+          }
+          .paid {
+            background-color: #aae3a7;
+          }
+          &:hover {
+            background-color: #00000015;
+          }
+          .operation {
+            .del-btn {
+              margin: auto;
+            }
+          }
+          @media (width<900px) {
+            td {
+              font-size: 1.1rem;
+            }
           }
         }
       }
@@ -427,24 +519,19 @@
           td {
             @include table-body;
             .del-btn {
-              @include index.flex-box;
-              gap: 0.5rem;
-              padding: 0.5rem;
-              border-radius: 5px;
-              font-size: 1.1rem;
-              background-color: transparent;
-              color: crimson;
-              border: none;
-              cursor: pointer;
-              transition: all 200ms ease-in-out;
-              &:hover {
-                background-color: crimson;
-                color: white;
-              }
+              @include del-btn;
             }
           }
           .email-link {
             @include email-link;
+          }
+          &:hover {
+            background-color: #00000015;
+          }
+          @media (width<900px) {
+            td {
+              font-size: 1.1rem;
+            }
           }
         }
       }
@@ -476,12 +563,111 @@
         tr {
           td {
             @include table-body;
+            .del-btn {
+              @include del-btn-2;
+            }
           }
           .email-link {
             @include email-link;
           }
+          .content {
+            font-size: 1.1rem;
+          }
+          &:hover {
+            background-color: #00000015;
+          }
+          @media (width<900px) {
+            td {
+              font-size: 1.1rem;
+            }
+          }
         }
       }
+    }
+  }
+}
+
+// ************** PAYMENT STYLES ***************
+.admin-payments {
+  @include collection;
+  h2 {
+    @include collection-heading;
+  }
+  .all-payments {
+    width: 100%;
+    height: 90%;
+    overflow-y: scroll;
+    padding: 1rem;
+    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    .payment {
+      background-color: #ffffff25;
+      height: fit-content;
+      .payment-body {
+        img {
+          @include index.img-setting($object-fit: contain);
+        }
+      }
+      .payment-footer {
+        @include index.res-grid;
+        .op-btns {
+          width: 100%;
+          border: none;
+          padding: 0.3rem;
+          @include index.flex-box;
+          font-size: 1.1rem;
+          gap: 0.5rem;
+          transition: 0.2s;
+          cursor: pointer;
+        }
+        .approve-btn {
+          background-color: green;
+          color: white;
+          &:hover {
+            background-color: white;
+            color: green;
+            .check-icon {
+              color: green;
+            }
+          }
+          .check-icon {
+            font-size: 1.8rem;
+          }
+        }
+        .del-btn {
+          background-color: white;
+          color: crimson;
+          &:hover {
+            background-color: crimson;
+            color: white;
+            .op-icon {
+              color: white;
+            }
+          }
+          .op-icon {
+            font-size: 1.8rem;
+            color: crimson;
+          }
+        }
+      }
+    }
+    @media (width<=1000px) {
+      grid-template-columns: repeat(2, 1fr);
+      .payment {
+        .payment-footer {
+          .op-btns {
+            font-size: 1rem;
+            .op-icon,
+            .check-icon {
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+    @media (width<=600px) {
+      grid-template-columns: repeat(1, 1fr);
     }
   }
 }

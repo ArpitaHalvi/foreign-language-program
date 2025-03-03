@@ -34,6 +34,20 @@
       @include index.flex-box($justify-content: space-between);
       li {
         @include index.flex-box;
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 0;
+          height: 2px;
+          background-color: #04042d;
+          transition: width 0.3s ease-in-out;
+        }
+        &:hover::after {
+          width: 100%;
+        }
         .navbar-icons {
           color: #04042d;
         }
@@ -42,7 +56,8 @@
           gap: 0.5rem;
           font-size: 1.5rem;
           color: #04042d;
-          transition: border-bottom;
+          padding: 0.5rem;
+          // transition: border-bottom;
         }
       }
       .res-nav-btns {
@@ -142,12 +157,21 @@
               color: #d8d8d8;
             }
           }
+          .active-link {
+            border-bottom: 2px solid #d8d8d8;
+          }
+          &::after {
+            background-color: transparent;
+          }
         }
         .res-nav-btns {
           width: 50%;
           display: flex;
-          @media (width<600px) {
+          @media (width<710px) {
             width: 80%;
+          }
+          @media (width<480px) {
+            width: 100%;
           }
         }
         @media (width<=700px) {

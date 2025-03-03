@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
-import { Delete } from "@mui/icons-material";
+import { Delete, Square } from "@mui/icons-material";
 import ConfirmModal from "./ConfirmModal";
 
 export default function AdminUsers() {
@@ -115,9 +115,17 @@ export default function AdminUsers() {
                     </td>
                     <td>{gender}</td>
                     {enrolledCourses && enrolledCourses.length > 0 ? (
-                      enrolledCourses.map((course) => {
-                        return <td key={course._id}>{course.title}</td>;
-                      })
+                      <td className="enrolled-courses">
+                        <ul>
+                          {enrolledCourses.map((course) => {
+                            return (
+                              <li key={course._id}>
+                                <Square className="sq-icon" /> {course.title}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </td>
                     ) : (
                       <td>No Courses</td>
                     )}
@@ -126,7 +134,7 @@ export default function AdminUsers() {
                         className="del-btn"
                         onClick={() => openConfirmModal(_id)}
                       >
-                        <Delete /> Delete
+                        <Delete />
                       </button>
                     </td>
                   </tr>

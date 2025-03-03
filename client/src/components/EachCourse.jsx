@@ -3,24 +3,28 @@ import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import FeedbackForm from "./FeedbackForm";
 import Feedback from "./Feedback";
-import { ArrowForward, CheckTwoTone } from "@mui/icons-material";
+import { CheckTwoTone } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import StatusPage from "../Pages/StatusPage";
 import { useAuth } from "../store/auth";
 import UploadSyllabus from "./UploadSyllabus";
 import Modal from "./Modal";
+import PDFViewer from "../components/PDFViewer";
 
 export default function EachCourse() {
   const { id } = useParams(); // Get the Id from the route
   const [course, setCourse] = useState(null);
   const [error, setError] = useState("");
-  const { user } = useAuth();
+  const { user, authorizationToken } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [openPDF, setOpenPDF] = useState(false);
+  const [syllabus, setSyllabus] = useState("");
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/courses/${id}`);
+        const res = await fetch(`http://localhost:5000/api/courses/${id}`, {
+          method: "GET",
+        });
         if (res.ok) {
           const data = await res.json();
           setCourse(data);
@@ -30,12 +34,36 @@ export default function EachCourse() {
         toast.error("Error while loading the course content!");
       }
     };
+    const fetchSyllabus = async () => {
+      try {
+        const res = await fetch(`http://localhost:5000/api/admin/syllabus`, {
+          method: "GET",
+          headers: {
+            Authorization: authorizationToken,
+          },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          console.log(data);
+          setSyllabus(data[0].pdfLink);
+        }
+      } catch (err) {
+        setError(err.message);
+        toast.error("Error while loading the syllabus!");
+      }
+    };
     fetchCourse();
+    fetchSyllabus();
   }, [id]);
   if (error) return <StatusPage msg={error} />;
   if (!course) return <StatusPage />;
   return (
     <section className="course-page">
+      <PDFViewer
+        isOpen={openPDF}
+        pdfLink={syllabus}
+        onClose={() => setOpenPDF(false)}
+      />
       <div className="course-part">
         <h2>{course.title}</h2>
         <p>
@@ -65,12 +93,12 @@ export default function EachCourse() {
           </ul>
         </div>
         <div className="further-info">
-          <p className="syllabus">
+          <div className="syllabus">
             All courses will have the same syllabus and can be found here -
-            <NavLink to="/syllabus" className="syllabus-pdf">
+            <NavLink className="syllabus-pdf" onClick={() => setOpenPDF(true)}>
               SYLLABUS
             </NavLink>
-            {user.isAdmin && (
+            {user && user.isAdmin && (
               <>
                 <button
                   onClick={() => setIsModalOpen(true)}
@@ -92,11 +120,7 @@ export default function EachCourse() {
                 </Modal>
               </>
             )}
-          </p>
-          <NavLink to="/contact" className="contact-link">
-            CONTACT US
-            <ArrowForward className="contact-icon" />
-          </NavLink>
+          </div>
         </div>
         <div className="course-links">
           <NavLink to="/register" className="join-btn">
@@ -105,13 +129,9 @@ export default function EachCourse() {
         </div>
       </div>
       <div className="feedback-part">
-        <FeedbackForm />
+        <FeedbackForm courseId={id} />
         <div className="feedbacks">
-          {course.reviews.length === 0 ? (
-            <Feedback {...course.reviews} />
-          ) : (
-            <p style={{ fontSize: "1.2rem" }}>No Reviews Yet! Leave One!</p>
-          )}
+          <Feedback courseId={id} />
         </div>
       </div>
     </section>

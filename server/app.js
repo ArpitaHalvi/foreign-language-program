@@ -7,14 +7,17 @@ const cors = require("cors");
 const app = express();
 const port = 5000;
 const mongoose = require("mongoose");
+const errorMiddleware = require("./middlewares/error-middleware");
 const userRoutes = require("./routes/user-router");
 const contactRoutes = require("./routes/contact-router");
 const courseRoutes = require("./routes/course-router");
 const feedbackRoutes = require("./routes/feedback-router");
 const adminRoutes = require("./routes/admin-router");
-const errorMiddleware = require("./middlewares/error-middleware");
+const paymentRoutes = require("./routes/payment-router");
+const mailRoutes = require("./routes/mail-router");
 const url = "mongodb://127.0.0.1:27017/french-web";
 const URL = process.env.MONGODB_URL;
+// const Razorpay = require("razorpay");
 
 // HANDLING CORS POLICY
 const corsOptions = {
@@ -44,6 +47,10 @@ mongoose
 app.use("/api/auth", userRoutes); // USER ROUTES
 app.use("/api/form", contactRoutes); // CONTACT FORM ROUTE
 app.use("/api/courses", courseRoutes); // COURSE ROUTE
-app.use("/api/courses/:id/feedback", feedbackRoutes); // FEEDBACK ROUTE
+app.use("/api/course", feedbackRoutes); // FEEDBACK ROUTE
 app.use("/api/admin", adminRoutes); // ADMIN ROUTE
+app.use("/api/auth/payment", paymentRoutes); // PAYMENT ROUTE
+app.use("/api/admin/send-mail", mailRoutes); // MAIL ROUTE
 app.use(errorMiddleware);
+
+// module.exports = instance;

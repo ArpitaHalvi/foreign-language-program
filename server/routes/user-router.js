@@ -14,7 +14,10 @@ router.route("/register").post(validate(signUpSchema), register);
 
 router.route("/login").post(validate(loginSchema), login);
 
-router.route("/enroll").post(validate(enrollmentSchema), enrollment);
+router
+  .route("/enroll")
+  .post(authMiddleware, validate(enrollmentSchema), enrollment);
+
 router.route("/user").get(authMiddleware, user);
 
 module.exports = router;

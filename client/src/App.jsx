@@ -27,6 +27,7 @@ import CourseUpdate from "./components/CourseUpdate.jsx";
 import AddCourse from "./components/AddCourse.jsx";
 import ContactLink from "./components/ContactLink.jsx";
 import UploadSyllabus from "./components/UploadSyllabus.jsx";
+import Payments from "./components/Payments.jsx";
 
 function App() {
   AOS.init({
@@ -57,6 +58,7 @@ function App() {
             <Route path="courses/add" element={<AddCourse />} />
             <Route path="registrations" element={<AdminRegistrations />} />
             <Route path="feedbacks" element={<AdminFeedbacks />} />
+            <Route path="payments" element={<Payments />} />
             <Route path="contacts" element={<AdminContacts />} />
             <Route path="syllabus" element={<UploadSyllabus />} />
           </Route>
