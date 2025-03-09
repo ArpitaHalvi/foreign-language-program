@@ -4,6 +4,7 @@ const PaymentScreenshot = require("../models/paymentss-model");
 const mailSender = async (req, res, next) => {
   try {
     const { emailPerson } = req.body;
+    console.log("Req.body: ", req.body);
     const payment = await PaymentScreenshot.findById(emailPerson).populate({
       path: "registeredUser",
       populate: {
@@ -11,6 +12,7 @@ const mailSender = async (req, res, next) => {
         select: "email",
       },
     });
+    console.log("Payment: ", payment);
     if (!payment || !payment.registeredUser || !payment.registeredUser.userId) {
       console.error("Error: User not found.");
       return res.status(404).json({ message: "User not found!" });
@@ -39,22 +41,22 @@ const mailSender = async (req, res, next) => {
     auth.sendMail(receiver, (error, emailResponse) => {
       if (error) {
         console.error("Email sending error: ", error);
-        if (!res.headersSent) {
-          return next(error);
-        }
+        // if (!res.headersSent) {
+        //   return next(error);
+        // }
         return;
       }
       console.log("EMAIL SENT!");
-      console.log("Email response: ", emailResponse);
-      if (!res.headersSent) {
-        return res.status(200).json({ message: "Email sent successfully!" });
-      }
+      // console.log("Email response: ", emailResponse);
+      // if (!res.headersSent) {
+      return res.status(200).json({ message: "Email sent successfully!" });
+      // }
     });
   } catch (e) {
     console.error("Error while sending mail: ", e);
-    if (!res.headersSent) {
-      return next(e);
-    }
+    // if (!res.headersSent) {
+    return next(e);
+    // }
   }
 };
 

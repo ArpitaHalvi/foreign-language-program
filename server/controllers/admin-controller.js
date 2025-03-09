@@ -190,7 +190,7 @@ const fetchPaymentScreenshots = async (req, res, next) => {
       "registeredUser",
       "paymentStatus"
     );
-    console.log(payments);
+    // console.log(payments);
     if (!payments) {
       return res
         .status(500)

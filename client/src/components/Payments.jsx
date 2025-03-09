@@ -7,7 +7,6 @@ import { useAuth } from "../store/auth";
 export default function Payments() {
   const [payments, setpayments] = useState([]);
   const { authorizationToken } = useAuth();
-  const [emailPerson, setEmailPerson] = useState("");
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [selectedPaymentId, setSelectedPaymentId] = useState(null);
   const openConfirmModal = (id) => {
@@ -55,7 +54,7 @@ export default function Payments() {
         },
       });
       const res_data = await response.json();
-      console.log(res_data);
+      // console.log(res_data);
       if (response.ok) {
         setpayments(res_data);
       } else {
@@ -73,10 +72,11 @@ export default function Payments() {
   //   (payment) => payment.paymentStatus === "pending"
   // );
   const pendingPayments = payments.filter(
-    (payment) => payment.registeredUser.paymentStatus === "pending"
+    (payment) => payment.registeredUser?.paymentStatus === "pending"
   );
 
-  const sendMail = async () => {
+  const sendMail = async (id) => {
+    console.log("Email Person id: ", id);
     try {
       const response = await fetch(
         `http://localhost:5000/api/admin/send-mail`,
@@ -86,7 +86,7 @@ export default function Payments() {
             Authorization: authorizationToken,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ emailPerson: emailPerson }),
+          body: JSON.stringify({ emailPerson: id }),
         }
       );
       const res_data = await response.json();
@@ -118,8 +118,7 @@ export default function Payments() {
         // console.log("Updated registration: ", res_data);
         fetchpayments();
         toast.success("Payment status updated!");
-        sendMail();
-        setEmailPerson(id);
+        sendMail(id);
       } else {
         console.error("Error while updating payment status.");
       }

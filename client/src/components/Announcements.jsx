@@ -6,13 +6,16 @@ import UploadBrochure from "../components/UploadBrochure";
 import { Error } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import ConfirmModal from "./ConfirmModal";
+import ShowBrochure from "./ShowBrochure";
 
 export default function Announcements() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user, authorizationToken } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [brochureUrl, setBrochureUrl] = useState("");
   const [error, setError] = useState(false);
   const [brochures, setBrochures] = useState([]);
+  const [openBrochureModal, setOpenBrochureModal] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [selectedBrochureId, setSelectedBrochureId] = useState(null);
   var settings = {
@@ -98,6 +101,12 @@ export default function Announcements() {
   }, []);
   return (
     <section className="announcements-section">
+      <Modal
+        isOpen={openBrochureModal}
+        onClose={() => setOpenBrochureModal(false)}
+      >
+        <ShowBrochure imageUrl={brochureUrl} />
+      </Modal>
       {user && user.isAdmin && (
         <ConfirmModal
           isOpen={isConfirmModalOpen}
@@ -145,6 +154,10 @@ export default function Announcements() {
                         alt="Brochure Image"
                         key={brochure._id}
                         loading="lazy"
+                        onClick={() => {
+                          setOpenBrochureModal(true),
+                            setBrochureUrl(brochure.imageUrl);
+                        }}
                       />
                       {user && user.isAdmin && (
                         <button

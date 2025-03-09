@@ -154,11 +154,33 @@
   background: url("pattern-randomized.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  .confirm-modal-overlay {
+    .confirm-modal {
+      width: 30%;
+      p {
+        padding: 0;
+      }
+      .button-group {
+        padding-bottom: 0;
+      }
+      @media (width<=900px) {
+        width: 60%;
+      }
+      @media (width<=600px) {
+        width: 80%;
+      }
+    }
+  }
   div {
     width: 100%;
     @include index.flex-box($flex-dir: column, $align-items: flex-start);
     gap: 1rem;
     padding: 3rem 1rem;
+    .modal-overlay {
+      .modal-content {
+        align-self: center;
+      }
+    }
     h2 {
       width: 100%;
       font-size: 2.5rem;

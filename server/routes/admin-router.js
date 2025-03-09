@@ -79,7 +79,7 @@ router
   .delete(authMiddleware, adminMiddleware, deleteContacts);
 
 // Brochure Routes
-router.route("/brochures").get(authMiddleware, fetchBrochures);
+router.route("/brochures").get(fetchBrochures);
 router.route("/brochure").post(
   authMiddleware,
   adminMiddleware,
@@ -117,7 +117,10 @@ router.route("/paymentScreenShot").post(
   },
   validate(paymentssSchema),
   (req, res, next) => {
-    console.log("CourseId after validating the paymentSchema: ", req.body.courseId);
+    console.log(
+      "CourseId after validating the paymentSchema: ",
+      req.body.courseId
+    );
     next();
   },
   uploadPaymentScreenshot

@@ -45,7 +45,7 @@ export default function Footer() {
           <Contact />
         </section>
         <p className="copy">
-          &copy; {year} Foreign Language Programme. All Rights reserved.
+          &copy; {year} Foreign Language Programme. All Rights Reserved.
         </p>
       </section>
     </section>
