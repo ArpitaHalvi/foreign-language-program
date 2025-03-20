@@ -5,7 +5,7 @@
   height: 90vh;
   background: linear-gradient(120deg, #050523, #131398);
   @include index.res-grid;
-  @media (width<1000px) {
+  @media (width<1100px) {
     @include index.res-grid(100%);
     height: fit-content;
     padding: 1rem;
@@ -29,7 +29,7 @@
       color: transparent;
     }
     .acc-already {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       a {
         width: 50%;
         @include index.flex-box;
@@ -45,8 +45,12 @@
         }
       }
     }
-    @media (width<1000px) {
-      @include index.flex-box($flex-dir: column);
+    @media (width<=1100px) {
+      @include index.flex-box(
+        $justify-content: center,
+        $align-items: center,
+        $flex-dir: column
+      );
       h2 {
         text-align: center;
         width: 60%;
@@ -79,13 +83,14 @@
       font-size: 2.5rem;
       font-weight: 400;
       color: black;
+      padding-bottom: 5%;
     }
     form {
       width: 70%;
       @include index.flex-box($align-items: flex-start, $flex-dir: column);
       label {
         margin: 0.3rem 0 0.3rem 0;
-        font-size: 1.7rem;
+        font-size: 1.2rem;
       }
       .signup-inputs,
       select {
@@ -99,7 +104,7 @@
       .signup-btn {
         width: 100%;
         background: linear-gradient(100deg, #131398, dodgerblue);
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         border: none;
         padding: 0.7rem;
         border-radius: 0.3rem;
@@ -108,7 +113,7 @@
         cursor: pointer;
       }
     }
-    @media (width<1000px) {
+    @media (width<1100px) {
       place-self: center;
       width: 65%;
       h2 {

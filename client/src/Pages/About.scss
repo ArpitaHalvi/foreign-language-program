@@ -203,10 +203,11 @@
       font-size: 1.2rem;
       border-radius: 5px;
       border: 2px solid #191952;
-      background-color: #090950;
+      // background-color: #090950;
+      background-color: index.$oxford-blue;
       color: white;
       cursor: pointer;
-      filter: drop-shadow(6px 6px #141480);
+      filter: drop-shadow(6px 6px #073266);
     }
   }
   .reports {

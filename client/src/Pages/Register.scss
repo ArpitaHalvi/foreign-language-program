@@ -49,14 +49,14 @@
           width: 100%;
           @include index.flex-box($align-items: flex-start, $flex-dir: column);
           label {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
           }
           input {
             width: 99.5%;
             padding: 0.6rem;
             border-radius: 5px;
             border: 0.1rem solid #a4a0a0;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
           }
         }
         @media (width<=500px) {
@@ -64,7 +64,7 @@
         }
       }
       label {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         align-self: flex-start;
         margin: 2% 0 1% 0;
       }
@@ -72,7 +72,7 @@
         width: 100%;
         padding: 0.6rem;
         border-radius: 0.4rem;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
       .register-btn {
         padding: 0.5rem;

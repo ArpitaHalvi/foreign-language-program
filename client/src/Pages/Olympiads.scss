@@ -9,6 +9,30 @@
     height: 100%;
     background: url("page-turner.svg");
     background-repeat: no-repeat;
+    // background-color: #050523;
+    // border-bottom-right-radius: 100%;
+    // position: relative;
+    // div {
+    //   position: absolute;
+    //   width: 100px;
+    //   height: 100px;
+    //   border-radius: 50px;
+    //   background-color: #1a5eac89;
+    //   &:nth-of-type(1) {
+    //     top: 50%;
+    //     right: 10%;
+    //     width: 150px;
+    //     height: 150px;
+    //     border-radius: 100px;
+    //   }
+    //   &:nth-of-type(2) {
+    //     top: 20%;
+    //     right: 0;
+    //     width: 250px;
+    //     height: 250px;
+    //     border-radius: 200px;
+    //   }
+    // }
   }
   .olympiad-part {
     width: 100%;
@@ -18,7 +42,6 @@
     gap: 1rem;
     background-color: #8080800f;
     background: linear-gradient(to right, white, #8080800f, #8080803f);
-    // background: url("pattern-randomized.svg");
     .olym-heading {
       font-size: 2rem;
       padding: 1rem;

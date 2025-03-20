@@ -42,22 +42,24 @@
           bottom: 0;
           width: 0;
           height: 2px;
-          background-color: #04042d;
+          // background-color: #04042d;
+          background-color: index.$oxford-blue;
           transition: width 0.3s ease-in-out;
         }
         &:hover::after {
           width: 100%;
         }
         .navbar-icons {
-          color: #04042d;
+          // color: #04042d;
+          color: index.$oxford-blue;
         }
         a {
           @include index.flex-box;
           gap: 0.5rem;
-          font-size: 1.5rem;
-          color: #04042d;
+          font-size: 1.2rem;
+          // color: #04042d;
+          color: index.$oxford-blue;
           padding: 0.5rem;
-          // transition: border-bottom;
         }
       }
       .res-nav-btns {
@@ -67,17 +69,26 @@
         gap: 1rem;
         a {
           width: 80%;
-          button {
-            width: 100%;
-            padding: 0.8rem;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            border: 1px solid #050523;
-            background-color: transparent;
-            cursor: pointer;
-            background-color: white;
-            color: black;
+          // button {
+          width: 100%;
+          padding: 0.8rem;
+          border-radius: 5px;
+          font-size: 1.1rem;
+          border: 1px solid index.$oxford-blue;
+          // background-color: transparent;
+          // cursor: pointer;
+          background-color: index.$antiflash-white;
+          // color: black;
+          color: index.$oxford-blue;
+          transition: all 0.2s ease-in;
+          // }
+          &:hover {
+            background-color: #e7e7e7;
           }
+        }
+        .register-btn,
+        .signup-btn {
+          color: black;
         }
       }
     }
@@ -87,16 +98,18 @@
       .nav-btns {
         padding: 0.5rem 1rem;
         color: #050523;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         border: 2px solid #050543;
         border-radius: 0.3rem;
         cursor: pointer;
         background-color: transparent;
         &:hover {
-          background-color: #090950;
+          // background-color: #090950;
+          background-color: index.$oxford-blue;
           border: none;
           color: white;
-          filter: drop-shadow(6px 6px #141480);
+          // filter: drop-shadow(6px 6px #141480);
+          filter: drop-shadow(6px 6px #073266);
           transform: scale(1.1);
           transition-timing-function: ease-in;
           transition-duration: 300ms;
@@ -131,9 +144,10 @@
         display: none;
       }
       .nav-links {
-        display: none;
-        width: 100%;
-        height: 100vh;
+        // display: none;
+        // width: 100%;
+        width: 50%;
+        height: 90vh;
         justify-content: flex-start;
         flex-direction: column;
         align-items: flex-start;
@@ -141,13 +155,16 @@
         padding: 2rem;
         position: absolute;
         top: 100%;
-        right: 0;
-        @include index.bg-pattern;
-        transform: translateY(-100%); // Hidden initially
-        transition: transition 0.3s ease-in-out;
+        left: 0;
+        // @include index.bg-pattern;
+        background-color: index.$oxford-blue;
+        // transform: translateY(-100%); // Hidden initially
+        transform: translateX(-100%); // Hidden initially
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         &.open {
           display: flex; // Show links when open
-          transform: translateY(0);
+          // transform: translateY(0);
+          transform: translateX(0);
         }
         li {
           margin: 10px 0;
@@ -165,17 +182,28 @@
           }
         }
         .res-nav-btns {
-          width: 50%;
           display: flex;
-          @media (width<710px) {
-            width: 80%;
-          }
-          @media (width<480px) {
-            width: 100%;
+          // @media (width<710px) {
+          //   width: 80%;
+          // }
+          // @media (width<480px) {
+          //   width: 100%;
+          // }
+          @media (width<900px) {
+            flex-direction: column;
+            align-items: flex-start;
+            a {
+              // padding: 0.6rem 1rem;
+              font-size: 1.1rem;
+              color: index.$oxford-blue;
+            }
           }
         }
         @media (width<=700px) {
-          width: 100%;
+          width: 60%;
+        }
+        @media (width<=600px) {
+          width: 80%;
         }
       }
       .menu {

@@ -44,6 +44,7 @@ userSchema.pre("save", async function (next) {
   // this -  here, this contains the recent user who is being saved
   // console.log(this);
   const user = this;
+  // Check if the password is modified
   if (!user.isModified("password")) {
     next();
   }

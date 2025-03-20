@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import "./Navbar.scss";
 import {
   Close,
-  HomeOutlined,
+  Home,
   InfoOutlined,
   Menu,
   SchoolOutlined,
@@ -27,7 +27,6 @@ const Navbar = () => {
       <header className="head">
         <div className="logo">
           <img src="/logo.jpeg" alt="LOGO" />
-          {/* <h1>flp</h1> */}
         </div>
         {/* nav menus */}
         <nav className="navbar">
@@ -39,7 +38,7 @@ const Navbar = () => {
                   `${isActive ? "active-link" : "a"}`
                 }
               >
-                <HomeOutlined className="navbar-icons" />
+                <Home className="navbar-icons" />
                 Home
               </NavLink>
             </li>
@@ -80,31 +79,35 @@ const Navbar = () => {
               {isLoggedIn ? (
                 isAdmin ? (
                   <>
-                    <NavLink to="/admin">
-                      <button className="nav-btns" id="admin-btn">
-                        Admin Panel
-                      </button>
+                    <NavLink to="/admin" className="nav-btns">
+                      {/* <button className="nav-btns" id="admin-btn"> */}
+                      Admin Panel
+                      {/* </button> */}
                     </NavLink>
-                    <NavLink to="/logout">
-                      <button id="logout-btn" className="nav-btns">
-                        Logout
-                      </button>
+                    <NavLink to="/logout" className="nav-btns">
+                      {/* <button id="logout-btn" className="nav-btns"> */}
+                      Logout
+                      {/* </button> */}
                     </NavLink>
                   </>
                 ) : (
-                  <NavLink to="/logout">
-                    <button id="logout-btn" className="nav-btns">
-                      Logout
-                    </button>
+                  <NavLink to="/logout" className="nav-btns">
+                    {/* <button id="logout-btn" className="nav-btns"> */}
+                    Logout
+                    {/* </button> */}
                   </NavLink>
                 )
               ) : (
                 <>
-                  <NavLink to="/register">
-                    <button className="register-btn">Enroll Now</button>
+                  <NavLink to="/register" className="register-btn">
+                    {/* <button className="register-btn"> */}
+                    Enroll Now
+                    {/* </button> */}
                   </NavLink>
-                  <NavLink to="/signup">
-                    <button className="signup-btn">Sign Up</button>
+                  <NavLink to="/signup" className="signup-btn">
+                    {/* <button className="signup-btn"> */}
+                    Sign Up
+                    {/* </button> */}
                   </NavLink>
                 </>
               )}
@@ -114,15 +117,15 @@ const Navbar = () => {
             {isLoggedIn ? (
               isAdmin ? (
                 <>
-                  <NavLink to="/admin">
-                    <button className="nav-btns" id="admin-btn">
-                      Admin Panel
-                    </button>
+                  <NavLink to="/admin" className="nav-btns">
+                    {/* <button className="nav-btns" id="admin-btn"> */}
+                    Admin Panel
+                    {/* </button> */}
                   </NavLink>
-                  <NavLink to="/logout">
-                    <button id="logout-btn" className="nav-btns">
-                      Logout
-                    </button>
+                  <NavLink to="/logout" className="nav-btns">
+                    {/* <button id="logout-btn" className="nav-btns"> */}
+                    Logout
+                    {/* </button> */}
                   </NavLink>
                 </>
               ) : (

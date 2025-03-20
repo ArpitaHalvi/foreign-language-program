@@ -32,8 +32,8 @@ const mailSender = async (req, res, next) => {
 
     const receiver = {
       from: "arpitaa0311@gmail.com",
-      // to: userEmail,
-      to: "arpitahalvi@gmail.com",
+      to: userEmail,
+      // to: "arpitahalvi@gmail.com",
       subject: "PAYMENT APPROVAL",
       text: "Hello, Your payment has been approved you can go the course page to access your class link.",
       html: "<i>Thank You! Happy Learning! <br> Foreign Language Program.</i>",
@@ -41,22 +41,15 @@ const mailSender = async (req, res, next) => {
     auth.sendMail(receiver, (error, emailResponse) => {
       if (error) {
         console.error("Email sending error: ", error);
-        // if (!res.headersSent) {
-        //   return next(error);
-        // }
         return;
       }
       console.log("EMAIL SENT!");
       // console.log("Email response: ", emailResponse);
-      // if (!res.headersSent) {
       return res.status(200).json({ message: "Email sent successfully!" });
-      // }
     });
   } catch (e) {
     console.error("Error while sending mail: ", e);
-    // if (!res.headersSent) {
     return next(e);
-    // }
   }
 };
 

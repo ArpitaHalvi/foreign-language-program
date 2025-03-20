@@ -11,50 +11,90 @@
   @include index.res-grid;
   width: 100%;
   height: 90vh;
-  @include index.bg-pattern;
+  // @include index.bg-pattern;
+  background-color: white;
   .motive {
     width: 100%;
     padding: 2rem;
     @include index.flex-box($flex-dir: column, $align-items: flex-start);
-    gap: 1.5rem;
-    color: white;
-    .greeting {
-      width: 90%;
-      text-transform: capitalize;
-      font-size: 5rem;
-      background: linear-gradient(120deg, grey, whitesmoke, white);
-      background-clip: text;
-      color: transparent;
-    }
-    .aim {
-      font-size: 1.2rem;
-      text-transform: capitalize;
-    }
-    a {
-      padding: 0.8rem 1rem;
-      background-color: transparent;
-      border: 1px solid white;
-      border-radius: 50px;
+    gap: 1rem;
+    // color: white;
+    .intro-flp {
+      // color: #050523;
+      color: index.$oxford-blue;
       @include index.flex-box;
-      gap: 0.5rem;
-      font-size: 1.3rem;
-      color: white;
-      transition: 0.2s ease;
-      &:hover {
-        background-color: white;
-        color: black;
+      gap: 1rem;
+      h1 {
+        writing-mode: vertical-lr;
+        text-orientation: upright;
+        font-size: 4rem;
+        // background-color: #050523;
+        // color: white;
+        background-color: index.$tea-green;
+        color: index.$oxford-blue;
+      }
+      div {
+        h2 {
+          font-size: 4rem;
+          font-weight: 500;
+          // &:nth-of-type(2) {
+          //   background: linear-gradient(to right, grey, grey, whitesmoke);
+          //   color: transparent;
+          //   background-clip: text;
+          // }
+          // &:nth-of-type(3) {
+          //   color: #cf0f35;
+          // }
+        }
+      }
+    }
+    .desc {
+      @include index.flex-box($flex-dir: column, $align-items: flex-start);
+      gap: 1rem;
+      text-transform: capitalize;
+      .greeting {
+        width: 90%;
+        font-size: 1.3rem;
+      }
+      .aim {
+        font-size: 1.1rem;
+      }
+      a {
+        padding: 0.6rem 1rem;
+        // background-color: #050523;
+        border: 1px solid index.$cool-gray;
+        border-radius: 5px;
+        @include index.flex-box;
+        gap: 0.5rem;
+        font-size: 1.1rem;
+        // color: white;
+        // color: index.$oxford-blue;
+        background-color: index.$antiflash-white;
+        color: index.$oxford-blue;
+        transition: all 0.2s ease-in;
+        &:hover {
+          background-color: index.$cool-gray;
+          color: index.$antiflash-white;
+        }
+        .arrow-icon {
+          font-size: 1.3rem;
+        }
       }
     }
   }
   .explore-france {
     width: 100%;
+    height: 100%;
     @include index.flex-box;
     padding: 2rem;
-    .map {
-      width: 90%;
-      height: 100%;
-      filter: drop-shadow(5px 5px 5px grey);
-    }
+    // background-color: #050523;
+    background-color: index.$oxford-blue;
+    border-radius: 50% 0 0 0;
+    // .map {
+    //   width: 90%;
+    //   height: 100%;
+    //   filter: drop-shadow(5px 5px 5px grey);
+    // }
   }
   @media (width<=900px) {
     @include index.res-grid(100%);
@@ -87,7 +127,8 @@
   gap: 2rem;
   .collab-heading {
     font-size: 3rem;
-    color: #191952;
+    // color: #191952;
+    color: index.$oxford-blue;
   }
   .collab {
     width: 100%;
@@ -154,7 +195,8 @@
   gap: 1rem;
   h2 {
     font-size: 3rem;
-    color: #191952;
+    // color: #191952;
+    color: index.$oxford-blue;
     padding: 1rem 1rem 2rem 1rem;
   }
   .services {
@@ -168,11 +210,13 @@
       background-color: aliceblue;
       .service-icon {
         font-size: 4rem;
-        color: #191952;
+        // color: #191952;
+        color: index.$oxford-blue;
       }
       h3 {
         font-size: 1.5rem;
-        color: #191952;
+        // color: #191952;
+        color: index.$oxford-blue;
       }
       p {
         @include index.flex-box($align-items: flex-start);
@@ -227,7 +271,7 @@
         width: 100%;
         height: 100%;
         @include index.flex-box;
-        background-color: pink;
+        // background-color: pink;
         img {
           @include index.img-setting;
           height: 100%;
@@ -257,7 +301,8 @@
       gap: 1rem;
       h3 {
         font-size: 4rem;
-        color: #191952;
+        // color: #191952;
+        color: index.$oxford-blue;
       }
       p {
         width: 70%;
@@ -268,10 +313,12 @@
         font-size: 1.2rem;
         border-radius: 5px;
         border: 2px solid #191952;
-        background-color: #090950;
+        // background-color: #090950;
+        background-color: index.$oxford-blue;
         color: white;
         cursor: pointer;
-        filter: drop-shadow(6px 6px #141480);
+        // filter: drop-shadow(6px 6px #141480);
+        filter: drop-shadow(6px 6px #073266);
       }
     }
     .announcement {
@@ -283,7 +330,8 @@
         font-size: 1.3rem;
       }
       .slick-dots {
-        color: #050523;
+        // color: #050523;
+        color: index.$oxford-blue;
       }
       .slick-list {
         @include index.flex-box;
@@ -382,7 +430,8 @@
       width: 70%;
       @include index.flex-box($justify-content: flex-start);
       gap: 0.5rem;
-      color: #191952;
+      // color: #191952;
+      color: index.$oxford-blue;
       .check-icon {
         color: dodgerblue;
       }
@@ -392,7 +441,8 @@
     h2 {
       padding: 1rem;
       font-size: 3rem;
-      color: #191952;
+      // color: #191952;
+      color: index.$oxford-blue;
       text-align: right;
       text-transform: capitalize;
     }
@@ -426,15 +476,17 @@
   width: 100%;
   padding: 2rem;
   @include index.flex-box($flex-dir: column);
-  background: url("/feedback-bg.svg");
+  // background: url("/feedback-bg.svg");
   background-size: contain;
   h2 {
     font-size: 3rem;
-    color: #191952;
+    // color: #191952;
+    color: index.$oxford-blue;
     text-align: center;
   }
   .slick-dots {
-    color: #050523;
+    // color: #050523;
+    color: index.$oxford-blue;
   }
   .slick-list {
     @include index.flex-box($align-items: flex-start);
@@ -446,9 +498,11 @@
   .slick-next:before {
     font-size: 30px;
     border-radius: 2px;
-    color: #050523;
+    // color: #050523;
+    color: index.$oxford-blue;
     &:hover {
-      background-color: #050523;
+      // background-color: #050523;
+      background-color: index.$oxford-blue;
     }
   }
   .slick-next {
@@ -469,8 +523,7 @@
       @include index.flex-box;
       padding: 2rem;
       .testimony-header {
-        // background-color: #050524;
-        background-color: #06064d;
+        background-color: index.$oxford-blue;
         width: 100%;
         padding: 2rem;
         border-radius: 0.5rem 0.5rem 0 0;
@@ -487,7 +540,8 @@
           text-align: center;
         }
         .student-name {
-          border-top: 1px solid #050523;
+          // border-top: 1px solid #050523;
+          border-top: 1px solid index.$oxford-blue;
           padding-top: 1rem;
           font-size: 1.1rem;
           text-align: left;
@@ -515,8 +569,7 @@
 .footer {
   width: 100%;
   @include index.flex-box($flex-dir: column, $justify-content: space-between);
-  // background-color: #050523;
-  @include index.bg-pattern;
+  background-color: index.$oxford-blue;
   padding: 1rem;
   .web-details {
     width: 100%;

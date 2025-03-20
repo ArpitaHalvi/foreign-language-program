@@ -56,6 +56,18 @@ li {
   background-image: url("data:image/svg+xml,%3Csvg width='20' height='10' viewBox='0 0 20 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 6H6v4H4V6H2V4h2V0h2v4h10V0h2v4h2v2h-2v4h-2V6z' fill='%230a0f55' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
+$space-cadet: #2d2d42ff;
+$cool-gray: #8d99aeff;
+$antiflash-white: #edf2f4ff;
+$red-pantone: #ef233cff;
+$crimson: #d80032ff;
+
+$red-crayola: #ed254eff;
+$naples-yellow: #f9dc5cff;
+$tea-green: #c2eabdff;
+$oxford-blue: #011936ff;
+$charcoal: #465362ff;
+
 // --------------- Confirm Modal Styles -----------------
 .confirm-modal-overlay {
   position: fixed;
