@@ -23,10 +23,6 @@ export default function Olympiads() {
   }, []);
   return (
     <section className="olympiads-section">
-      <div className="olym-decor">
-        {/* <div></div> */}
-        {/* <div></div> */}
-      </div>
       <div className="olympiad-part">
         <h2 className="olym-heading">Welcome Students!</h2>
         <div className="olym-info">

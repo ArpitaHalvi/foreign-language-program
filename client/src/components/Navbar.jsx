@@ -80,34 +80,24 @@ const Navbar = () => {
                 isAdmin ? (
                   <>
                     <NavLink to="/admin" className="nav-btns">
-                      {/* <button className="nav-btns" id="admin-btn"> */}
                       Admin Panel
-                      {/* </button> */}
                     </NavLink>
                     <NavLink to="/logout" className="nav-btns">
-                      {/* <button id="logout-btn" className="nav-btns"> */}
                       Logout
-                      {/* </button> */}
                     </NavLink>
                   </>
                 ) : (
                   <NavLink to="/logout" className="nav-btns">
-                    {/* <button id="logout-btn" className="nav-btns"> */}
                     Logout
-                    {/* </button> */}
                   </NavLink>
                 )
               ) : (
                 <>
                   <NavLink to="/register" className="register-btn">
-                    {/* <button className="register-btn"> */}
                     Enroll Now
-                    {/* </button> */}
                   </NavLink>
                   <NavLink to="/signup" className="signup-btn">
-                    {/* <button className="signup-btn"> */}
                     Sign Up
-                    {/* </button> */}
                   </NavLink>
                 </>
               )}
@@ -118,14 +108,10 @@ const Navbar = () => {
               isAdmin ? (
                 <>
                   <NavLink to="/admin" className="nav-btns">
-                    {/* <button className="nav-btns" id="admin-btn"> */}
                     Admin Panel
-                    {/* </button> */}
                   </NavLink>
                   <NavLink to="/logout" className="nav-btns">
-                    {/* <button id="logout-btn" className="nav-btns"> */}
                     Logout
-                    {/* </button> */}
                   </NavLink>
                 </>
               ) : (

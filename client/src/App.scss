@@ -96,7 +96,7 @@
     //   filter: drop-shadow(5px 5px 5px grey);
     // }
   }
-  @media (width<=900px) {
+  @media (max-width: 1000px) {
     @include index.res-grid(100%);
     height: auto;
     text-align: center;
@@ -113,11 +113,13 @@
         font-size: 1.1rem;
       }
     }
+    .explore-france {
+      height: 100%;
+    }
   }
 }
 
 /* ************** DETAILS PART STYLES **************** */
-
 .details-part {
   width: 100%;
   padding: 1rem;
@@ -185,6 +187,12 @@
       }
     }
   }
+  @media (max-width: 500px) {
+    .collab-heading {
+      width: 80%;
+      font-size: 2.3rem;
+    }
+  }
 }
 
 // ******************* SERVICES PART STYLES *******************
@@ -247,6 +255,11 @@
           }
         }
       }
+    }
+  }
+  @media (max-width: 500px) {
+    h2 {
+      font-size: 2.3rem;
     }
   }
 }
@@ -397,10 +410,16 @@
       div {
         h3 {
           font-size: 3rem;
+          @media (max-width: 500px) {
+            font-size: 2.3rem;
+          }
         }
         p {
           width: 90%;
           font-size: 1.1rem;
+          @media (max-width: 468px) {
+            font-size: 1rem;
+          }
         }
       }
       h3 {
@@ -464,6 +483,17 @@
       .guidelines {
         li {
           width: 100%;
+          @media (max-width: 468px) {
+            font-size: 0.9rem;
+          }
+        }
+      }
+      @media (max-width: 468px) {
+        padding: 1rem;
+      }
+      .heading {
+        h2 {
+          font-size: 1.5rem;
         }
       }
     }
@@ -471,7 +501,6 @@
 }
 
 // **************** TESTIMONIALS STYLES ****************
-
 .testimony-part {
   width: 100%;
   padding: 2rem;
@@ -519,6 +548,9 @@
     @media (width<=500px) {
       width: 95%;
     }
+    @media (width<=468px) {
+      width: 100%;
+    }
     .testimony-box {
       @include index.flex-box;
       padding: 2rem;
@@ -536,7 +568,7 @@
         box-shadow: 5px 5px 5px 5px grey;
         .testimony-text {
           padding: 1rem 0;
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           text-align: center;
         }
         .student-name {
@@ -548,10 +580,11 @@
           color: grey;
           font-style: italic;
         }
-        @media (width<=500px) {
+        @media (width<=468px) {
           .testimony-text,
           .student-name {
-            font-size: 1.1rem;
+            font-size: 1rem;
+            font-weight: lighter;
           }
         }
       }
@@ -571,10 +604,11 @@
   @include index.flex-box($flex-dir: column, $justify-content: space-between);
   background-color: index.$oxford-blue;
   padding: 1rem;
+  color: white;
   .web-details {
     width: 100%;
-    @include index.res-grid;
-    padding: 2rem;
+    @include index.res-grid(calc(100% / 3));
+    padding: 3rem;
     .contact-info {
       @include index.flex-box;
       padding: 1rem;
@@ -586,42 +620,83 @@
           color: #dcdcdc;
           @include index.flex-box;
           gap: 1rem;
-          font-size: 1.2rem;
+          font-size: 1rem;
+          a {
+            color: #dcdcdc;
+            @include index.flex-box(
+              $flex-dir: column,
+              $align-items: flex-start
+            );
+          }
         }
       }
     }
     .web-links {
       width: 100%;
-      @include index.flex-box;
+      @include index.flex-box($flex-dir: column);
+      gap: 1rem;
+      h6 {
+        font-size: 1.4rem;
+        font-weight: 100;
+        border-bottom: 2px solid white;
+      }
       ul {
-        @include index.flex-box($flex-dir: column, $align-items: flex-start);
-        gap: 0.5rem;
         li {
-          @include index.flex-box;
-          gap: 1rem;
-          font-size: 1.2rem;
+          margin: 2% 0;
+          font-size: 1rem;
           a {
-            color: #dcdcdc;
+            color: #cacaca;
+            transition: all 0.2s ease-in;
+            &:hover {
+              color: white;
+            }
           }
         }
       }
     }
-    @media (width<=700px) {
-      @include index.res-grid(100%);
+    .course-links {
+      width: 100%;
+      // background-color: pink;
+      @include index.flex-box($flex-dir: column);
       gap: 1rem;
-      .contact-info {
-        place-self: flex-start;
-        ul li {
-          font-size: 1.1rem;
+      h6 {
+        font-size: 1.4rem;
+        font-weight: 100;
+        border-bottom: 2px solid white;
+      }
+      ul {
+        li {
+          margin: 2% 0;
+          font-size: 1rem;
+          a {
+            color: #cacaca;
+            transition: all 0.2s ease-in;
+            &:hover {
+              color: white;
+            }
+          }
         }
       }
+    }
+    @media (max-width: 1000px) {
+      @include index.res-grid(calc(100% / 2));
+      .contact-info {
+        margin-top: 15%;
+      }
+    }
+    @media (width<=700px) {
+      @include index.res-grid(100%);
+      gap: 3rem;
       .web-links {
-        justify-content: flex-start;
-        padding: 1rem;
-        border-top: 1px solid grey;
-        ul li {
-          font-size: 1.1rem;
-        }
+        padding: 1rem 0;
+      }
+      .contact-info {
+        margin-top: 0;
+      }
+      .course-links,
+      .web-links,
+      .contact-info {
+        align-items: flex-start;
       }
     }
   }
@@ -652,7 +727,7 @@
     }
     .copy {
       width: 100%;
-      font-size: 1rem;
+      font-size: 0.8rem;
     }
     @media (width<=850px) {
       .query {
