@@ -54,6 +54,9 @@
       text-transform: capitalize;
       .aim {
         font-size: 1.1rem;
+        @media (max-width: 468px) {
+          font-size: 0.9rem;
+        }
       }
       a {
         padding: 0.6rem 1rem;
