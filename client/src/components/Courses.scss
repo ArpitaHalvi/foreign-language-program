@@ -123,8 +123,8 @@
     @include index.flex-box($align-items: flex-start, $flex-dir: column);
     gap: 0.5rem;
     padding: 4rem 2rem;
-    background: linear-gradient(160deg, #042979, #709ccf, #c5c5c5);
-    @include index.bg-pattern;
+    // @include index.bg-pattern;
+    background-color: index.$oxford-blue;
     color: white;
     h2 {
       font-size: 3rem;
@@ -273,7 +273,7 @@
           font-weight: 400;
           text-transform: capitalize;
           border-radius: 5px 5px 0 0;
-          background-color: #06064d;
+          background-color: index.$oxford-blue;
           border-bottom: 1px solid black;
           color: white;
         }
@@ -334,7 +334,7 @@
           font-size: 1.1rem;
           margin-bottom: 3%;
           border: none;
-          background-color: #06064d;
+          background-color: index.$oxford-blue;
           color: white;
           cursor: pointer;
         }

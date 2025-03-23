@@ -15,7 +15,6 @@ export default function IntroPart() {
           </div>
         </div>
         <div className="desc">
-          {/* <h2 className="greeting">Bonjour, &Eacute;tudiants!</h2> */}
           <p className="aim">
             Unlock opportunities with French - Interactive courses designed for
             students, professionals, and enthusiasts.

@@ -80,6 +80,21 @@
       }
     }
   }
+  @media (max-width: 468px) {
+    .error-section {
+      .error-icon {
+        font-size: 4rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+    .loading-section {
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
 }
 
 @keyframes scale-up {

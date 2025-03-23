@@ -199,6 +199,18 @@
         @media (width<=600px) {
           width: 80%;
         }
+        @media (max-width: 468px) {
+          li a {
+            font-size: 1rem;
+          }
+          .res-nav-btns {
+            a {
+              width: 80%;
+              padding: 0.7rem 1rem;
+              font-size: 1rem;
+            }
+          }
+        }
       }
       .menu {
         display: block;

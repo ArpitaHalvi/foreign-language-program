@@ -3,7 +3,8 @@
 .olympiads-section {
   width: 100%;
   height: 90vh;
-  @include index.flex-box;
+  // @include index.flex-box;
+  @include index.res-grid;
   .olympiad-part {
     width: 100%;
     height: 90vh;
@@ -16,6 +17,7 @@
       font-size: 2rem;
       padding: 1rem;
       text-transform: uppercase;
+      text-align: center;
     }
     .olym-info {
       @include index.flex-box($flex-dir: column);
@@ -28,34 +30,34 @@
       .grades-heading {
         font-size: 1.5rem;
         font-weight: 400;
-        color: #191970;
+        color: index.$oxford-blue;
       }
       .criteria {
         width: 90%;
         @include index.flex-box;
-        border: 2px solid darkblue;
+        border: 2px solid index.$oxford-blue;
         border-radius: 5px;
-        box-shadow: 5px 5px darkblue;
+        box-shadow: 5px 5px index.$oxford-blue;
         .grades {
           width: 100%;
-          border-right: 2px solid darkblue;
+          border-right: 2px solid index.$oxford-blue;
           padding: 0.5rem 0.7rem;
         }
         .grade5 {
-          background-color: #e3f2fd;
-          // background-color: #fae3e3;
+          // background-color: #e3f2fd;
+          background-color: #fae3e3;
         }
         .grade6 {
-          background-color: #90caf9;
-          // background-color: #e4a9a8;
+          // background-color: #90caf9;
+          background-color: #e4a9a8;
         }
         .grade7 {
-          background-color: #42a5f5;
-          // background-color: #d46a6a;
+          // background-color: #42a5f5;
+          background-color: #d46a6a;
         }
         .grade8 {
-          background-color: #1565c0;
-          // background-color: #a63838;
+          // background-color: #1565c0;
+          background-color: #a63838;
         }
       }
       p {
@@ -92,17 +94,15 @@
         transition: all 0.5s ease-in-out;
         &:hover {
           background-color: aliceblue;
-          color: black;
-          border-color: darkblue;
+          color: index.$oxford-blue;
+          border-color: index.$oxford-blue;
         }
         .dbl-right {
           font-size: 2rem;
         }
       }
     }
-  }
-  @media (width <=1200px) {
-    .olympiad-part {
+    @media (width <=1200px) {
       .olym-info {
         p {
           width: 80%;
@@ -141,6 +141,34 @@
         a {
           span {
             font-size: 2.7rem;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 468px) {
+    .olympiad-part {
+      .olym-info {
+        .grades-heading {
+          font-size: 1.1rem;
+        }
+        .criteria {
+          .grades {
+            font-size: 1rem;
+          }
+        }
+        p {
+          font-size: 1.1rem;
+        }
+        blockquote {
+          font-size: 1rem;
+        }
+      }
+      .olym-img {
+        a {
+          font-size: 1rem;
+          .dbl-right {
+            font-size: 1.5rem;
           }
         }
       }

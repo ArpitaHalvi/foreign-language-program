@@ -18,9 +18,7 @@
     padding: 2rem;
     @include index.flex-box($flex-dir: column, $align-items: flex-start);
     gap: 1rem;
-    // color: white;
     .intro-flp {
-      // color: #050523;
       color: index.$oxford-blue;
       @include index.flex-box;
       gap: 1rem;
@@ -28,10 +26,12 @@
         writing-mode: vertical-lr;
         text-orientation: upright;
         font-size: 4rem;
-        // background-color: #050523;
-        // color: white;
-        background-color: index.$tea-green;
-        color: index.$oxford-blue;
+        // background-color: index.$tea-green;
+        // background-color: index.$red-crayola;
+        // color: index.$oxford-blue;
+        background-color: index.$antiflash-white;
+        // box-shadow: -5px -5px index.$space-cadet;
+        // color: index.$antiflash-white;
       }
       div {
         h2 {
@@ -52,29 +52,23 @@
       @include index.flex-box($flex-dir: column, $align-items: flex-start);
       gap: 1rem;
       text-transform: capitalize;
-      .greeting {
-        width: 90%;
-        font-size: 1.3rem;
-      }
       .aim {
         font-size: 1.1rem;
       }
       a {
         padding: 0.6rem 1rem;
-        // background-color: #050523;
-        border: 1px solid index.$cool-gray;
+        border: 1px solid index.$red-crayola;
         border-radius: 5px;
         @include index.flex-box;
         gap: 0.5rem;
         font-size: 1.1rem;
-        // color: white;
-        // color: index.$oxford-blue;
         background-color: index.$antiflash-white;
-        color: index.$oxford-blue;
+        background-color: index.$red-crayola;
+        color: index.$antiflash-white;
         transition: all 0.2s ease-in;
         &:hover {
-          background-color: index.$cool-gray;
-          color: index.$antiflash-white;
+          background-color: index.$crimson;
+          filter: drop-shadow(5px 5px index.$oxford-blue);
         }
         .arrow-icon {
           font-size: 1.3rem;
@@ -87,7 +81,6 @@
     height: 100%;
     @include index.flex-box;
     padding: 2rem;
-    // background-color: #050523;
     background-color: index.$oxford-blue;
     border-radius: 50% 0 0 0;
     // .map {
@@ -99,22 +92,39 @@
   @media (max-width: 1000px) {
     @include index.res-grid(100%);
     height: auto;
-    text-align: center;
     .motive {
       width: 80%;
-      text-align: center;
       align-items: center;
-      .greeting {
-        width: 100%;
-        font-size: 4rem;
-      }
+    }
+    .desc {
       .aim {
-        width: 70%;
+        text-align: center;
         font-size: 1.1rem;
+      }
+      a {
+        align-self: center;
       }
     }
     .explore-france {
-      height: 100%;
+      height: 50vh;
+      border-radius: 100% 0 0 0;
+    }
+  }
+  @media (max-width: 500px) {
+    .motive {
+      .intro-flp {
+        h1 {
+          font-size: 2rem;
+        }
+        div h2 {
+          font-size: 2rem;
+        }
+      }
+    }
+    .desc {
+      a {
+        font-size: 0.9rem;
+      }
     }
   }
 }
@@ -191,6 +201,15 @@
     .collab-heading {
       width: 80%;
       font-size: 2.3rem;
+    }
+    @media (max-width: 468px) {
+      .collab {
+        div {
+          .partner {
+            padding: 2rem;
+          }
+        }
+      }
     }
   }
 }
@@ -541,50 +560,50 @@
     width: 80%;
     @include index.flex-box;
     height: auto;
-    .slick-slide {
-      @include index.flex-box;
-      flex-wrap: nowrap;
-    }
     @media (width<=500px) {
       width: 95%;
     }
     @media (width<=468px) {
       width: 100%;
     }
-    .testimony-box {
+    .slick-slide {
       @include index.flex-box;
-      padding: 2rem;
-      .testimony-header {
-        background-color: index.$oxford-blue;
-        width: 100%;
+      flex-wrap: nowrap;
+      .testimony-box {
+        @include index.flex-box;
         padding: 2rem;
-        border-radius: 0.5rem 0.5rem 0 0;
-        box-shadow: 5px 5px 5px 5px grey;
-      }
-      .student-testimony {
-        padding: 1rem;
-        border-radius: 0 0 0.5rem 0.5rem;
-        background-color: white;
-        box-shadow: 5px 5px 5px 5px grey;
-        .testimony-text {
-          padding: 1rem 0;
-          font-size: 1.1rem;
-          text-align: center;
+        .testimony-header {
+          background-color: index.$oxford-blue;
+          width: 100%;
+          padding: 2rem;
+          border-radius: 0.5rem 0.5rem 0 0;
+          box-shadow: 5px 5px 5px 5px grey;
         }
-        .student-name {
-          // border-top: 1px solid #050523;
-          border-top: 1px solid index.$oxford-blue;
-          padding-top: 1rem;
-          font-size: 1.1rem;
-          text-align: left;
-          color: grey;
-          font-style: italic;
-        }
-        @media (width<=468px) {
-          .testimony-text,
+        .student-testimony {
+          padding: 1rem;
+          border-radius: 0 0 0.5rem 0.5rem;
+          background-color: white;
+          box-shadow: 5px 5px 5px 5px grey;
+          .testimony-text {
+            padding: 1rem 0;
+            font-size: 1.1rem;
+            text-align: center;
+          }
           .student-name {
-            font-size: 1rem;
-            font-weight: lighter;
+            // border-top: 1px solid #050523;
+            border-top: 1px solid index.$oxford-blue;
+            padding-top: 1rem;
+            font-size: 1.1rem;
+            text-align: left;
+            color: grey;
+            font-style: italic;
+          }
+          @media (width<=468px) {
+            .testimony-text,
+            .student-name {
+              font-size: 1rem;
+              font-weight: lighter;
+            }
           }
         }
       }
@@ -594,6 +613,15 @@
     h2 {
       width: 70%;
       font-size: 2.3rem;
+    }
+  }
+  @media (max-width: 468px) {
+    .slick-slider {
+      .slick-slide {
+        .testimony-box {
+          padding: 1rem;
+        }
+      }
     }
   }
 }

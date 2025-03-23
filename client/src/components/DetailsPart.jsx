@@ -9,7 +9,12 @@ export default function DetailsPart() {
             className="partner"
             title="St. Aloysius College, Jabalpur"
           >
-            <img src="/aloysius-logo2.png" alt="LOGO" />
+            <img
+              src="/aloysius-logo2.png"
+              alt="LOGO"
+              width={100}
+              height={100}
+            />
           </a>
         </div>
         <div>
