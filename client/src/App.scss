@@ -730,6 +730,9 @@
         align-items: flex-start;
       }
     }
+    @media (max-width: 468px) {
+      padding: 1rem;
+    }
   }
   .copyright {
     width: 100%;

@@ -1,6 +1,7 @@
 import { CheckTwoTone } from "@mui/icons-material";
 import Reports from "../components/Reports";
 import "./About.scss";
+import Glimpses from "../components/Glimpses";
 
 export default function About() {
   return (
@@ -57,6 +58,7 @@ export default function About() {
           </li>
         </ul>
       </div>
+      <Glimpses />
       <Reports />
     </section>
   );

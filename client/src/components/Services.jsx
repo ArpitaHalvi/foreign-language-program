@@ -1,41 +1,49 @@
 import {
   LiveTv,
   School,
-  Feedback,
+  // Feedback,
   ChecklistRounded,
+  Language,
 } from "@mui/icons-material";
 export default function Services() {
+  const services = [
+    {
+      title: "Interactive Live Classes",
+      text: "Live sessions with skilled instructor for real-time learning and interactive discussions.",
+      icon: <LiveTv className="service-icon" />,
+    },
+    {
+      title: "Easy Course Enrollment",
+      text: "Simplified process to explore courses, enroll, and access courses instantly after payment.",
+      icon: <School className="service-icon" />,
+    },
+    // {
+    //   title: "Feedback for Improvement",
+    //   text: "Allow students to share their learning experience to help improve the course quality.",
+    //   icon: <Feedback className="service-icon" />,
+    // },
+    {
+      title: "French Courses & Olympiads",
+      text: "We offer courses for all levels, from DELF Junior to TEF, TCF, and Olympiads, with expert guidance.",
+      icon: <Language className="service-icon" />,
+    },
+  ];
   return (
     <section className="service-section">
       <h2>What we provide</h2>
       <div className="services">
-        <div className="service" data-aos="slide-right">
-          <LiveTv className="service-icon" />
-          <h3>Interactive Live Classes</h3>
-          <p>
-            <ChecklistRounded className="check-icon" />
-            Live sessions with skilled instructor for real-time learning and
-            interactive discussions.
-          </p>
-        </div>
-        <div className="service" data-aos="slide-right">
-          <School className="service-icon" />
-          <h3>Easy Course Enrollment</h3>
-          <p>
-            <ChecklistRounded className="check-icon" />
-            Simplified process to explore courses, enroll, and access courses
-            instantly after payment.
-          </p>
-        </div>
-        <div className="service" data-aos="slide-right">
-          <Feedback className="service-icon" />
-          <h3>Feedback for Improvement</h3>
-          <p>
-            <ChecklistRounded className="check-icon" />
-            Allow students to share their learning experience to help improve
-            the course quality.
-          </p>
-        </div>
+        {services.map((service, index) => {
+          return (
+            <div className="service" key={index} data-aos="slide-right">
+              {service.icon}
+              <h3>{service.title}</h3>
+              <p>
+                <ChecklistRounded className="check-icon" />
+                {service.text}
+              </p>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

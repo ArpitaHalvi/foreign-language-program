@@ -38,7 +38,7 @@ export default function Footer() {
             {courses.map((c, index) => {
               return (
                 <li key={index}>
-                  <NavLink>{c.name} </NavLink>
+                  <NavLink to="/courses">{c.name}</NavLink>
                 </li>
               );
             })}
