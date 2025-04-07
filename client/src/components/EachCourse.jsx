@@ -130,9 +130,12 @@ export default function EachCourse() {
       </div>
       <div className="feedback-part">
         <FeedbackForm courseId={id} />
-        <div className="feedbacks">
-          <Feedback courseId={id} />
+        <div className="review-img">
+          <img src="/reviews.svg" alt="" />
         </div>
+      </div>
+      <div className="feedbacks">
+        <Feedback courseId={id} />
       </div>
     </section>
   );

@@ -39,11 +39,13 @@ export default function Olympiads() {
             <br />- Foreign Language Program
           </blockquote>
         </div>
-        <div className="olym-img">
-          <NavLink to="/register">
-            Start Now <KeyboardDoubleArrowRight className="dbl-right" />
-          </NavLink>
-        </div>
+        <NavLink to="/register">
+          Start Now <KeyboardDoubleArrowRight className="dbl-right" />
+        </NavLink>
+      </div>
+      <div className="olym-decor">
+        {/* <img src="girl-reading-book.svg" alt="" /> */}
+        <img src="grades.svg" alt="" />
       </div>
     </section>
   );

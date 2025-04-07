@@ -5,19 +5,34 @@
   height: 90vh;
   // @include index.flex-box;
   @include index.res-grid;
-  .olympiad-part {
+  background-color: index.$oxford-blue;
+  .olym-decor {
     width: 100%;
-    height: 90vh;
+    height: 100%;
+    @include index.flex-box;
     padding: 2rem;
+    img {
+      width: 100%;
+      height: 80%;
+      object-fit: contain;
+      aspect-ratio: 3/2;
+    }
+  }
+  .olympiad-part {
+    width: 70%;
+    height: 70vh;
+    padding: 2rem 1rem;
+    border-radius: 5px;
     @include index.flex-box($flex-dir: column);
     gap: 1rem;
-    background-color: #8080800f;
-    background: linear-gradient(to right, white, #8080800f, #8080803f);
+    background-color: white;
+    filter: drop-shadow(5px 5px grey);
+    // background-color: #8080800f;
+    // background: linear-gradient(to right, white, #8080800f, #8080803f);
     .olym-heading {
-      font-size: 2rem;
-      padding: 1rem;
-      text-transform: uppercase;
+      font-size: 2.5rem;
       text-align: center;
+      color: index.$oxford-blue;
     }
     .olym-info {
       @include index.flex-box($flex-dir: column);
@@ -26,9 +41,10 @@
       text-align: center;
       padding: 1rem;
       font-style: italic;
+      color: index.$oxford-blue;
       background-color: transparent;
       .grades-heading {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         font-weight: 400;
         color: index.$oxford-blue;
       }
@@ -65,77 +81,105 @@
         color: #050523;
         text-align: center;
         @include index.flex-box($flex-dir: column);
-        font-size: 1.3rem;
+        font-size: 1.2rem;
       }
       blockquote {
         color: grey;
         font-size: 1.2rem;
       }
     }
-    .olym-img {
-      width: 55%;
-      @include index.flex-box($flex-dir: column);
-      // border-radius: 80% 20% 80% 20%;
-      // border-radius: 20% 80% 20% 80%;
-      border-radius: 70% 35% 56% 57% / 82% 68% 40% 40%;
-      // filter: drop-shadow(10px 10px #606060);
-      // background: linear-gradient(120deg, #191970, #afeeee);
-      // gap: 0.5rem;
-      a {
-        @include index.flex-box;
-        gap: 0.5rem;
-        font-size: 1.5rem;
-        background-color: white;
-        border-radius: 50px;
-        color: #505050;
-        padding: 0.5rem 1rem;
-        box-shadow: 5px 5px gray;
-        border: 2px solid gray;
-        transition: all 0.5s ease-in-out;
-        &:hover {
-          background-color: aliceblue;
-          color: index.$oxford-blue;
-          border-color: index.$oxford-blue;
-        }
-        .dbl-right {
-          font-size: 2rem;
-        }
+    a {
+      @include index.flex-box;
+      gap: 0.5rem;
+      font-size: 1.5rem;
+      background-color: white;
+      border-radius: 50px;
+      color: #505050;
+      padding: 0.5rem 1rem;
+      box-shadow: 5px 5px gray;
+      border: 2px solid gray;
+      transition: all 0.5s ease-in-out;
+      &:hover {
+        color: index.$oxford-blue;
+        border-color: index.$oxford-blue;
+      }
+      .dbl-right {
+        font-size: 2rem;
       }
     }
     @media (width <=1200px) {
+      width: 80%;
+      .olym-heading {
+        font-size: 2rem;
+      }
       .olym-info {
+        .grades-heading {
+          font-size: 1.1rem;
+        }
         p {
+          font-size: 1.1rem;
           width: 80%;
         }
+        blockquote {
+          font-size: 1.05rem;
+        }
       }
-      .olym-img {
-        width: 80%;
+      a {
+        font-size: 1.2rem;
       }
     }
   }
   @media (width<=1100px) {
     @include index.res-grid(100%);
-    .olym-decor {
-      display: none;
-    }
+    height: auto;
+    padding: 2rem;
     .olympiad-part {
-      // background: url("page-turner.svg");
-      // background-repeat: no-repeat;
-      // background-size: contain;
-      background: url("pattern-randomized.svg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
+      height: auto;
+      width: 60%;
+      // order: 2;
       .olym-info {
-        gap: 2rem;
+        gap: 1rem;
       }
       .olym-img {
         width: 50%;
       }
+      a {
+        border-radius: 50px;
+      }
+    }
+    .olym-decor {
+      width: 80%;
+    }
+  }
+  @media (max-width: 900px) {
+    .olympiad-part {
+      width: 80%;
+    }
+    .olym-decor {
+      width: 90%;
+    }
+  }
+  @media (max-width: 650px) {
+    .olympiad-part {
+      width: 90%;
+    }
+    .olym-decor {
+      width: 100%;
     }
   }
   @media (width<=550px) {
+    padding: 1rem;
     .olympiad-part {
+      width: 100%;
+      padding: 2rem 1rem;
+      .olym-heading {
+        font-size: 1.7rem;
+      }
+      .criteria {
+        .grades {
+          font-size: 1.1rem;
+        }
+      }
       .olym-img {
         font-size: 1.8rem;
         a {
@@ -144,32 +188,47 @@
           }
         }
       }
+      a {
+        padding: 0.3rem 1rem;
+        font-size: 1.1rem;
+      }
     }
   }
   @media (max-width: 468px) {
     .olympiad-part {
+      background-color: transparent;
+      padding: 2rem 0;
+      filter: none;
+      .olym-heading {
+        color: index.$antiflash-white;
+        // font-weight: 400;
+      }
       .olym-info {
+        padding: 1rem 0;
         .grades-heading {
           font-size: 1.1rem;
+          color: index.$antiflash-white;
         }
         .criteria {
+          border-radius: 5px;
           .grades {
             font-size: 1rem;
+            border-radius: 5px 0 0 5px;
           }
         }
         p {
           font-size: 1.1rem;
+          color: index.$antiflash-white;
         }
         blockquote {
+          color: index.$antiflash-white;
           font-size: 1rem;
         }
       }
-      .olym-img {
-        a {
-          font-size: 1rem;
-          .dbl-right {
-            font-size: 1.5rem;
-          }
+      a {
+        font-size: 1rem;
+        .dbl-right {
+          font-size: 1.5rem;
         }
       }
     }

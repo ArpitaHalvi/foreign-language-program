@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import "./Register.scss";
+// import "./Register.scss";
+import "./Auth.scss";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";

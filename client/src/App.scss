@@ -296,7 +296,7 @@
   .modal-overlay {
     top: 5%;
     .modal-content {
-      height: 95%;
+      // height: 95%;
       padding: 6rem 4rem;
       // background-color: plum;
       .modal-close {
@@ -341,7 +341,14 @@
       }
       p {
         width: 70%;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+        &:nth-of-type(2) {
+          sup {
+            color: index.$crimson;
+            font-size: 1.5rem;
+          }
+          font-size: 1.1rem;
+        }
       }
       .upload-btn {
         padding: 0.5rem;
@@ -831,5 +838,26 @@
     .close-icon {
       font-size: 2rem;
     }
+  }
+}
+
+// --------------------- EDITORS DESK -----------------------
+.editors-desk {
+  width: 100%;
+  height: 40vh;
+  padding: 2rem;
+  @include index.flex-box;
+  .quote-modal {
+    width: 100%;
+    // height: 90vh;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  .editor-quote {
+    width: 50%;
+    padding: 2rem;
+    background-color: index.$red-crayola;
+    color: white;
+    border-radius: 50px 0 50px 0;
   }
 }

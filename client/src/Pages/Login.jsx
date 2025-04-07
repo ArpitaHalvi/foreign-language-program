@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./Login.scss";
+// import "./Login.scss";
+import "./Auth.scss";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";

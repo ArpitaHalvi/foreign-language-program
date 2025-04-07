@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./SignUp.scss";
+// import "./SignUp.scss";
+import "./Auth.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Login } from "@mui/icons-material";
 import { toast } from "react-toastify";

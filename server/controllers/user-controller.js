@@ -1,3 +1,4 @@
+const Course = require("../models/course-model");
 const User = require("../models/user-model");
 
 // REGISTERING THE USER
@@ -69,8 +70,22 @@ const user = async (req, res, next) => {
   }
 };
 
+const fetchCourse = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (!id)
+      return res.status(500).json({ message: "Course Id is not provided." });
+    const course = await Course.findById(id);
+    if (!course) return res.status(404).json({ message: "Course Not Found." });
+    return res.status(200).json({ course });
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   register,
   login,
   user,
+  fetchCourse,
 };

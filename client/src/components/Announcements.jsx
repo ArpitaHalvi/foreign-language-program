@@ -121,6 +121,10 @@ export default function Announcements() {
             &quot;Stay ahead with updates on courses, events, and exclusive
             opportunities- your gateway of mastering French.&quot;
           </p>
+          <p>
+            <sup>*</sup> Prices listed in the brochure for any available course
+            are subject to change without prior notice.
+          </p>
           {user && user.isAdmin && (
             <>
               <button

@@ -9,6 +9,7 @@ const {
   enrollmentSchema,
 } = require("../Validators/auth-validator");
 const { enrollment } = require("../controllers/enrollment-controller");
+const { fetchCourse } = require("../controllers/user-controller");
 
 router.route("/register").post(validate(signUpSchema), register);
 
@@ -19,5 +20,7 @@ router
   .post(authMiddleware, validate(enrollmentSchema), enrollment);
 
 router.route("/user").get(authMiddleware, user);
+
+router.route("/user/courses", authMiddleware, fetchCourse);
 
 module.exports = router;

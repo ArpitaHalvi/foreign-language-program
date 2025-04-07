@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.scss";
 import {
+  AccountCircle,
   Close,
   Home,
   InfoOutlined,
@@ -87,9 +88,14 @@ const Navbar = () => {
                     </NavLink>
                   </>
                 ) : (
-                  <NavLink to="/logout" className="nav-btns">
-                    Logout
-                  </NavLink>
+                  <>
+                    <NavLink to="/user" className="user-account">
+                      <AccountCircle className="account-icon" />
+                    </NavLink>
+                    <NavLink to="/logout" className="nav-btns">
+                      Logout
+                    </NavLink>
+                  </>
                 )
               ) : (
                 <>
@@ -115,23 +121,22 @@ const Navbar = () => {
                   </NavLink>
                 </>
               ) : (
-                <NavLink to="/logout">
-                  <button id="logout-btn" className="nav-btns">
+                <>
+                  <NavLink to="/user" className="user-account">
+                    <AccountCircle className="account-icon" />
+                  </NavLink>
+                  <NavLink to="/logout" className="nav-btns" id="logout-btn">
                     Logout
-                  </button>
-                </NavLink>
+                  </NavLink>
+                </>
               )
             ) : (
               <>
-                <NavLink to="/register">
-                  <button id="register-btn" className="nav-btns">
-                    Enroll Now
-                  </button>
+                <NavLink to="/register" className="nav-btns" id="regiter-btn">
+                  Enroll Now
                 </NavLink>
-                <NavLink to="/signup">
-                  <button id="signup-btn" className="nav-btns">
-                    Sign Up
-                  </button>
+                <NavLink to="/signup" className="nav-btns" id="signup-btn">
+                  Sign Up
                 </NavLink>
               </>
             )}

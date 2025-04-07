@@ -28,6 +28,10 @@ import AddCourse from "./components/AddCourse.jsx";
 import ContactLink from "./components/ContactLink.jsx";
 import UploadSyllabus from "./components/UploadSyllabus.jsx";
 import Payments from "./components/Payments.jsx";
+import UserDashboard from "./Pages/UserDashboard.jsx";
+import UserCourses from "./components/UserCourses.jsx";
+import Footer from "./components/Footer.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 function App() {
   AOS.init({
@@ -37,6 +41,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <ScrollToTop />
         <Navbar />
         <ToastContainer theme="dark" draggable />
         <Routes>
@@ -49,6 +54,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
+          {/* <Route path="/user-account" element={<UserDashboard />} /> */}
           <Route path="/olympiads" element={<Olympiads />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/admin" element={<AdminPanel />}>
@@ -62,8 +68,12 @@ function App() {
             <Route path="contacts" element={<AdminContacts />} />
             <Route path="syllabus" element={<UploadSyllabus />} />
           </Route>
+          <Route path="/user" element={<UserDashboard />}>
+            <Route path="courses" element={<UserCourses />} />
+          </Route>
         </Routes>
         <ContactLink />
+        <Footer />
       </BrowserRouter>
     </>
   );
