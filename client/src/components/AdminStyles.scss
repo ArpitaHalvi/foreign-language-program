@@ -91,8 +91,9 @@
   min-height: 90vh;
   height: 90vh;
   padding: 1rem;
-  background-color: #050524;
+  // background-color: #050524;
   // background-color: whitesmoke;
+  background-color: index.$oxford-blue;
   @include index.flex-box;
   color: white;
   .side-bar {

@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { Female, Male, Person } from "@mui/icons-material";
 export default function UserDashboard() {
   const { user } = useAuth();
-  console.log(user);
+  console.log("User: ", user);
   return (
     <section className="user-dashboard">
       <aside className="side-bar">

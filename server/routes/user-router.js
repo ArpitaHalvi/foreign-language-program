@@ -21,6 +21,6 @@ router
 
 router.route("/user").get(authMiddleware, user);
 
-router.route("/user/courses", authMiddleware, fetchCourse);
+router.route("/user/courses").get(authMiddleware, fetchCourse);
 
 module.exports = router;

@@ -38,6 +38,7 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `${isActive ? "active-link" : "a"}`
                 }
+                onClick={() => setIsOpen(false)}
               >
                 <Home className="navbar-icons" />
                 Home
@@ -49,6 +50,7 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `${isActive ? "active-link" : "a"}`
                 }
+                onClick={() => setIsOpen(false)}
               >
                 <InfoOutlined className="navbar-icons" />
                 About
@@ -60,6 +62,7 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `${isActive ? "active-link" : "a"}`
                 }
+                onClick={() => setIsOpen(false)}
               >
                 <SquareFootOutlined className="navbar-icons" />
                 Olympiads
@@ -71,6 +74,7 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `${isActive ? "active-link" : "a"}`
                 }
+                onClick={() => setIsOpen(false)}
               >
                 <SchoolOutlined className="navbar-icons" />
                 Courses
@@ -80,29 +84,47 @@ const Navbar = () => {
               {isLoggedIn ? (
                 isAdmin ? (
                   <>
+                    onClick={() => setIsOpen(false)}
                     <NavLink to="/admin" className="nav-btns">
                       Admin Panel
                     </NavLink>
+                    onClick={() => setIsOpen(false)}
                     <NavLink to="/logout" className="nav-btns">
                       Logout
                     </NavLink>
                   </>
                 ) : (
                   <>
-                    <NavLink to="/user" className="user-account">
+                    <NavLink
+                      to="/user"
+                      className="user-account"
+                      onClick={() => setIsOpen(false)}
+                    >
                       <AccountCircle className="account-icon" />
                     </NavLink>
-                    <NavLink to="/logout" className="nav-btns">
+                    <NavLink
+                      to="/logout"
+                      className="nav-btns"
+                      onClick={() => setIsOpen(false)}
+                    >
                       Logout
                     </NavLink>
                   </>
                 )
               ) : (
                 <>
-                  <NavLink to="/register" className="register-btn">
+                  <NavLink
+                    to="/register"
+                    className="register-btn"
+                    onClick={() => setIsOpen(false)}
+                  >
                     Enroll Now
                   </NavLink>
-                  <NavLink to="/signup" className="signup-btn">
+                  <NavLink
+                    to="/signup"
+                    className="signup-btn"
+                    onClick={() => setIsOpen(false)}
+                  >
                     Sign Up
                   </NavLink>
                 </>
@@ -113,29 +135,56 @@ const Navbar = () => {
             {isLoggedIn ? (
               isAdmin ? (
                 <>
-                  <NavLink to="/admin" className="nav-btns">
+                  <NavLink
+                    to="/admin"
+                    className="nav-btns"
+                    onClick={() => setIsOpen(false)}
+                  >
                     Admin Panel
                   </NavLink>
-                  <NavLink to="/logout" className="nav-btns">
+                  <NavLink
+                    to="/logout"
+                    className="nav-btns"
+                    onClick={() => setIsOpen(false)}
+                  >
                     Logout
                   </NavLink>
                 </>
               ) : (
                 <>
-                  <NavLink to="/user" className="user-account">
+                  <NavLink
+                    to="/user"
+                    className="user-account"
+                    onClick={() => setIsOpen(false)}
+                  >
                     <AccountCircle className="account-icon" />
                   </NavLink>
-                  <NavLink to="/logout" className="nav-btns" id="logout-btn">
+                  <NavLink
+                    to="/logout"
+                    className="nav-btns"
+                    id="logout-btn"
+                    onClick={() => setIsOpen(false)}
+                  >
                     Logout
                   </NavLink>
                 </>
               )
             ) : (
               <>
-                <NavLink to="/register" className="nav-btns" id="regiter-btn">
+                <NavLink
+                  to="/register"
+                  className="nav-btns"
+                  id="regiter-btn"
+                  onClick={() => setIsOpen(false)}
+                >
                   Enroll Now
                 </NavLink>
-                <NavLink to="/signup" className="nav-btns" id="signup-btn">
+                <NavLink
+                  to="/signup"
+                  className="nav-btns"
+                  id="signup-btn"
+                  onClick={() => setIsOpen(false)}
+                >
                   Sign Up
                 </NavLink>
               </>
