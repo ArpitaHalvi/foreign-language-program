@@ -28,6 +28,7 @@ export default function IntroPart() {
         {/* <div className="map" id="map"> */}
         {/* <MapComponent /> */}
         {/* </div> */}
+        <img src="intro3.svg" alt="INTRO IMAGE" />
       </div>
     </section>
   );

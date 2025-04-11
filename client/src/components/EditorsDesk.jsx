@@ -41,7 +41,7 @@ export default function EditorsDesk() {
       <h2>From the Editor&apos;s Desk</h2>
       <div className="editor-quote">
         <FormatQuote className="quote-icon" />
-        {quote}
+        <p>{quote}</p>
         {user && user.isAdmin && (
           <button className="edit-quote" onClick={() => setShowModal(true)}>
             <Edit className="edit-icon" />

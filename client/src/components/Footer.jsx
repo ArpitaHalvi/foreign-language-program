@@ -1,6 +1,5 @@
 import { Mail, Phone } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
-// import Contact from "../Pages/Contact";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -45,9 +44,9 @@ export default function Footer() {
           </ul>
         </div>
         <div className="contact-info ">
-          <img src="" alt="" />
-          <ul>
-            <li>
+          <img src="logo.jpeg" alt="LOGO" />
+          {/* <ul> */}
+          {/* <li>
               <Phone />
               <a href="tel:+919200720230">
                 Call Us <span>+91 9200720230</span>
@@ -58,13 +57,26 @@ export default function Footer() {
               <a href="mailto:french.ptl@outlook.com">
                 Mail Us <span> french.ptl@outlook.com</span>
               </a>
+            </li> */}
+          <ul className="contact-link">
+            <li>
+              <a href="tel:+919200720230">
+                <Phone className="phone-icon contact-icon" /> Call Us
+              </a>
+            </li>
+            <li>
+              <a href="mailto:french.ptl@outlook.com">
+                <Mail className="mail-icon contact-icon" />
+                Mail Us
+              </a>
             </li>
           </ul>
+          {/* </ul> */}
         </div>
       </section>
       <section className="copyright">
         <p className="copy">
-          &copy; {year} Foreign Language Programme. All Rights Reserved.
+          &copy; {year} Foreign Language Program. All Rights Reserved.
         </p>
       </section>
     </section>

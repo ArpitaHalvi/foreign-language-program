@@ -5,7 +5,7 @@ export default function UserCourses() {
   const [courses, setCourses] = useState([]);
   const { user, authorizationToken } = useAuth();
   // if (!user || !authorizationToken) {
-  //   return <p>Loadinng...</p>;
+  //   return <p>Loading...</p>;
   // }
   const userCourses = user.enrolledCourses || [];
   const userId = user && user._id;

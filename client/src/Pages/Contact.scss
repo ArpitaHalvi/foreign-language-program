@@ -64,9 +64,10 @@
         padding: 0.5rem 1rem;
         font-size: 1.2rem;
         margin-top: 3%;
-        background-color: black;
+        background-color: index.$oxford-blue;
         border-radius: 5px;
         color: white;
+        border: none;
       }
     }
     @media (width<=1200px) {
@@ -78,6 +79,31 @@
     @media (width<=700px) {
       width: 90%;
     }
-    
+    @media (max-width: 468px) {
+      padding: 0.5rem 1rem;
+      h2 {
+        padding: 0.5rem;
+      }
+      form {
+        padding: 0.5rem;
+        .form-inputs {
+          div {
+            label {
+              font-size: 1.1rem;
+            }
+            input {
+              font-size: 1.1rem;
+            }
+          }
+        }
+        textarea {
+          font-size: 1.1rem;
+        }
+        .contact-btn {
+          font-size: 1rem;
+          padding: 0.4rem 1rem;
+        }
+      }
+    }
   }
 }

@@ -27,7 +27,9 @@ const Navbar = () => {
       {/* head */}
       <header className="head">
         <div className="logo">
-          <img src="/logo.jpeg" alt="LOGO" />
+          <NavLink to="/">
+            <img src="/logo.jpeg" alt="LOGO" />
+          </NavLink>
         </div>
         {/* nav menus */}
         <nav className="navbar">
