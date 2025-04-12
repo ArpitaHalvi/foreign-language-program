@@ -44,8 +44,6 @@ export default function Olympiads() {
         </NavLink>
       </div>
       <div className="olym-decor">
-        {/* <img src="girl-reading-book.svg" alt="" /> */}
-        {/* <img src="grades.svg" alt="" /> */}
         <img src="intro2.svg" alt="" />
       </div>
     </section>

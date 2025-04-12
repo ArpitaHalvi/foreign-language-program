@@ -86,12 +86,18 @@ const Navbar = () => {
               {isLoggedIn ? (
                 isAdmin ? (
                   <>
-                    onClick={() => setIsOpen(false)}
-                    <NavLink to="/admin" className="nav-btns">
+                    <NavLink
+                      to="/admin"
+                      className="nav-btns"
+                      onClick={() => setIsOpen(false)}
+                    >
                       Admin Panel
                     </NavLink>
-                    onClick={() => setIsOpen(false)}
-                    <NavLink to="/logout" className="nav-btns">
+                    <NavLink
+                      to="/logout"
+                      className="nav-btns"
+                      onClick={() => setIsOpen(false)}
+                    >
                       Logout
                     </NavLink>
                   </>

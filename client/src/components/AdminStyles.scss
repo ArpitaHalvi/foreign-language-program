@@ -44,7 +44,7 @@
   border-bottom: 1px solid black;
   padding: 0.5rem;
   text-transform: capitalize;
-  color: black;
+  color: index.$oxford-blue;
 }
 
 @mixin email-link {
@@ -172,7 +172,7 @@
             tr {
               th {
                 @include table-heading;
-                @include index.bg-pattern;
+                background-color: index.$oxford-blue;
               }
             }
           }
@@ -299,15 +299,14 @@
       width: 100%;
       height: fit-content;
       background-color: white;
-      color: black;
+      color: index.$oxford-blue;
       border-radius: 7px;
       h3 {
         font-size: 1.2rem;
         font-weight: 400;
         text-transform: capitalize;
         color: white;
-        @include index.bg-pattern;
-        // background: linear-gradient(120deg, crimson, dodgerblue);
+        background-color: index.$oxford-blue;
         padding: 1rem;
         border-radius: 5px 5px 0 0;
         border: 1px solid #c0c0c0;
@@ -350,7 +349,7 @@
     }
     .add-course {
       background-color: rgba(128, 128, 128, 0.292);
-      height: 29vh;
+      height: 30.5vh;
       border-radius: 5px;
       border: 2px solid grey;
       padding: 1rem;
@@ -418,7 +417,7 @@
       padding: 0.6rem 1.5rem;
       border-radius: 5px;
       border: none;
-      background-color: #06065f;
+      background-color: index.$oxford-blue;
       color: white;
       font-size: 1.3rem;
       cursor: pointer;
@@ -451,7 +450,7 @@
         tr {
           th {
             @include table-heading;
-            @include index.bg-pattern;
+            background-color: index.$oxford-blue;
           }
         }
       }
@@ -518,11 +517,12 @@
       width: 100%;
       background-color: white;
       border-radius: 5px;
+      color: index.$oxford-blue;
       thead {
         tr {
           th {
             @include table-heading;
-            @include index.bg-pattern;
+            background-color: index.$oxford-blue;
           }
         }
       }
@@ -567,7 +567,7 @@
         tr {
           th {
             @include table-heading;
-            @include index.bg-pattern;
+            background-color: index.$oxford-blue;
           }
         }
       }

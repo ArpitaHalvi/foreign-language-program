@@ -3,9 +3,7 @@
 .olympiads-section {
   width: 100%;
   height: 90vh;
-  // @include index.flex-box;
   @include index.res-grid;
-  // background-color: index.$oxford-blue;
   .olym-decor {
     width: 100%;
     height: 100%;
@@ -21,19 +19,18 @@
   .olympiad-part {
     width: 70%;
     height: 70vh;
-    padding: 2rem 1rem;
+    // padding: 2rem 1rem;
     border-radius: 5px;
     @include index.flex-box($flex-dir: column);
     gap: 1rem;
-    // background-color: white;
-    // filter: drop-shadow(5px 5px grey);
-    // background-color: #8080800f;
-    // background: linear-gradient(to right, white, #8080800f, #8080803f);
     .olym-heading {
       font-size: 3rem;
       text-align: center;
       color: index.$oxford-blue;
-      // color: index.$antiflash-white;
+      @media (max-width: 1400px) {
+        width: 100%;
+        font-size: 2.5rem;
+      }
     }
     .olym-info {
       @include index.flex-box($flex-dir: column);
@@ -46,9 +43,7 @@
       background-color: transparent;
       .grades-heading {
         font-size: 1.3rem;
-        // font-weight: 400;
         color: index.$oxford-blue;
-        // color: index.$antiflash-white;
       }
       .criteria {
         width: 90%;
@@ -84,7 +79,6 @@
         text-align: center;
         @include index.flex-box($flex-dir: column);
         font-size: 1.2rem;
-        // color: index.$antiflash-white;
         color: index.$oxford-blue;
       }
       blockquote {
@@ -136,7 +130,6 @@
     .olympiad-part {
       height: auto;
       width: 60%;
-      // order: 2;
       .olym-info {
         gap: 1rem;
       }
@@ -199,29 +192,25 @@
       background-color: transparent;
       padding: 2rem 0;
       filter: none;
-      .olym-heading {
-        color: index.$antiflash-white;
-        // font-weight: 400;
-      }
       .olym-info {
         padding: 1rem 0;
         .grades-heading {
           font-size: 1.1rem;
-          color: index.$antiflash-white;
         }
         .criteria {
           border-radius: 5px;
+          // border: none;
+          box-shadow: none;
           .grades {
             font-size: 1rem;
-            border-radius: 5px 0 0 5px;
+            // border: none;
+            // border-radius: 5px 0 0 5px;
           }
         }
         p {
           font-size: 1.1rem;
-          color: index.$antiflash-white;
         }
         blockquote {
-          color: index.$antiflash-white;
           font-size: 1rem;
         }
       }
@@ -230,6 +219,13 @@
         .dbl-right {
           font-size: 1.5rem;
         }
+      }
+    }
+    .olym-decor {
+      width: 100%;
+      img {
+        object-fit: cover;
+        aspect-ratio: none;
       }
     }
   }
