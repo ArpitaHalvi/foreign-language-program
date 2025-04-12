@@ -6,14 +6,15 @@ export default function IntroPart() {
   return (
     <section className="intro-part">
       <div className="motive" data-aos="slide-right">
-        <div className="intro-flp">
-          <h1>FLP</h1>
+        <h1>Foreign Language Program</h1>
+        {/* <div className="intro-flp"> */}
+        {/* <h1>FLP</h1>
           <div>
             <h2>Foreign</h2>
             <h2>Language</h2>
             <h2>Programme</h2>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
         <div className="desc">
           <p className="aim">
             Unlock opportunities with French - Interactive courses designed for

@@ -44,7 +44,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="contact-info ">
-          <img src="logo.jpeg" alt="LOGO" />
+          <img src="/logo.jpeg" alt="LOGO" />
           {/* <ul> */}
           {/* <li>
               <Phone />

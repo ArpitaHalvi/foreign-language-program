@@ -24,7 +24,7 @@ export default function Olympiads() {
   return (
     <section className="olympiads-section">
       <div className="olympiad-part">
-        <h2 className="olym-heading">Welcome Students!</h2>
+        <h2 className="olym-heading">Crack the Oympiads with Confidence!</h2>
         <div className="olym-info">
           <h3 className="grades-heading">Open to students of Grades</h3>
           <div className="criteria">
@@ -45,7 +45,8 @@ export default function Olympiads() {
       </div>
       <div className="olym-decor">
         {/* <img src="girl-reading-book.svg" alt="" /> */}
-        <img src="grades.svg" alt="" />
+        {/* <img src="grades.svg" alt="" /> */}
+        <img src="intro2.svg" alt="" />
       </div>
     </section>
   );

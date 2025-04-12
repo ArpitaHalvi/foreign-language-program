@@ -18,21 +18,20 @@
     padding: 2rem;
     @include index.flex-box($flex-dir: column, $align-items: flex-start);
     gap: 1rem;
+    h1 {
+      font-size: 5rem;
+      color: index.$oxford-blue;
+    }
     .intro-flp {
       color: index.$oxford-blue;
       @include index.flex-box;
       gap: 1rem;
-      h1 {
-        writing-mode: vertical-lr;
-        text-orientation: upright;
-        font-size: 4rem;
-        // background-color: index.$tea-green;
-        // background-color: index.$red-crayola;
-        // color: index.$oxford-blue;
-        background-color: index.$antiflash-white;
-        // box-shadow: -5px -5px index.$space-cadet;
-        // color: index.$antiflash-white;
-      }
+      // h1 {
+      //   writing-mode: vertical-lr;
+      //   text-orientation: upright;
+      //   font-size: 4rem;
+      //   background-color: index.$antiflash-white;
+      // }
       div {
         h2 {
           font-size: 4rem;
@@ -53,6 +52,7 @@
       gap: 1rem;
       text-transform: capitalize;
       .aim {
+        width: 60%;
         font-size: 1.1rem;
         @media (max-width: 468px) {
           font-size: 0.9rem;
@@ -71,7 +71,7 @@
         transition: all 0.2s ease-in;
         &:hover {
           background-color: index.$crimson;
-          filter: drop-shadow(5px 5px index.$oxford-blue);
+          // filter: drop-shadow(5px 5px index.$oxford-blue);
         }
         .arrow-icon {
           font-size: 1.3rem;
@@ -99,20 +99,35 @@
       left: -20%;
     }
   }
+  @media (max-width: 1300px) {
+    .motive {
+      h1 {
+        font-size: 4rem;
+        @media (max-width: 1200px) {
+          font-size: 3rem;
+        }
+      }
+      .desc {
+        .aim {
+          width: 80%;
+        }
+      }
+    }
+  }
   @media (max-width: 1000px) {
     @include index.res-grid(100%);
-    height: auto;
     .motive {
       width: 80%;
       align-items: center;
-    }
-    .desc {
-      .aim {
+      h1 {
+        width: 80%;
         text-align: center;
-        font-size: 1.1rem;
       }
-      a {
-        align-self: center;
+      .desc {
+        align-items: center;
+        .aim {
+          text-align: center;
+        }
       }
     }
     .explore-france {
@@ -317,7 +332,7 @@
         // background-color: pink;
         img {
           @include index.img-setting;
-          height: 100%;
+          // height: 100%;
           @media (width<=500px) {
             @include index.img-setting(100%, $object-fit: cover);
           }
@@ -342,6 +357,7 @@
     div {
       @include index.flex-box($align-items: flex-start, $flex-dir: column);
       gap: 1rem;
+      position: relative;
       h3 {
         font-size: 4rem;
         // color: #191952;
@@ -350,12 +366,35 @@
       p {
         width: 70%;
         font-size: 1.2rem;
+        .show-condition {
+          width: 40%;
+          position: absolute;
+          left: 12%;
+          top: 55%;
+          background-color: pink;
+          font-size: 0.9rem;
+          padding: 1rem;
+          opacity: 0;
+          background-color: white;
+          filter: drop-shadow(5px 5px 5px #c7c7c7);
+          border-radius: 5px;
+          transition: opacity 0.3s ease-in-out;
+        }
+        .info {
+          color: grey;
+          position: absolute;
+        }
+        &:hover {
+          .show-condition {
+            opacity: 1;
+          }
+        }
         &:nth-of-type(2) {
           sup {
             color: index.$crimson;
             font-size: 1.5rem;
           }
-          font-size: 1.1rem;
+          // font-size: 1.1rem;
         }
       }
       .upload-btn {
@@ -658,9 +697,9 @@
     .contact-info {
       @include index.flex-box;
       padding: 1rem;
-      // align-self: flex-start;
       flex-direction: column;
       gap: 2rem;
+      // background-color: pink;
       img {
         @include index.img-setting(30%);
       }
@@ -787,7 +826,7 @@
     color: #dcdcdc;
     font-size: 1.2rem;
     gap: 2rem;
-    padding: 1rem;
+    padding: 1rem 0 0 0;
     text-align: center;
     border-top: 1px solid grey;
     .query {
@@ -1000,6 +1039,7 @@
     }
   }
   @media (max-width: 1000px) {
+    height: auto;
     h2 {
       font-size: 2.7rem;
     }
