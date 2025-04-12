@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.scss";
 import {
-  AccountCircle,
+  // AccountCircle,
   Close,
   Home,
   InfoOutlined,
@@ -97,13 +97,13 @@ const Navbar = () => {
                   </>
                 ) : (
                   <>
-                    <NavLink
+                    {/* <NavLink
                       to="/user"
                       className="user-account"
                       onClick={() => setIsOpen(false)}
                     >
                       <AccountCircle className="account-icon" />
-                    </NavLink>
+                    </NavLink> */}
                     <NavLink
                       to="/logout"
                       className="nav-btns"
@@ -154,13 +154,13 @@ const Navbar = () => {
                 </>
               ) : (
                 <>
-                  <NavLink
+                  {/* <NavLink
                     to="/user"
                     className="user-account"
                     onClick={() => setIsOpen(false)}
                   >
                     <AccountCircle className="account-icon" />
-                  </NavLink>
+                  </NavLink> */}
                   <NavLink
                     to="/logout"
                     className="nav-btns"

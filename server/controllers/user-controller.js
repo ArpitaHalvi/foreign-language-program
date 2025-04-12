@@ -1,4 +1,5 @@
-const Course = require("../models/course-model");
+// const Course = require("../models/course-model");
+// const Registration = require("../models/registration-model");
 const User = require("../models/user-model");
 
 // REGISTERING THE USER
@@ -19,7 +20,7 @@ async function register(req, res, next) {
         gender,
       });
       // console.log(user);
-      res.status(201).json({
+      return res.status(201).json({
         message: "Registered successfully",
         token: user.generateToken(),
         userId: user._id.toString(),
@@ -41,17 +42,17 @@ const login = async (req, res, next) => {
       // Comparing the passwords
       const user = await userExist.comparePassword(password);
       if (user) {
-        res.status(200).json({
+        return res.status(200).json({
           message: "Logged in successfully.",
           token: userExist.generateToken(),
           userId: userExist._id.toString(),
         });
         // console.log("Token: ", userExist.generateToken());
       } else {
-        res.status(401).json({ message: "Invalid Email or password." });
+        return res.status(401).json({ message: "Invalid Email or password." });
       }
     } else {
-      res.status(400).json({ message: "Invalid credentials." });
+      return res.status(400).json({ message: "Invalid credentials." });
     }
   } catch (e) {
     // console.log(e);
@@ -70,22 +71,33 @@ const user = async (req, res, next) => {
   }
 };
 
-const fetchCourse = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    if (!id)
-      return res.status(500).json({ message: "Course Id is not provided." });
-    const course = await Course.findById(id);
-    if (!course) return res.status(404).json({ message: "Course Not Found." });
-    return res.status(200).json({ course });
-  } catch (e) {
-    next(e);
-  }
-};
+// const fetchCourse = async (req, res, next) => {
+//   try {
+//     const { userId } = req.params;
+//     console.log("Req Params: ", req.params);
+//     console.log("User id: ", userId);
+//     if (!userId) {
+//       return res.status(500).json({ message: "User Id is not provided." });
+//     }
+//     const user = await User.findById(userId);
+//     const enrolledCourses = user.enrolledCourses;
+//     const courses = [];
+//     for (const courseId of enrolledCourses) {
+//       console.log(courseId);
+//       const course = await Course.findById(courseId);
+//       courses.push(course);
+//     }
+//     console.log("Courses: ", courses);
+//     const registrations = await Registration.find({ userId: userId });
+//     return res.status(200).json(courses);
+//   } catch (e) {
+//     next(e);
+//   }
+// };
 
 module.exports = {
   register,
   login,
   user,
-  fetchCourse,
+  // fetchCourse,
 };

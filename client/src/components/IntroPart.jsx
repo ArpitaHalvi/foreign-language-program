@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-// import MapComponent from "./MapComponent";
 import { ArrowForward } from "@mui/icons-material";
 
 export default function IntroPart() {
@@ -7,14 +6,6 @@ export default function IntroPart() {
     <section className="intro-part">
       <div className="motive" data-aos="slide-right">
         <h1>Foreign Language Program</h1>
-        {/* <div className="intro-flp"> */}
-        {/* <h1>FLP</h1>
-          <div>
-            <h2>Foreign</h2>
-            <h2>Language</h2>
-            <h2>Programme</h2>
-          </div> */}
-        {/* </div> */}
         <div className="desc">
           <p className="aim">
             Unlock opportunities with French - Interactive courses designed for
@@ -26,9 +17,6 @@ export default function IntroPart() {
         </div>
       </div>
       <div className="explore-france">
-        {/* <div className="map" id="map"> */}
-        {/* <MapComponent /> */}
-        {/* </div> */}
         <img src="intro3.svg" alt="INTRO IMAGE" />
       </div>
     </section>

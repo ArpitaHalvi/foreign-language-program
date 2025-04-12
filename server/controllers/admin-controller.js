@@ -7,8 +7,6 @@ const Brochure = require("../models/brochure-model");
 const Report = require("../models/report-model");
 const cloudinary = require("../cloudinary/cloudinaryConfig");
 const fs = require("fs");
-const upload = require("../cloudinary/multer");
-const { error } = require("console");
 const Syllabus = require("../models/syllabus-model");
 const PaymentScreenshot = require("../models/paymentss-model");
 

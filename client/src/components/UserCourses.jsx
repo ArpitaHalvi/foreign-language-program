@@ -7,7 +7,7 @@ export default function UserCourses() {
   // if (!user || !authorizationToken) {
   //   return <p>Loading...</p>;
   // }
-  const userCourses = user.enrolledCourses || [];
+  // const userCourses = user.enrolledCourses || [];
   const userId = user && user._id;
   useEffect(() => {
     const fetchCourses = async () => {
@@ -15,12 +15,11 @@ export default function UserCourses() {
         const response = await fetch(
           `http://localhost:5000/api/auth/user/${userId}/courses`,
           {
-            method: "POST",
+            method: "GET",
             headers: {
-              "Content-Type": "application/json",
               Authorization: authorizationToken,
             },
-            body: JSON.stringify(userCourses),
+            // body: JSON.stringify(userCourses),
           }
         );
         const res_data = await response.json();

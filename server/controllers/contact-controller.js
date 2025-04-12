@@ -9,8 +9,8 @@ const contact = async (req, res, next) => {
     await Contact.create(response);
     return res.status(200).json({ message: "Message sent successfully." });
   } catch (e) {
-    return res.status(500).json({ msg: "Message not delivered." });
-    // next(e);
+    // return res.status(500).json({ msg: "Message not delivered." });
+    next(e);
   }
 };
 

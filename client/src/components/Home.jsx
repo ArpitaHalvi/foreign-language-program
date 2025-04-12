@@ -6,6 +6,7 @@ import Services from "./Services";
 import Announcements from "./Announcements";
 import Eligibility from "./Eligibility";
 import EditorsDesk from "./EditorsDesk";
+import Achievements from "./Achievements";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Announcements />
       <Eligibility />
       <Testimonials />
+      <Achievements />
     </>
   );
 }

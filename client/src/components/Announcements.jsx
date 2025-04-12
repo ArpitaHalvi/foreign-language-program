@@ -3,7 +3,7 @@ import { useAuth } from "../store/auth";
 import Modal from "./Modal";
 import { useState, useEffect } from "react";
 import UploadBrochure from "../components/UploadBrochure";
-import { Error, Info } from "@mui/icons-material";
+import { Error } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import ConfirmModal from "./ConfirmModal";
 import ShowBrochure from "./ShowBrochure";
@@ -82,7 +82,6 @@ export default function Announcements() {
           },
         }
       );
-      console.log("Brochures data: ", response);
       const res_data = await response.json();
       if (response.ok) {
         setBrochures(res_data);
@@ -120,11 +119,6 @@ export default function Announcements() {
           <p>
             &quot;Stay ahead with updates on courses, events, and exclusive
             opportunities- your gateway of mastering French.&quot;
-            <Info className="info" />
-            <p className="show-condition">
-              Prices listed in the brochure for any available course are subject
-              to change without prior notice.
-            </p>
           </p>
           {user && user.isAdmin && (
             <>
@@ -164,6 +158,9 @@ export default function Announcements() {
                             setBrochureUrl(brochure.imageUrl);
                         }}
                       />
+                      <p className="show-condition">
+                        Course prices in the brochure may change without notice.
+                      </p>
                       {user && user.isAdmin && (
                         <button
                           onClick={() => openConfirmModal(brochure._id)}
