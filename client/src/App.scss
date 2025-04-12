@@ -693,6 +693,9 @@
   @media (max-width: 468px) {
     padding: 1.5rem;
     overflow: hidden;
+    h2 {
+      font-size: 2rem;
+    }
   }
 }
 
@@ -1128,7 +1131,6 @@
     .achiever {
       width: 100%;
       // padding: 1rem;
-      @include index.flex-box;
       @include index.res-grid;
       background-color: white;
       border-radius: 10px;
@@ -1157,6 +1159,61 @@
           }
           &:nth-of-type(2) {
             margin-top: 2%;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 1250px) {
+    h2 {
+      width: 60%;
+    }
+    p {
+      width: 50%;
+    }
+    .achievers {
+      width: 80%;
+    }
+  }
+  @media (max-width: 1060px) {
+    h2 {
+      width: 70%;
+      @media (max-width: 950px) {
+        font-size: 2.5rem;
+      }
+    }
+    .achievers {
+      width: 90%;
+    }
+  }
+  @media (max-width: 800px) {
+    h2 {
+      width: 90%;
+    }
+    p {
+      width: 70%;
+      font-size: 0.9rem;
+    }
+    .achievers {
+      width: 100%;
+      .achiever {
+        padding: 0 1rem;
+      }
+    }
+  }
+  @media (max-width: 650px) {
+    padding: 1rem;
+    h2 {
+      font-size: 2rem;
+      width: 100%;
+    }
+    .achievers {
+      .achiever {
+        @include index.res-grid(100%);
+        padding: 1rem;
+        @media (max-width: 468px) {
+          img {
+            // width: 70%;
           }
         }
       }
