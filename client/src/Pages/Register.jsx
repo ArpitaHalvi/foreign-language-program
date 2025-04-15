@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import "./Register.scss";
 import "./Auth.scss";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -83,6 +82,7 @@ export default function Register() {
   const handlePaymentCompletion = () => {
     setProgress(100);
     setPaymentDone(true);
+    setIsModalOpen(false);
     setOpenSeatSure(true);
   };
 

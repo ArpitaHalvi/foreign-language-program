@@ -31,8 +31,6 @@ export default function Courses() {
             <div className="course-item" key={c._id}>
               <div className="course-img">
                 <h3>Start Now!</h3>
-                {/* <img src="books.svg" alt="" /> */}
-                {/* <img src="girl-reading-book.svg" alt="" /> */}
               </div>
               <div className="course-info">
                 <div className="course-data">

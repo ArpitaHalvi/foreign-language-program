@@ -45,19 +45,6 @@ export default function Footer() {
         </div>
         <div className="contact-info ">
           <img src="/logo.jpeg" alt="LOGO" />
-          {/* <ul> */}
-          {/* <li>
-              <Phone />
-              <a href="tel:+919200720230">
-                Call Us <span>+91 9200720230</span>
-              </a>
-            </li>
-            <li>
-              <Mail />
-              <a href="mailto:french.ptl@outlook.com">
-                Mail Us <span> french.ptl@outlook.com</span>
-              </a>
-            </li> */}
           <ul className="contact-link">
             <li>
               <a href="tel:+919200720230">
@@ -71,7 +58,6 @@ export default function Footer() {
               </a>
             </li>
           </ul>
-          {/* </ul> */}
         </div>
       </section>
       <section className="copyright">

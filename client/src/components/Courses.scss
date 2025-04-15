@@ -233,18 +233,22 @@
           text-decoration: underline;
         }
         .crud-btns {
-          padding: 0.4rem 0.7rem;
-          font-size: 1.1rem;
-          border-radius: 5px;
+          padding: 0.4rem 0.5rem;
           border: none;
-          margin: 1% 0;
           cursor: pointer;
         }
         .upload-btn {
-          background-color: dodgerblue;
-          margin-right: 1%;
+          background-color: index.$naples-yellow;
+          border-radius: 100px;
+          transition: all 0.3s ease-in-out;
+          .edit-syllabus-icon {
+            color: index.$oxford-blue;
+          }
           &:hover {
-            background-color: #177ee5;
+            background-color: rgb(6, 39, 78);
+            .edit-syllabus-icon {
+              color: white;
+            }
           }
         }
         .update-btn {
@@ -269,14 +273,15 @@
       a {
         width: 40%;
         text-align: center;
-        border: 1px solid white;
+        border: 2px solid index.$oxford-blue;
         border-radius: 5px;
-        color: white;
         padding: 0.5rem;
         transition: all 500ms;
+        background-color: index.$oxford-blue;
+        color: white;
         &:hover {
-          background-color: white;
-          color: black;
+          background-color: transparent;
+          color: index.$oxford-blue;
         }
       }
     }

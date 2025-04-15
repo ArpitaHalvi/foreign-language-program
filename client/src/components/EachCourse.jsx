@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import FeedbackForm from "./FeedbackForm";
 import Feedback from "./Feedback";
-import { CheckTwoTone } from "@mui/icons-material";
+import { CheckTwoTone, Edit } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import StatusPage from "../Pages/StatusPage";
 import { useAuth } from "../store/auth";
@@ -104,14 +104,15 @@ export default function EachCourse() {
                   onClick={() => setIsModalOpen(true)}
                   className="crud-btns upload-btn"
                 >
-                  Upload
+                  {/* Upload */}
+                  <Edit className="edit-syllabus-icon" />
                 </button>
-                <button
+                {/* <button
                   onClick={() => setIsModalOpen(true)}
                   className="crud-btns update-btn"
                 >
                   Change
-                </button>
+                </button> */}
                 <Modal
                   isOpen={isModalOpen}
                   onClose={() => setIsModalOpen(false)}

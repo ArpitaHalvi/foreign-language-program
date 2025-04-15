@@ -68,9 +68,6 @@ export default function Payments() {
     fetchpayments();
   }, []);
 
-  // const pendingPayments = payments.filter(
-  //   (payment) => payment.paymentStatus === "pending"
-  // );
   const pendingPayments = payments.filter(
     (payment) => payment.registeredUser?.paymentStatus === "pending"
   );

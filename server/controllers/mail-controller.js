@@ -35,8 +35,8 @@ const mailSender = async (req, res, next) => {
       to: userEmail,
       // to: "arpitahalvi@gmail.com",
       subject: "PAYMENT APPROVAL",
-      text: "Hello, Your payment has been approved you can go the course page to access your class link.",
-      html: "<i>Thank You! Happy Learning! <br> Foreign Language Program.</i>",
+      text: "Greetings from Foreign Language Program.\nHello, Your payment has been approved you can go the course page to access your class link.\nThank You! Happy Learning! <br> Foreign Language Program.",
+      html: "<h1>Greetings from Foreign Language Program.</h1><p>Hello, Your payment has been approved you can go the course page to access your class link.</p><i>Thank You! Happy Learning! <br> Foreign Language Program.</i>",
     };
     auth.sendMail(receiver, (error, emailResponse) => {
       if (error) {
