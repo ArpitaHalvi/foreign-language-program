@@ -76,6 +76,7 @@ userSchema.methods.generateToken = function () {
   }
 };
 
+
 // COMPARING PASSWORDS
 userSchema.methods.comparePassword = function (password) {
   return bcrypt.compare(password, this.password);

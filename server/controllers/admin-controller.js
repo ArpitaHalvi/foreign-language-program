@@ -432,7 +432,9 @@ const deleteReport = async (req, res, next) => {
     const report = await Report.findById(id);
     const publicID = report.publicId;
     console.log(report, publicID);
-    const res1 = await cloudinary.uploader.destroy(publicID);
+    const res1 = await cloudinary.uploader.destroy(publicID, {
+      resource_type: "raw",
+    });
     const res2 = await Report.findOneAndDelete({ _id: id });
     // if (!res1) {
     //   console.log("Could not delete the report from cloudinary.");
