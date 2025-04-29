@@ -1,14 +1,17 @@
-import { Mail, Phone } from "@mui/icons-material";
-import { NavLink } from "react-router-dom";
+import { LinkedIn, Mail, Phone } from "@mui/icons-material";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const usefulLinks = [
+  const usefulLinks1 = [
     { name: "Home", link: "/" },
     { name: "About", link: "/about" },
     { name: "Courses", link: "/courses" },
-    { name: "Olympiads", link: "/olympiads" },
+  ];
+  const usefulLinks2 = [
     { name: "Contact", link: "/contact" },
+    { name: "Olympiads", link: "/olympiads" },
+    { name: "Privacy Policy", link: "/privacy-policy" },
   ];
   const courses = [
     { name: "Olmpiads", link: "/courses" },
@@ -21,15 +24,26 @@ export default function Footer() {
       <section className="web-details">
         <div className="web-links">
           <h6>Useful Links</h6>
-          <ul>
-            {usefulLinks.map((val, index) => {
-              return (
-                <li key={index}>
-                  <NavLink to={val.link}>{val.name}</NavLink>
-                </li>
-              );
-            })}
-          </ul>
+          <div>
+            <ul>
+              {usefulLinks1.map((val, index) => {
+                return (
+                  <li key={index}>
+                    <NavLink to={val.link}>{val.name}</NavLink>
+                  </li>
+                );
+              })}
+            </ul>
+            <ul>
+              {usefulLinks2.map((val, index) => {
+                return (
+                  <li key={index}>
+                    <NavLink to={val.link}>{val.name}</NavLink>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
         <div className="course-links">
           <h6>Courses</h6>
@@ -47,22 +61,28 @@ export default function Footer() {
           <img src="/logo.jpeg" alt="LOGO" />
           <ul className="contact-link">
             <li>
-              <a href="tel:+919200720230">
+              <Link to="tel:+919200720230">
                 <Phone className="phone-icon contact-icon" /> Call Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="mailto:french.ptl@outlook.com">
+              <Link to="mailto:sonalchaturvedi76@gmail.com">
                 <Mail className="mail-icon contact-icon" />
                 Mail Us
-              </a>
+              </Link>
+            </li>
+            <li>
+              <Link to="https://www.linkedin.com/in/sonal-chaturvedi-937648239?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+                <LinkedIn className="linkedin-icon contact-icon" />
+                LinkedIn
+              </Link>
             </li>
           </ul>
         </div>
       </section>
       <section className="copyright">
         <p className="copy">
-          &copy; {year} Foreign Language Program. All Rights Reserved.
+          &copy; {year} Foreign Language Programmme. All Rights Reserved.
         </p>
       </section>
     </section>

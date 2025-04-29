@@ -32,6 +32,7 @@ import Payments from "./components/Payments.jsx";
 // import UserCourses from "./components/UserCourses.jsx";
 import Footer from "./components/Footer.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
 
 function App() {
   AOS.init({
@@ -55,6 +56,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/olympiads" element={<Olympiads />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/admin" element={<AdminPanel />}>
             <Route path="users" element={<AdminUsers />} />

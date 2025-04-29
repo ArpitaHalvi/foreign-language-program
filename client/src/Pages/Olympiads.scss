@@ -4,6 +4,8 @@
   width: 100%;
   height: 90vh;
   @include index.res-grid;
+  background: url("blue-blob.png") no-repeat;
+  background-size: cover;
   .olym-decor {
     width: 100%;
     height: 100%;

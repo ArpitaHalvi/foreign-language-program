@@ -19,6 +19,7 @@
   @include index.flex-box($justify-content: flex-start, $flex-dir: column);
   gap: 2rem;
   background-color: white;
+  background: url("blue-layers.png") no-repeat;
   h2 {
     width: 60%;
     font-size: 3rem;
@@ -27,10 +28,10 @@
   }
   h3 {
     width: 60%;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 400;
     text-align: center;
-    color: grey;
+    color: index.$oxford-blue;
   }
   .about-us {
     width: 80%;
@@ -86,10 +87,70 @@
       font-size: 1rem;
     }
   }
+  .about-flp {
+    width: 100%;
+    @include index.res-grid;
+    padding: 2rem;
+    .about-item {
+      margin: 2%;
+      width: 80%;
+      height: 300px;
+      text-align: center;
+      background-color: white;
+      filter: drop-shadow(5px 5px 5px #c2c2c2ba);
+      padding: 2rem;
+      border-radius: 5px;
+      color: index.$oxford-blue;
+      @include index.flex-box($flex-dir: column);
+      gap: 1rem;
+      position: relative;
+      h4 {
+        font-size: 2rem;
+        color: index.$oxford-blue;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .decor {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 50px;
+        border-radius: 5px 0 100% 100%;
+        background-color: index.$red-crayola;
+        @include index.flex-box;
+        // background-color: #cce3ff;
+        // background-color: #ffcbd6;
+        .icon {
+          color: white;
+          font-size: 2rem;
+        }
+      }
+      &:nth-child(3) {
+        width: 40%;
+        grid-column: span 2;
+      }
+      transition: all 0.4s ease-in-out;
+      &:hover {
+        scale: 1.05;
+      }
+      @media (max-width: 1300px) {
+        width: 80%;
+        &:nth-child(3) {
+          width: 45%;
+        }
+        @media (max-width: 1100px) {
+          width: 100%;
+          margin: 3%;
+        }
+      }
+    }
+  }
   .instructor {
     width: 100%;
     @include index.flex-box($flex-dir: column);
-    gap: 1rem;
+    gap: 2rem;
     padding: 3rem;
     h4 {
       font-size: 3rem;
@@ -105,15 +166,16 @@
       width: 90%;
       @include index.flex-box;
       padding: 2rem;
-      margin-left: 5%;
-      // background-color: aliceblue;
-      // border-radius: 5px;
+      // margin-left: 5%;
+      background-color: white;
+      border-radius: 5px;
+      filter: drop-shadow(5px 5px 5px #c2c2c2);
       li {
         @include index.flex-box($align-items: flex-start);
         font-size: 1.1rem;
         gap: 1rem;
         padding: 2rem;
-        border-right: 1px solid grey;
+        border-right: 1px solid index.$oxford-blue;
         &:nth-last-of-type(1) {
           border-right: none;
         }
@@ -346,7 +408,7 @@
   }
   .glimpses {
     width: 80%;
-    column-width: 350px;
+    column-width: 300px;
     column-gap: 1.5rem;
     padding: 1rem;
     border-radius: 5px;

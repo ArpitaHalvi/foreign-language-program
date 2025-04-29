@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Courses.scss";
 import StatusPage from "../Pages/StatusPage";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Courses() {
   const [courses, setCourses] = useState(null);
@@ -23,37 +26,68 @@ export default function Courses() {
   }, []);
   if (error) return <StatusPage msg={error} />;
   if (!courses) return <StatusPage />;
+  const settings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    focusOnSelect: true,
+    cssEase: "linear",
+    responsive: [
+      // {
+      //   breakpoint: 1400,
+      //   settings: { slidesToShow: 3, centerMode: false },
+      // },
+      {
+        breakpoint: 1200,
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 1000,
+        settings: { slidesToShow: 1 },
+      },
+    ],
+  };
   return (
     <div className="box">
-      <section className="course-details" data-aos="fade-in">
-        {courses.map((c) => {
-          return (
-            <div className="course-item" key={c._id}>
-              <div className="course-img">
-                <h3>Start Now!</h3>
-              </div>
-              <div className="course-info">
-                <div className="course-data">
-                  <h2 className="course-name">{c.title}</h2>
-                  <p className="age-group">
-                    <span>Eligibility - 18+</span>
-                    <span className="fee">Fees - Rs {c.fee}/-</span>
-                  </p>
-                  <p className="duration">Duration - {c.duration}</p>
-                  <p className="mode">Online</p>
+      {/*  data-aos="fade-in" */}
+      <section className="course-details">
+        {courses.length !== 0 ? (
+          <Slider {...settings}>
+            {courses.map((c) => {
+              return (
+                <div className="course-item" key={c._id}>
+                  <div className="course-img"></div>
+                  <div className="course-info">
+                    <div className="course-data">
+                      <h2 className="course-name">{c.title}</h2>
+                      <p className="age-group">
+                        <span>Eligibility - 18+</span>
+                        <span className="fee">Fees - Rs {c.fee}/-</span>
+                      </p>
+                      <p className="duration">Duration - {c.duration}</p>
+                      <p className="mode">Online</p>
+                    </div>
+                    <div className="btn-container">
+                      <NavLink to="/register" className="join-btn">
+                        Join Now
+                      </NavLink>
+                      <NavLink to={`/courses/${c._id}`} className="show-btn">
+                        Show Details
+                      </NavLink>
+                    </div>
+                  </div>
                 </div>
-                <div className="btn-container">
-                  <NavLink to="/register" className="join-btn">
-                    JOIN NOW
-                  </NavLink>
-                  <NavLink to={`/courses/${c._id}`} className="show-btn">
-                    SHOW DETAILS
-                  </NavLink>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+              );
+            })}
+          </Slider>
+        ) : (
+          <div className="no-courses">
+            <p>No Courses Found.</p>
+          </div>
+        )}
       </section>
     </div>
   );

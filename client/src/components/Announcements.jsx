@@ -27,6 +27,9 @@ export default function Announcements() {
     autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
+    // centerMode: true,
+    focusOnSelect: true,
+    cssEase: "linear",
   };
   const openConfirmModal = (id) => {
     setSelectedBrochureId(id);

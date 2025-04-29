@@ -5,7 +5,7 @@ export default function IntroPart() {
   return (
     <section className="intro-part">
       <div className="motive" data-aos="slide-right">
-        <h1>Foreign Language Program</h1>
+        <h1>Foreign Language Programme</h1>
         <div className="desc">
           <p className="aim">
             Unlock opportunities with French - Interactive courses designed for

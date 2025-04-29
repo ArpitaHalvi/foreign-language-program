@@ -1,7 +1,8 @@
-import { CheckTwoTone } from "@mui/icons-material";
+import { CheckTwoTone, EmojiObjects } from "@mui/icons-material";
 import Reports from "../components/Reports";
 import "./About.scss";
 import Glimpses from "../components/Glimpses";
+import { aboutContent } from "./AboutContent";
 
 export default function About() {
   return (
@@ -16,7 +17,7 @@ export default function About() {
           vibrant culture with us!&quot;
         </i>
       </h3>
-      <div className="about-us">
+      {/* <div className="about-us">
         <p>
           French is spoken in many countries- not just in France! It is the
           official language in Switzerland, Belgium, Canada, Seychelles,
@@ -37,6 +38,19 @@ export default function About() {
           enjoy French literature and cinema, understand research papers in
           Mathematics and allied subjects.
         </p>
+      </div> */}
+      <div className="about-flp">
+        {aboutContent.map((about, index) => {
+          return (
+            <div key={index} className="about-item">
+              <h4>{about.title}</h4>
+              <p>{about.content}</p>
+              <div className="decor">
+                <EmojiObjects className="icon" />
+              </div>
+            </div>
+          );
+        })}
       </div>
       <div className="instructor">
         <h4>The Instructor</h4>

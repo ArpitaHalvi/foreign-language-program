@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
-import { Delete, Square } from "@mui/icons-material";
+import { Delete, ExpandMore } from "@mui/icons-material";
 import ConfirmModal from "./ConfirmModal";
 
 export default function AdminUsers() {
@@ -9,6 +9,12 @@ export default function AdminUsers() {
   const { authorizationToken } = useAuth();
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
+  // const [openCourses, setOpenCourses] = useState(false);
+  const [openIndex, setOpenIndex] = useState(null);
+  const handleClick = (index) => {
+    setOpenIndex((prev) => (prev === index ? null : index));
+  };
+
   const openConfirmModal = (id) => {
     setIsConfirmModalOpen(true);
     setSelectedUserId(id);
@@ -109,7 +115,9 @@ export default function AdminUsers() {
                     <td className="ph-no">
                       {phoneNumber.length > 10
                         ? `+${
-                            phoneNumber.slice(0, 2) + " " + phoneNumber.slice(2)
+                            phoneNumber.slice(0, 2) +
+                            "  " +
+                            phoneNumber.slice(2)
                           }`
                         : phoneNumber}
                     </td>
@@ -117,17 +125,28 @@ export default function AdminUsers() {
                     {enrolledCourses && enrolledCourses.length > 0 ? (
                       <td className="enrolled-courses">
                         <ul>
-                          {enrolledCourses.map((course) => {
-                            return (
-                              <li key={course._id}>
-                                <Square className="sq-icon" /> {course.title}
-                              </li>
-                            );
-                          })}
+                          <li
+                            className={`expand-courses ${
+                              openIndex === index ? "active" : ""
+                            }`}
+                            onClick={() => handleClick(index)}
+                          >
+                            Courses
+                            <ExpandMore className="expand-more" />
+                          </li>
+                          <ul
+                            className={`expanded-courses ${
+                              openIndex === index ? "open" : ""
+                            }`}
+                          >
+                            {enrolledCourses.map((course) => {
+                              return <li key={course._id}>{course.title}</li>;
+                            })}
+                          </ul>
                         </ul>
                       </td>
                     ) : (
-                      <td>No Courses</td>
+                      <td className="no-courses">No Courses</td>
                     )}
                     <td className="buttons">
                       <button
