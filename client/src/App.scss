@@ -769,7 +769,7 @@
         font-weight: 100;
         border-bottom: 2px solid white;
       }
-      div {
+      .useful-links {
         width: 70%;
         @include index.flex-box($justify-content: flex-end);
         place-items: flex-end;
@@ -800,7 +800,6 @@
     }
     .course-links {
       width: 100%;
-      // background-color: pink;
       @include index.flex-box($flex-dir: column);
       gap: 1rem;
       h6 {
@@ -837,31 +836,45 @@
         }
       }
     }
-    @media (width<=730px) {
-      @include index.res-grid(100%);
-      // gap: 3rem;
-      .web-links {
-        // padding: 1rem 0;
-      }
-      .contact-info {
-        // margin-top: 0;
-      }
+    @media (width<=780px) {
+      padding: 1rem;
       .course-links,
       .web-links,
       .contact-info {
         align-items: flex-start;
-        background-color: pink;
       }
       .web-links {
-        div {
+        .useful-links {
+          width: 100%;
           justify-content: flex-start;
+          gap: 4rem;
         }
       }
     }
-    @media (max-width: 468px) {
-      padding: 1rem;
+    @media (max-width: 630px) {
+      @include index.flex-box($flex-dir: column);
+      gap: 2rem;
+      .course-links {
+        width: 100%;
+      }
       .contact-info {
-        padding: 1rem 0;
+        &:nth-child(3) {
+          place-items: flex-start;
+        }
+      }
+    }
+    @media (max-width: 500px) {
+      .contact-info {
+        .contact-link {
+          li {
+            border-right: none;
+            a {
+              span {
+                display: none;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -1241,11 +1254,6 @@
       .achiever {
         @include index.res-grid(100%);
         padding: 1rem;
-        @media (max-width: 468px) {
-          img {
-            // width: 70%;
-          }
-        }
       }
     }
   }
@@ -1263,7 +1271,6 @@
       $justify-content: flex-start,
       $align-items: flex-start
     );
-    // margin: 0 auto;
     h2 {
       font-size: 3rem;
       color: index.$oxford-blue;
@@ -1355,8 +1362,27 @@
           margin: 1% 0;
           a {
             margin-left: 1%;
+            color: #1d7ddc;
           }
         }
+      }
+    }
+  }
+  @media (max-width: 700px) {
+    padding: 2rem 1rem;
+    .container {
+      width: 90%;
+    }
+  }
+  @media (max-width: 500px) {
+    .container {
+      padding: 0 1rem;
+      width: 100%;
+      h2 {
+        font-size: 2.5rem;
+      }
+      h3 {
+        font-size: 1.5rem;
       }
     }
   }

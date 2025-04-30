@@ -24,7 +24,7 @@ export default function Footer() {
       <section className="web-details">
         <div className="web-links">
           <h6>Useful Links</h6>
-          <div>
+          <div className="useful-links">
             <ul>
               {usefulLinks1.map((val, index) => {
                 return (
@@ -62,19 +62,20 @@ export default function Footer() {
           <ul className="contact-link">
             <li>
               <Link to="tel:+919200720230">
-                <Phone className="phone-icon contact-icon" /> Call Us
+                <Phone className="phone-icon contact-icon" />
+                <span>Call Us</span>
               </Link>
             </li>
             <li>
               <Link to="mailto:sonalchaturvedi76@gmail.com">
                 <Mail className="mail-icon contact-icon" />
-                Mail Us
+                <span>Mail Us</span>
               </Link>
             </li>
             <li>
               <Link to="https://www.linkedin.com/in/sonal-chaturvedi-937648239?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
                 <LinkedIn className="linkedin-icon contact-icon" />
-                LinkedIn
+                <span>LinkedIn</span>
               </Link>
             </li>
           </ul>
