@@ -58,7 +58,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="contact-info ">
-          <img src="/logo.jpeg" alt="LOGO" />
+          <img src="/flp-logo2.svg" alt="LOGO" />
           <ul className="contact-link">
             <li>
               <Link to="tel:+919200720230">

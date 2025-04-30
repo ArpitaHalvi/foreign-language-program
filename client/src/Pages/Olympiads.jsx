@@ -39,7 +39,7 @@ export default function Olympiads() {
             <br />- Foreign Language Program
           </blockquote>
         </div>
-        <NavLink to="/register">
+        <NavLink to="/register" state={{ title: "olympiad" }}>
           Start Now <KeyboardDoubleArrowRight className="dbl-right" />
         </NavLink>
       </div>

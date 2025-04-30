@@ -71,7 +71,11 @@ export default function Courses() {
                       <p className="mode">Online</p>
                     </div>
                     <div className="btn-container">
-                      <NavLink to="/register" className="join-btn">
+                      <NavLink
+                        to="/register"
+                        className="join-btn"
+                        state={{ title: c.title }}
+                      >
                         Join Now
                       </NavLink>
                       <NavLink to={`/courses/${c._id}`} className="show-btn">

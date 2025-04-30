@@ -9,18 +9,27 @@ import {
   SchoolOutlined,
   SquareFootOutlined,
 } from "@mui/icons-material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
 // import StatusPage from "../Pages/StatusPage";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+  const [isAdmin, setIsAdmin] = useState(false);
   // const { isLoggedIn, user, loading } = useAuth();
   const { isLoggedIn, user } = useAuth();
   // Show nothing until user data is loading
   // if (loading) return <StatusPage />;
-  const isAdmin = user?.isAdmin;
+  // const isAdmin = user?.isAdmin;
+
+  useEffect(() => {
+    const checkAdmin = () => {
+      if (user && user.isAdmin) setIsAdmin(true);
+      else setIsAdmin(false);
+    };
+    checkAdmin();
+  }, [user]);
 
   return (
     <>
@@ -28,7 +37,7 @@ const Navbar = () => {
       <header className="head">
         <div className="logo">
           <NavLink to="/">
-            <img src="/logo.jpeg" alt="LOGO" />
+            <img src="/flp-logo1.svg" alt="LOGO" />
           </NavLink>
         </div>
         {/* nav menus */}

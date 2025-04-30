@@ -1,4 +1,5 @@
 @use "../index" as index;
+
 /* ********************** NAVBAR *********************** */
 .head {
   @include index.flex-box;
@@ -14,14 +15,17 @@
   .logo {
     @include index.flex-box($justify-content: flex-start);
     width: 30%;
-    // padding-left: 2rem;
+    padding: 1rem;
     img {
-      @include index.img-setting($width: 20%);
-      // width: 100%;
-      // height: 100%;
+      @include index.img-setting($width: 30%);
       object-fit: contain;
-      // aspect-ratio: 3/2;
-      // border-radius: 50px;
+    }
+    @media (max-width: 468px) {
+      padding-left: 1rem;
+      img {
+        width: 100%;
+      }
+      // @include index.img-setting($width: 100%);
     }
   }
   .navbar {
@@ -41,7 +45,6 @@
           bottom: 0;
           width: 0;
           height: 2px;
-          // background-color: #04042d;
           background-color: index.$oxford-blue;
           transition: width 0.3s ease-in-out;
         }
@@ -49,14 +52,12 @@
           width: 100%;
         }
         .navbar-icons {
-          // color: #04042d;
           color: index.$oxford-blue;
         }
         a {
           @include index.flex-box;
           gap: 0.5rem;
           font-size: 1.2rem;
-          // color: #04042d;
           color: index.$oxford-blue;
           padding: 0.5rem;
         }
@@ -68,19 +69,14 @@
         gap: 1rem;
         a {
           width: 80%;
-          // button {
           width: 100%;
           padding: 0.8rem;
           border-radius: 5px;
           font-size: 1.1rem;
           border: 1px solid index.$oxford-blue;
-          // background-color: transparent;
-          // cursor: pointer;
           background-color: index.$antiflash-white;
-          // color: black;
           color: index.$oxford-blue;
           transition: all 0.2s ease-in;
-          // }
           &:hover {
             background-color: #e7e7e7;
           }
@@ -103,11 +99,9 @@
         cursor: pointer;
         background-color: transparent;
         &:hover {
-          // background-color: #090950;
           background-color: index.$oxford-blue;
           border: none;
           color: white;
-          // filter: drop-shadow(6px 6px #141480);
           filter: drop-shadow(6px 6px #073266);
           transform: scale(1.1);
           transition-timing-function: ease-in;
@@ -151,8 +145,6 @@
         display: none;
       }
       .nav-links {
-        // display: none;
-        // width: 100%;
         width: 50%;
         height: 90vh;
         justify-content: flex-start;
@@ -163,14 +155,11 @@
         position: absolute;
         top: 100%;
         left: 0;
-        // @include index.bg-pattern;
         background-color: index.$oxford-blue;
-        // transform: translateY(-100%); // Hidden initially
         transform: translateX(-100%); // Hidden initially
         transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         &.open {
           display: flex; // Show links when open
-          // transform: translateY(0);
           transform: translateX(0);
           filter: drop-shadow(3px 3px 3px #8484847d);
         }
@@ -191,12 +180,6 @@
         }
         .res-nav-btns {
           display: flex;
-          // @media (width<710px) {
-          //   width: 80%;
-          // }
-          // @media (width<480px) {
-          //   width: 100%;
-          // }
           a {
             color: index.$oxford-blue;
             &:hover {
@@ -208,7 +191,6 @@
             flex-direction: column;
             align-items: flex-start;
             a {
-              // padding: 0.6rem 1rem;
               font-size: 1.1rem;
             }
           }
@@ -225,7 +207,6 @@
           }
           .res-nav-btns {
             a {
-              // width: 80%;
               padding: 0.7rem 1rem;
               font-size: 1rem;
             }

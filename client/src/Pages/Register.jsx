@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Auth.scss";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
 import { ArrowForward, CheckCircle } from "@mui/icons-material";
 import Modal from "../components/Modal";
@@ -27,10 +27,20 @@ export default function Register() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openSeatSure, setOpenSeatSure] = useState(false);
   const [wasSeatSureOpen, setWasSeatSureOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const location = useLocation();
+  useEffect(() => {
+    const changeTitle = () => {
+      const { title } = location.state || "";
+      if (title) {
+        setTitle(title);
+        setUserData((prev) => ({ ...prev, courseName: title }));
+      }
+    };
+    changeTitle();
+  }, [title, location.state]);
+
   const handleTransitionEnd = () => {
-    // if (e.propertyName === "transform") {
-    //   setShowQr(true);
-    // }
     if (cardFlipped) {
       setShowQr(true);
     } else {

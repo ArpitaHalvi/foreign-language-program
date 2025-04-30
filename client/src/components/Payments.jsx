@@ -148,13 +148,13 @@ export default function Payments() {
                     onClick={() => openConfirmModal(_id)}
                   >
                     <Delete className="op-icon" />
-                    Delete
+                    {/* Delete */}
                   </button>
                   <button
                     className="approve-btn op-btns"
                     onClick={() => updatePaymentStatus(_id)}
                   >
-                    Approve
+                    {/* Approve */}
                     <CheckCircleOutline className="check-icon" />
                   </button>
                 </div>

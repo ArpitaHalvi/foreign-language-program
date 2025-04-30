@@ -11,8 +11,8 @@
   height: 90vh;
   @include index.flex-box;
   // background: url("/olympiad-bg.svg");
-  background: url("/blue-blob.png") no-repeat;
-  background-size: cover;
+  background: url("/r-blob.png") center/cover no-repeat;
+  // background-size: cover;
   .course-details {
     width: 90%;
     height: 100%;
