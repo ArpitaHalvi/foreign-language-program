@@ -145,12 +145,8 @@
   .admin-collections {
     width: 80%;
     height: 100%;
-    // padding: 1rem;
-    // border: 1px solid #c2c2c2;
     border: none;
     border-radius: 0 5px 5px 0;
-    // box-shadow: 2px 2px 2px #e7e7e7;
-    // filter: drop-shadow(4px 4px 4px #c2c2c2);
     @include index.flex-box;
     background-color: white;
     // **************** ADMIN USERS *******************
@@ -257,6 +253,7 @@
   @media (width<=1300px) {
     flex-direction: column;
     height: auto;
+    justify-content: flex-start;
     .side-bar {
       width: 100%;
       border: none;
@@ -331,6 +328,7 @@
     .course {
       width: 100%;
       height: fit-content;
+      // height: 227px;
       background-color: white;
       color: index.$oxford-blue;
       border-radius: 7px;
@@ -382,17 +380,25 @@
       }
     }
     .add-course {
-      background-color: #8080804a;
-      height: 227px;
+      // background-color: #8080804a;
+      // height: fit-content;
       border-radius: 5px;
-      border: 2px solid #c2c2c2;
+      // border: 2px solid #c2c2c2;
       padding: 1rem;
       @include index.flex-box;
+      width: 300px;
+      height: 200px;
       a {
         @include index.flex-box($flex-dir: column);
         font-size: 1.2rem;
         gap: 0.5rem;
         color: index.$oxford-blue;
+        .add-icon {
+          background-color: #00000015;
+          border-radius: 50px;
+          padding: 5px;
+          font-size: 2.5rem;
+        }
       }
     }
     @media (width<=800px) {
@@ -555,6 +561,7 @@
   }
   .all-contacts {
     @include collection-body;
+    padding: 1rem;
     .contact {
       width: 100%;
       background-color: white;
@@ -644,6 +651,16 @@
 // ************** PAYMENT STYLES ***************
 .admin-payments {
   @include collection;
+  .modal-overlay {
+    .modal-content {
+      .show-image {
+        margin: 10% auto 0 auto;
+        img {
+          @include index.img-setting;
+        }
+      }
+    }
+  }
   h2 {
     @include collection-heading;
   }
@@ -757,21 +774,21 @@
       border: none;
       cursor: pointer;
       border-radius: 50%;
-      font-size: 1.8rem;
+      // font-size: 1.8rem;
     }
     // ************** ADMIN UPLOADS ***************
     .upload-section {
       width: 100%;
       height: 100%;
-      // padding: 0.5rem;
       @include index.flex-box;
       align-self: center;
+      // background-color: pink;
       .design-purpose {
         width: 40%;
         height: 100%;
         padding: 1rem;
         border-radius: 5px 0 0 5px;
-        @include index.bg-pattern;
+        background-color: index.$oxford-blue;
         color: white;
         font-size: 1.5rem;
       }
@@ -795,7 +812,7 @@
           cursor: pointer;
           border-radius: 5px;
           padding: 0.5rem 1rem;
-          background: #06065f;
+          background: index.$oxford-blue;
           border: 2px solid #050543;
           color: white;
           @include index.flex-box;
@@ -836,6 +853,17 @@
             width: 100%;
             border-radius: 0 0 5px 5px;
             align-items: center;
+          }
+        }
+      }
+      @media (max-width: 500px) {
+        padding: 0;
+        .upload-section {
+          .design-purpose {
+            height: 70px;
+          }
+          .form {
+            height: 200px;
           }
         }
       }

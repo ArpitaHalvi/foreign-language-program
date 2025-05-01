@@ -110,7 +110,8 @@ export default function AdminCourses() {
         )}
         <div className="add-course">
           <Link to="/admin/courses/add">
-            <Add className="add-icon" /> Add Course
+            <Add className="add-icon" />
+            Add Course
           </Link>
         </div>
       </div>

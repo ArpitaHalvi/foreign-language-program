@@ -326,16 +326,31 @@
     .modal-content {
       padding: 6rem 4rem;
       .modal-close {
-        top: 4%;
+        // top: 4%;
       }
-      .show-brochure {
+      .show-image {
         width: 100%;
         height: 100%;
         @include index.flex-box;
         img {
           @include index.img-setting;
-          @media (width<=500px) {
-            @include index.img-setting(100%, $object-fit: cover);
+          @media (width<=700px) {
+            height: 450px;
+          }
+        }
+      }
+      @media (max-width: 500px) {
+        padding: 0;
+        height: fit-content;
+        .modal-close {
+          top: -20%;
+          right: 1%;
+        }
+        .upload-section {
+          width: 90%;
+          padding: 0;
+          .design-purpose {
+            height: fit-content;
           }
         }
       }
@@ -344,24 +359,23 @@
   .announcements {
     width: 100%;
     @include index.res-grid;
-    .modal-overlay {
-      .modal-content {
-        left: 22%;
-        @media (width<=1300px) {
-          left: 10%;
-        }
-        @media (width<950px) {
-          left: 0;
-        }
-      }
-    }
     div {
       @include index.flex-box($align-items: flex-start, $flex-dir: column);
       gap: 1rem;
       position: relative;
+      .modal-overlay {
+        .modal-content {
+          left: 22%;
+          @media (width<=1300px) {
+            left: 10%;
+          }
+          @media (width<950px) {
+            left: 0;
+          }
+        }
+      }
       h3 {
         font-size: 4rem;
-        // color: #191952;
         color: index.$oxford-blue;
       }
       p {
@@ -382,7 +396,6 @@
         background-color: index.$oxford-blue;
         color: white;
         cursor: pointer;
-        // filter: drop-shadow(6px 6px #141480);
         filter: drop-shadow(6px 6px #073266);
       }
     }
@@ -395,7 +408,6 @@
         font-size: 1.3rem;
       }
       .slick-dots {
-        // color: #050523;
         color: index.$oxford-blue;
       }
       .slick-list {
@@ -414,7 +426,6 @@
             @include index.flex-box;
             position: relative;
             padding: 1rem;
-            // background-color: pink;
             img {
               @include index.img-setting;
               filter: drop-shadow(5px 5px 5px grey);
@@ -426,13 +437,13 @@
               }
             }
             .show-condition {
-              width: 45%;
+              width: 50%;
               position: absolute;
-              right: 0;
+              right: 25%;
               top: 0;
-              background-color: pink;
+              text-align: center;
               font-size: 0.9rem;
-              padding: 1rem;
+              padding: 0.5rem 1rem;
               opacity: 0;
               background-color: index.$naples-yellow;
               filter: drop-shadow(5px 5px 5px #34333365);
@@ -440,14 +451,15 @@
               transition: opacity 0.3s ease-in-out;
               @media (max-width: 600px) {
                 font-size: 0.8rem;
-                width: 50%;
               }
               @media (max-width: 500px) {
                 font-size: 0.8rem;
-                width: 60%;
+                width: 80%;
+                right: 10%;
               }
               @media (max-width: 468px) {
                 width: 100%;
+                right: 0;
                 padding: 0.5rem;
                 text-align: center;
                 font-size: 0.7rem;
@@ -478,6 +490,12 @@
               @media (300px<width<=500px) {
                 left: 42.5%;
                 padding: 0.3rem;
+              }
+            }
+            @media (max-width: 468px) {
+              img {
+                width: 100%;
+                height: 400px;
               }
             }
           }
@@ -713,29 +731,13 @@
       @include index.flex-box;
       padding: 1rem;
       flex-direction: column;
-      gap: 2rem;
-      // background-color: pink;
+      // gap: 1rem;
       img {
-        // @include index.img-setting(50%);
         width: 50%;
+        @media (max-width: 500px) {
+          width: 100%;
+        }
       }
-      // ul {
-      //   @include index.flex-box($flex-dir: column);
-      //   gap: 1rem;
-      //   li {
-      //     color: #dcdcdc;
-      //     @include index.flex-box;
-      //     gap: 1rem;
-      //     font-size: 1rem;
-      //     a {
-      //       color: #dcdcdc;
-      //       @include index.flex-box(
-      //         $flex-dir: column,
-      //         $align-items: flex-start
-      //       );
-      //     }
-      //   }
-      // }
       .contact-link {
         @include index.flex-box;
         li {
@@ -748,6 +750,7 @@
             color: white;
             @include index.flex-box;
             gap: 1rem;
+            font-size: 0.8rem;
             .contact-icon {
               border-radius: 50px;
               font-size: 2rem;
@@ -820,18 +823,34 @@
         }
       }
     }
+    @media (max-width: 1400px) {
+      .contact-info {
+        .contact-link {
+          li a {
+            span {
+              display: none;
+            }
+          }
+        }
+      }
+    }
     @media (max-width: 1050px) {
       @include index.res-grid(calc(100% / 2));
       .contact-info {
         margin-top: 5%;
         align-items: flex-start;
         padding: 0;
+        .contact-link li {
+          a span {
+            display: block;
+          }
+        }
         &:nth-child(3) {
           grid-column: span 2;
           align-items: center;
-          img {
-            @include index.img-setting(20%);
-          }
+        }
+        img {
+          width: 30%;
         }
       }
     }
@@ -860,12 +879,14 @@
         &:nth-child(3) {
           place-items: flex-start;
         }
-      }
-    }
-    @media (max-width: 500px) {
-      .contact-info {
-        .contact-link {
-          li {
+        img {
+          width: 40%;
+          @media (max-width: 468px) {
+            width: 50%;
+          }
+        }
+        .contact-link li {
+          @media (max-width: 500px) {
             border-right: none;
             a {
               span {

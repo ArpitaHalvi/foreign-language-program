@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { Close } from "@mui/icons-material";
 import "./AdminStyles.scss";
 
 export default function Modal({ isOpen, onClose, children }) {
@@ -7,7 +8,7 @@ export default function Modal({ isOpen, onClose, children }) {
     <div className="modal-overlay">
       <div className="modal-content">
         <button className="modal-close" onClick={onClose}>
-          &times;
+          <Close className="close-icon" />
         </button>
         {children}
       </div>

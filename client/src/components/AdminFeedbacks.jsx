@@ -56,7 +56,7 @@ export default function AdminFeedbacks() {
           },
         }
       );
-      console.log("Feedback data:", response);
+      // console.log("Feedback data:", response);
       const res_data = await response.json();
       if (response.ok) {
         setFeedbacks(res_data);

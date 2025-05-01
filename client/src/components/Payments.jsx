@@ -3,10 +3,14 @@ import { toast } from "react-toastify";
 import { CheckCircleOutline, Delete } from "@mui/icons-material";
 import ConfirmModal from "../components/ConfirmModal";
 import { useAuth } from "../store/auth";
+import Modal from "./Modal";
+import ShowImage from "./ShowImage";
 
 export default function Payments() {
   const [payments, setpayments] = useState([]);
   const { authorizationToken } = useAuth();
+  const [paymentUrl, setPaymentUrl] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [selectedPaymentId, setSelectedPaymentId] = useState(null);
   const openConfirmModal = (id) => {
@@ -132,6 +136,9 @@ export default function Payments() {
         isClose={closeConfirmModal}
         onConfirm={confirmDelete}
       />
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <ShowImage imageUrl={paymentUrl} />
+      </Modal>
       <h2>PAYMENTS</h2>
       <div className="all-payments">
         {pendingPayments.length > 0 ? (
@@ -140,7 +147,13 @@ export default function Payments() {
             return (
               <div className="payment" key={_id}>
                 <div className="payment-body">
-                  <img src={imageUrl} alt="Payment Screenshot" />
+                  <img
+                    src={imageUrl}
+                    alt="Payment Screenshot"
+                    onClick={() => {
+                      setIsModalOpen(true), setPaymentUrl(imageUrl);
+                    }}
+                  />
                 </div>
                 <div className="payment-footer">
                   <button
@@ -148,13 +161,11 @@ export default function Payments() {
                     onClick={() => openConfirmModal(_id)}
                   >
                     <Delete className="op-icon" />
-                    {/* Delete */}
                   </button>
                   <button
                     className="approve-btn op-btns"
                     onClick={() => updatePaymentStatus(_id)}
                   >
-                    {/* Approve */}
                     <CheckCircleOutline className="check-icon" />
                   </button>
                 </div>

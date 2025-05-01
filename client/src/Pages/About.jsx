@@ -1,4 +1,4 @@
-import { CheckTwoTone, EmojiObjects } from "@mui/icons-material";
+import { EmojiObjects, Label } from "@mui/icons-material";
 import Reports from "../components/Reports";
 import "./About.scss";
 import Glimpses from "../components/Glimpses";
@@ -55,22 +55,27 @@ export default function About() {
       <div className="instructor">
         <h4>The Instructor</h4>
         <h5>Mrs. Sonal Chaturvedi</h5>
-        <ul>
-          <li>
-            <CheckTwoTone className="tick-style" />
-            Language Consultant (French)– Accounted Experience in Translation
-          </li>
-          <li>
-            <CheckTwoTone className="tick-style" />
-            Teaching & consulting with NGOs, Schools, Education Institutes and
-            Organizations
-          </li>
-          <li>
-            <CheckTwoTone className="tick-style" />
-            Social Consultants- Diverse Ability in early childhood Education &
-            Socialwork.
-          </li>
-        </ul>
+        <div className="instructor-qualities">
+          <ul>
+            <li>
+              <Label className="label-icon" />
+              {/* <CheckTwoTone className="tick-style" /> */}
+              Language Consultant (French)– Accounted Experience in Translation
+            </li>
+            <li>
+              <Label className="label-icon" />
+              {/* <CheckTwoTone className="tick-style" /> */}
+              Teaching & consulting with NGOs, Schools, Education Institutes and
+              Organizations
+            </li>
+            <li>
+              {/* <CheckTwoTone className="tick-style" /> */}
+              <Label className="label-icon" />
+              Social Consultants- Diverse Ability in early childhood Education &
+              Socialwork.
+            </li>
+          </ul>
+        </div>
       </div>
       <Glimpses />
       <Reports />

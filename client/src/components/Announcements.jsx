@@ -6,7 +6,7 @@ import UploadBrochure from "../components/UploadBrochure";
 import { Error } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import ConfirmModal from "./ConfirmModal";
-import ShowBrochure from "./ShowBrochure";
+import ShowImage from "./ShowImage";
 
 export default function Announcements() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,7 +27,6 @@ export default function Announcements() {
     autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
-    // centerMode: true,
     focusOnSelect: true,
     cssEase: "linear",
   };
@@ -107,8 +106,13 @@ export default function Announcements() {
         isOpen={openBrochureModal}
         onClose={() => setOpenBrochureModal(false)}
       >
-        <ShowBrochure imageUrl={brochureUrl} />
+        <ShowImage imageUrl={brochureUrl} />
       </Modal>
+      {user && user.isAdmin && (
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <UploadBrochure />
+        </Modal>
+      )}
       {user && user.isAdmin && (
         <ConfirmModal
           isOpen={isConfirmModalOpen}
@@ -124,17 +128,9 @@ export default function Announcements() {
             opportunities- your gateway of mastering French.&quot;
           </p>
           {user && user.isAdmin && (
-            <>
-              <button
-                className="upload-btn"
-                onClick={() => setIsModalOpen(true)}
-              >
-                Upload Brochure
-              </button>
-              <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                <UploadBrochure />
-              </Modal>
-            </>
+            <button className="upload-btn" onClick={() => setIsModalOpen(true)}>
+              Upload Brochure
+            </button>
           )}
         </div>
         <div className="announcement">
