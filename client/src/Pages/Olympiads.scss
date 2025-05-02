@@ -33,7 +33,7 @@
     }
     .olym-info {
       @include index.flex-box($flex-dir: column);
-      gap: 1.5rem;
+      gap: 1rem;
       font-size: 1.4rem;
       text-align: center;
       font-style: italic;
@@ -132,17 +132,7 @@
     height: auto;
     padding: 2rem;
     .olympiad-part {
-      height: auto;
       width: 60%;
-      .olym-info {
-        gap: 1rem;
-      }
-      .olym-img {
-        width: 50%;
-      }
-      a {
-        border-radius: 50px;
-      }
     }
     .olym-decor {
       width: 80%;
@@ -164,17 +154,17 @@
       width: 100%;
     }
   }
-  @media (width<=550px) {
-    padding: 1rem;
+  @media (max-width: 550px) {
+    padding: 0 1rem;
     .olympiad-part {
       width: 100%;
       padding: 2rem 1rem;
       .olym-heading {
         font-size: 1.7rem;
       }
-      .criteria {
-        .grades {
-          font-size: 1.1rem;
+      .olym-info {
+        .criteria {
+          width: 95%;
         }
       }
       .olym-img {

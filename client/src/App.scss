@@ -900,11 +900,13 @@
     }
     @media (max-width: 630px) {
       @include index.flex-box($flex-dir: column);
-      gap: 2rem;
+      padding: 1rem 0.5rem;
       .course-links {
+        margin-top: 10%;
         width: 100%;
       }
       .contact-info {
+        margin-top: 0;
         &:nth-child(3) {
           place-items: flex-start;
         }
@@ -924,6 +926,12 @@
             }
           }
         }
+      }
+    }
+    @media (max-width: 500px) {
+      .course-links ul li,
+      .web-links .useful-links ul li {
+        font-size: 0.9rem;
       }
     }
   }
