@@ -380,21 +380,15 @@
       }
     }
     .add-course {
-      // background-color: #8080804a;
-      // height: fit-content;
       border-radius: 5px;
-      // border: 2px solid #c2c2c2;
-      padding: 1rem;
       @include index.flex-box;
-      width: 300px;
-      height: 200px;
       a {
         @include index.flex-box($flex-dir: column);
         font-size: 1.2rem;
         gap: 0.5rem;
         color: index.$oxford-blue;
         .add-icon {
-          background-color: #00000015;
+          color: index.$oxford-blue;
           border-radius: 50px;
           padding: 5px;
           font-size: 2.5rem;

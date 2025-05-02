@@ -14,6 +14,8 @@ const initialData = {
   courseName: "",
 };
 
+// sonalchaturvedi76-1@okaxis
+
 export default function Register() {
   const [userData, setUserData] = useState(initialData);
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -56,9 +58,25 @@ export default function Register() {
       };
     });
   };
+
+  // Registration Problem - If user has already enrolled
+  const checkHasUserPaid = async (data, paymentDetails) => {
+    try {
+      if (data.paymentStatus === "pending") {
+        setFormSubmitted(true);
+        setProgress(50);
+      }
+      if (paymentDetails) {
+        navigate("/courses");
+      }
+    } catch (e) {
+      console.error("Error: ", e);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(userData);
+    // console.log(userData);
     try {
       const response = await fetch(`http://localhost:5000/api/auth/enroll`, {
         method: "POST",
@@ -68,13 +86,24 @@ export default function Register() {
         },
         body: JSON.stringify(userData),
       });
-      // console.log(response);
+      console.log("Response from register component: ", response);
       if (response.status === 401) {
         toast.error("Please login!", { onClose: navigate("/login") });
         return;
       }
       const res_data = await response.json();
       console.log(res_data);
+      // Handle user registration problem (If enrolled but not paid)
+      if (
+        response.status === 400 &&
+        res_data.message === "You have already enrolled in this course."
+      ) {
+        checkHasUserPaid(
+          res_data.existingRegistration,
+          res_data.userPaymentDetails
+        );
+      }
+
       if (response.ok) {
         setUserData(initialData);
         setFormSubmitted(true);

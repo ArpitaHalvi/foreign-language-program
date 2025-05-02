@@ -14,13 +14,13 @@ const courseSchema = new Schema({
     type: String,
     required: true,
   },
-  enrolledUsers: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User", // Referencing to the user model
-      default: [],
-    },
-  ],
+  // enrolledUsers: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "User", // Referencing to the user model
+  //     default: [],
+  //   },
+  // ],
   reviews: [
     {
       type: Schema.Types.ObjectId,

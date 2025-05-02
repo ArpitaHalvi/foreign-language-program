@@ -124,7 +124,11 @@ export default function EachCourse() {
           </div>
         </div>
         <div className="course-links">
-          <NavLink to="/register" className="join-btn">
+          <NavLink
+            to="/register"
+            className="join-btn"
+            state={{ title: course.title }}
+          >
             JOIN NOW
           </NavLink>
         </div>

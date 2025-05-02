@@ -18,9 +18,22 @@
     padding: 2rem;
     @include index.flex-box($flex-dir: column, $align-items: flex-start);
     gap: 1rem;
-    h1 {
-      font-size: 5rem;
-      color: index.$oxford-blue;
+    .main-heading {
+      width: 100%;
+      p {
+        color: grey;
+        text-transform: uppercase;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 0;
+        margin-left: 1%;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      h1 {
+        font-size: 5rem;
+        line-height: 6rem;
+        color: index.$oxford-blue;
+      }
     }
     .intro-flp {
       color: index.$oxford-blue;
@@ -81,10 +94,16 @@
   }
   @media (max-width: 1300px) {
     .motive {
-      h1 {
-        font-size: 4rem;
-        @media (max-width: 1200px) {
-          font-size: 3rem;
+      .main-heading {
+        p {
+          line-height: normal;
+        }
+        h1 {
+          line-height: normal;
+          font-size: 4rem;
+          @media (max-width: 1200px) {
+            font-size: 3rem;
+          }
         }
       }
       .desc {
@@ -99,9 +118,15 @@
     .motive {
       width: 80%;
       align-items: center;
-      h1 {
-        width: 80%;
-        text-align: center;
+      .main-heading {
+        @include index.flex-box($flex-dir: column);
+        p {
+          display: none;
+        }
+        h1 {
+          width: 80%;
+          text-align: center;
+        }
       }
       .desc {
         align-items: center;
@@ -117,9 +142,11 @@
   }
   @media (max-width: 750px) {
     .motive {
-      h1 {
-        width: 100%;
-        font-size: 2.5rem;
+      .main-heading {
+        h1 {
+          width: 100%;
+          font-size: 2.5rem;
+        }
       }
       .desc {
         .aim {
@@ -131,8 +158,10 @@
   @media (max-width: 500px) {
     .motive {
       padding: 2rem 0;
-      h1 {
-        font-size: 2rem;
+      .main-heading {
+        h1 {
+          font-size: 2rem;
+        }
       }
       .desc {
         a {

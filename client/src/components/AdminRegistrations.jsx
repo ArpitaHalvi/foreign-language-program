@@ -35,6 +35,7 @@ export default function AdminRegistrations() {
           },
         }
       );
+      console.log(response);
       if (response.ok) {
         toast.success("Successfully deleted the registration.");
         fetchUsers();
@@ -82,7 +83,7 @@ export default function AdminRegistrations() {
       />
       <h2>REGISTRATIONS</h2>
       <div className="all-registrations">
-        {registrations.length > 0 ? (
+        {registrations.length !== 0 ? (
           <table className="registration">
             <thead>
               <tr>

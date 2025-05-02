@@ -39,11 +39,10 @@ const deleteUsers = async (req, res, next) => {
 
 const fetchCourses = async (req, res, next) => {
   try {
-    const courses = await Course.find().populate("enrolledUsers");
+    const courses = await Course.find();
     if (!courses || courses.length === 0) {
       return res.status(404).json({ message: "No Courses Found." });
     }
-    // console.log(courses);
     return res.status(200).json(courses);
   } catch (e) {
     next(e);
@@ -124,8 +123,26 @@ const fetchRegistrations = async (req, res, next) => {
 const deleteRegistration = async (req, res, next) => {
   try {
     const id = req.params.id;
-    await Registration.deleteOne({ _id: id });
-    res.status(200).json({ message: "Registration deleted successfully." });
+    const registration = await Registration.findById(id);
+    const deletedRegistration = await Registration.deleteOne({ _id: id });
+    if (deletedRegistration && registration) {
+      const courseId = registration.courseId;
+      const userId = registration.userId;
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).json({ message: "User not found." });
+      }
+      user.enrolledCourses = user.enrolledCourses.filter(
+        (id) => id.toString() !== courseId.toString()
+      );
+      // user.enrolledCourses.map((c) => console.log("Course id: ", c));
+      await user.save();
+      console.log("Updated enrolled courses.");
+      return res
+        .status(200)
+        .json({ message: "Registration deleted successfully." });
+    }
+    return res.status(500).json({ message: "Could not delete registration." });
   } catch (e) {
     next(e);
   }
@@ -261,22 +278,22 @@ const uploadPaymentScreenshot = async (req, res, next) => {
 const updatePaymentStatus = async (req, res, next) => {
   try {
     const paymentStatus = req.body;
-    console.log("req.body: ", req.body);
+    // console.log("req.body: ", req.body);
     const paymentId = req.params.id;
-    console.log("req.params: ", req.params.id);
+    // console.log("req.params: ", req.params.id);
     const payment = await PaymentScreenshot.findById(paymentId).populate(
       "registeredUser"
     );
+    // console.log("Payment update controller: ", payment);
     if (!payment) {
       res.status(404).json({ message: "Payment Not Found!" });
     }
-    console.log("Payment: ", payment);
     const updatedRegistration = await Registration.findByIdAndUpdate(
       { _id: payment.registeredUser._id },
       { $set: paymentStatus },
       { new: true }
     );
-    console.log("Updated registration: ", updatedRegistration);
+    // console.log("Updated registration: ", updatedRegistration);
     if (!updatedRegistration) {
       return res.status(404).json({ message: "Registered user not found." });
     }
@@ -288,10 +305,12 @@ const updatePaymentStatus = async (req, res, next) => {
     const paymentDeleted = await cloudinary.uploader.destroy(publicID);
     await PaymentScreenshot.findByIdAndDelete(paymentId);
     if (!paymentDeleted) {
-      res.status(500).json({ message: "Unable to delete payment screenshot." });
-      console.log("Payment screenshot not deleted!");
+      return res
+        .status(500)
+        .json({ message: "Unable to delete payment screenshot." });
+      // console.log("Payment screenshot not deleted!");
     }
-    console.log("Payment screenshot deleted!");
+    // console.log("Payment screenshot deleted!");
     return res.status(200).json({ message: "Payment screenshot deleted." });
   } catch (e) {
     next(e);
@@ -299,13 +318,18 @@ const updatePaymentStatus = async (req, res, next) => {
 };
 
 // Deleting the payment screenshot
-const deletePaymentScreenshot = async (id) => {
+const deletePaymentScreenshot = async () => {
+  const { id } = req.params;
   try {
     const payment = await PaymentScreenshot.findById(id);
     const publicID = payment.publicId;
     await cloudinary.uploader.destroy(publicID);
-    await PaymentScreenshot.findByIdAndDelete(id);
-    // return res.status(200).json({ message: "Screenshot deleted successfully" });
+    const deletedPayment = await PaymentScreenshot.findByIdAndDelete(id);
+    if (deletedPayment)
+      return res
+        .status(200)
+        .json({ message: "Screenshot deleted successfully" });
+    else return res.status(500).json({ message: "Unable to delete payment." });
   } catch (e) {
     next(e);
   }
