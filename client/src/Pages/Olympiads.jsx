@@ -33,10 +33,10 @@ export default function Olympiads() {
             <div className="grades grade7">7th</div>
             <div className="grades grade8">8th</div>
           </div>
-          <p>Enroll now for just Rs.{olympiadFee}/-</p>
+          <p>Enroll now for just Rs. {olympiadFee}/-</p>
           <blockquote>
             &quot;From Bonjour to Victory - Your Olympiad Starts Here!&quot;
-            <br />- Foreign Language Program
+            <br />- Foreign Language Programme
           </blockquote>
         </div>
         <NavLink to="/register" state={{ title: "olympiad" }}>

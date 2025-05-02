@@ -28,7 +28,7 @@ export default function Feedback({ courseId }) {
           }
         );
         const res_data = await response.json();
-        console.log(res_data);
+        // console.log(res_data);
         if (response.ok) {
           setFeedbacks(res_data);
         } else {
