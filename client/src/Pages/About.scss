@@ -61,7 +61,7 @@
     }
   }
   @media (max-width: 468px) {
-    padding: 3rem 1rem;
+    padding: 1.5rem 1rem;
     gap: 0.5rem;
     h2 {
       width: 100%;
@@ -166,6 +166,9 @@
         }
         @media (max-width: 500px) {
           gap: 1.5rem;
+          .about-item {
+            width: 100%;
+          }
         }
       }
     }
@@ -266,8 +269,6 @@
       .instructor-qualities {
         ul {
           padding: 2rem 0;
-          // gap: 0.5rem;
-          // margin-left: 0;
           li {
             font-size: 0.9rem;
             gap: 0.5rem;
@@ -433,11 +434,10 @@
     }
   }
   @media (max-width: 500px) {
-    // background-color: pink;
     padding: 2rem 0;
     margin-bottom: 0;
     div {
-      padding: 0;
+      padding: 0.5rem;
     }
     .reports {
       width: 100%;

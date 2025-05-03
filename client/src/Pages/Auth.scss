@@ -106,7 +106,7 @@
       .signup-btn {
         width: 100%;
         // background: linear-gradient(100deg, #131398, dodgerblue);
-        background-color: index.$red-crayola;
+        background-color: index.$lipstick-red;
         font-size: 1.2rem;
         border: none;
         padding: 0.7rem;
@@ -194,18 +194,17 @@
       padding: 1rem;
       color: white;
       @include index.flex-box($align-items: flex-start, $flex-dir: column);
-      // background-image: linear-gradient(to top, #00000000, #000000b3),
-      //   url("../assets/images/museum.jpg");
-      // background-position: center;
-      background-color: #ffffff;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%230a0f55' fill-opacity='0.4'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+      background-color: whitesmoke;
       color: #050523;
-      border-right: 2px solid #050523;
+      border-right: 2px solid index.$oxford-blue;
+      // background: url("/login.jpg") center/cover no-repeat;
       h2 {
         font-size: 2.5rem;
+        color: index.$oxford-blue;
       }
       p {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        color: index.$oxford-blue;
       }
     }
     .login-form {
@@ -227,16 +226,15 @@
       input {
         width: 100%;
         border-radius: 0.2rem;
-        border: 1px solid rgb(173, 170, 170);
+        border: 1px solid #c2c2c2;
         padding: 0.5rem;
-        outline: 1px solid grey;
+        outline: none;
         margin-bottom: 1rem;
         font-size: 1.1rem;
       }
       .login-btn {
         width: 100%;
-        // background: linear-gradient(to right, #131398, dodgerblue);
-        background-color: index.$red-crayola;
+        background-color: index.$lipstick-red;
         font-size: 1.4rem;
         border: none;
         padding: 0.6rem;
@@ -253,7 +251,7 @@
       @include index.res-grid(100%);
       .welcome-back {
         border-right: none;
-        border-bottom: 2px solid #050523;
+        border-bottom: 1px solid index.$oxford-blue;
       }
     }
     @media (width<700px) {
@@ -350,6 +348,7 @@
             border-radius: 5px;
             border: 0.1rem solid #a4a0a0;
             font-size: 1.1rem;
+            outline: none;
           }
         }
         @media (width<=500px) {
