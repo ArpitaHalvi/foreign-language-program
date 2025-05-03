@@ -11,8 +11,10 @@ export default function IntroPart() {
         </div>
         <div className="desc">
           <p className="aim">
-            Unlock opportunities with French - Interactive courses designed for
-            students, professionals, and enthusiasts.
+            {/* Unlock opportunities with French - Interactive courses designed for
+            students, professionals, and enthusiasts. */}
+            Master French, Ace DELF, TCF, & TEF, Olympiad-Ready Training at a
+            Pocket-Friendly Price
           </p>
           <NavLink to="/courses">
             Get Started <ArrowForward className="arrow-icon" />

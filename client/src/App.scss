@@ -59,7 +59,7 @@
       }
       a {
         padding: 0.6rem 1rem;
-        border: 1px solid index.$red-crayola;
+        border: 1px solid index.$lipstick-red;
         border-radius: 5px;
         @include index.flex-box;
         gap: 0.5rem;
@@ -728,6 +728,9 @@
             .testimony-text {
               font-size: 0.9rem;
             }
+            .student-name {
+              font-size: 0.9rem;
+            }
           }
         }
       }
@@ -1118,7 +1121,7 @@
     filter: drop-shadow(5px 5px 5px grey);
     p {
       width: 80%;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       color: index.$oxford-blue;
     }
     .quote-icon {
