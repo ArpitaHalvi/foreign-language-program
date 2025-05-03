@@ -331,7 +331,7 @@
     }
     h3 {
       width: 100%;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       text-align: left;
       font-weight: 400;
       color: grey;
@@ -346,7 +346,6 @@
       font-size: 1.2rem;
       border-radius: 5px;
       border: 2px solid #191952;
-      // background-color: #090950;
       background-color: index.$oxford-blue;
       color: white;
       cursor: pointer;
@@ -369,23 +368,26 @@
       li {
         width: 100%;
         border-radius: 5px;
-        font-size: 1.2rem;
+        font-size: 1rem;
         padding: 1rem;
         color: index.$oxford-blue;
         background-color: aliceblue;
-        border: 1px solid grey;
+        border: 1px solid #c2c2c2;
         @include index.flex-box($justify-content: space-between);
         gap: 1rem;
         transition: scale 0.2s ease;
         &:hover {
           scale: 1.025;
-          box-shadow: 5px 5px grey;
-          border-color: grey;
+          box-shadow: 5px 5px #c2c2c2;
         }
         .pdf-link {
-          @include index.flex-box;
+          width: 100%;
+          @include index.flex-box($justify-content: flex-start);
           gap: 1rem;
-          color: black;
+          color: index.$oxford-blue;
+          .report-icon {
+            color: index.$oxford-blue;
+          }
         }
         button {
           padding: 0.4rem;
@@ -411,8 +413,9 @@
       }
     }
   }
-  @media (width<=500px) {
-    gap: 2rem;
+  @media (width<=600px) {
+    gap: 1rem;
+    margin-bottom: 2%;
     div {
       h2 {
         width: 100%;
@@ -420,24 +423,22 @@
       }
       h3 {
         width: 100%;
-        font-size: 1.2rem;
       }
     }
     .reports {
-      width: 100%;
+      width: 90%;
       padding: 0.5rem;
     }
   }
-  @media (max-width: 468px) {
+  @media (max-width: 500px) {
+    // background-color: pink;
+    padding: 2rem 0;
+    margin-bottom: 0;
     div {
-      h3 {
-        font-size: 1.1rem;
-      }
+      padding: 0;
     }
     .reports {
-      ul li {
-        font-size: 1rem;
-      }
+      width: 100%;
     }
   }
 }

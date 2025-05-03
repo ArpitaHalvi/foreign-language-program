@@ -1,4 +1,4 @@
-import { ArrowForward, Delete, Error } from "@mui/icons-material";
+import { Delete, Description, Error } from "@mui/icons-material";
 import { useAuth } from "../store/auth";
 import Modal from "./Modal";
 import { useEffect, useState } from "react";
@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import ConfirmModal from "./ConfirmModal";
 import PDFViewer from "./PDFViewer";
-// import ErrorMsg from "./ErrorMsg";
 
 export default function Reports() {
   const { user, authorizationToken } = useAuth();
@@ -79,7 +78,7 @@ export default function Reports() {
           },
         }
       );
-      console.log(response);
+      // console.log(response);
       if (response.ok) {
         fetchReports();
         setLoading(false);
@@ -101,7 +100,6 @@ export default function Reports() {
 
   return (
     <section className="reports-section">
-      {/* {error && <ErrorMsg msg={error} />} */}
       <ConfirmModal
         isOpen={isConfirmModalOpen}
         isClose={closeConfirmModal}
@@ -138,8 +136,8 @@ export default function Reports() {
                     className="pdf-link"
                     onClick={() => openPdfViewer(pdfLink)}
                   >
+                    <Description className="report-icon" />
                     {title}
-                    <ArrowForward />
                   </Link>
                   {user?.isAdmin && (
                     <button

@@ -65,7 +65,7 @@
         a {
           @include index.flex-box;
           gap: 0.5rem;
-          font-size: 1.2rem;
+          font-size: 1rem;
           color: index.$oxford-blue;
           padding: 0.5rem;
         }
@@ -80,7 +80,7 @@
           width: 100%;
           padding: 0.8rem;
           border-radius: 5px;
-          font-size: 1.1rem;
+          font-size: 1rem;
           border: 1px solid index.$oxford-blue;
           background-color: index.$antiflash-white;
           color: index.$oxford-blue;
@@ -101,9 +101,10 @@
       .nav-btns {
         padding: 0.5rem 1rem;
         color: #050523;
-        font-size: 1.1rem;
+        font-size: 1rem;
         border: 2px solid #050543;
         border-radius: 0.3rem;
+        color: index.$oxford-blue;
         cursor: pointer;
         background-color: transparent;
         &:hover {

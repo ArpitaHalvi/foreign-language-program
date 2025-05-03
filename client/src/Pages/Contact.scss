@@ -10,14 +10,15 @@
     background-color: white;
     padding: 1rem;
     border-radius: 5px;
-    border: 1px solid black;
-    box-shadow: 5px 5px 5px grey;
+    border: 1px solid #c2c2c2;
+    box-shadow: 5px 5px 5px #c2c2c2;
     @include index.flex-box($flex-dir: column);
     h2 {
       font-size: 2rem;
       font-weight: 400;
       padding: 1rem;
       text-transform: capitalize;
+      color: index.$oxford-blue;
     }
     form {
       width: 100%;
@@ -27,38 +28,39 @@
         width: 100%;
         @include index.res-grid;
         padding: 0.5rem 0;
-        // background-color: plum;
         div {
           width: 100%;
-          // background-color: aliceblue;
           @include index.flex-box($flex-dir: column);
           label {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
           }
           input {
             width: 98%;
             margin-top: 1%;
             padding: 0.7rem;
             border-radius: 5px;
-            border: 1px solid grey;
-            font-size: 1.2rem;
+            border: 1px solid #c2c2c2;
+            font-size: 1.1rem;
+            outline: none;
           }
         }
-        @media (width<=500px) {
+        @media (max-width: 500px) {
           @include index.res-grid(100%);
         }
       }
       label {
         margin: 2% 0 1% 0;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         align-self: flex-start;
       }
       textarea {
         width: 100%;
         padding: 1rem;
         border-radius: 5px;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        border: 1px solid #c2c2c2;
         resize: none;
+        outline: none;
       }
       .contact-btn {
         padding: 0.5rem 1rem;
@@ -67,41 +69,53 @@
         background-color: index.$oxford-blue;
         border-radius: 5px;
         color: white;
-        border: none;
+        border: 2px solid transparent;
+        transition: all 0.3s ease-in;
+        cursor: pointer;
+        text-transform: uppercase;
+        &:hover {
+          background-color: transparent;
+          color: index.$oxford-blue;
+          border-color: index.$oxford-blue;
+        }
       }
     }
-    @media (width<=1200px) {
+    @media (max-width: 1200px) {
       width: 60%;
     }
-    @media (width<=900px) {
+    @media (max-width: 900px) {
       width: 80%;
     }
-    @media (width<=700px) {
+    @media (max-width: 700px) {
       width: 90%;
     }
     @media (max-width: 468px) {
-      padding: 0.5rem 1rem;
+      width: 95%;
+      // padding: 0.5rem 1rem;
+      padding: 1rem 0.5rem 0.5rem 0.5rem;
       h2 {
-        padding: 0.5rem;
+        padding: 0;
       }
       form {
         padding: 0.5rem;
         .form-inputs {
+          padding: 0;
           div {
             label {
-              font-size: 1.1rem;
+              font-size: 1rem;
             }
             input {
-              font-size: 1.1rem;
+              font-size: 1rem;
             }
           }
         }
         textarea {
-          font-size: 1.1rem;
+          font-size: 1rem;
         }
         .contact-btn {
           font-size: 1rem;
           padding: 0.4rem 1rem;
+          text-transform: capitalize;
         }
       }
     }

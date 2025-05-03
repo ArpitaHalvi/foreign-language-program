@@ -131,7 +131,7 @@ export default function Contact() {
             aria-required
           />
           <button type="submit" className="contact-btn">
-            SEND
+            Send
           </button>
         </form>
       </div>
