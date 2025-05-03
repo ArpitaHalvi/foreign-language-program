@@ -37,12 +37,8 @@ export default function Courses() {
     focusOnSelect: true,
     cssEase: "linear",
     responsive: [
-      // {
-      //   breakpoint: 1400,
-      //   settings: { slidesToShow: 3, centerMode: false },
-      // },
       {
-        breakpoint: 1200,
+        breakpoint: 1280,
         settings: { slidesToShow: 2 },
       },
       {
@@ -60,7 +56,9 @@ export default function Courses() {
             {courses.map((c) => {
               return (
                 <div className="course-item" key={c._id}>
-                  <div className="course-img"></div>
+                  <div className="course-img">
+                    <h2>Start Now</h2>
+                  </div>
                   <div className="course-info">
                     <div className="course-data">
                       <h2 className="course-name">{c.title}</h2>

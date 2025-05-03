@@ -14,7 +14,7 @@ export default function Footer() {
     { name: "Privacy Policy", link: "/privacy-policy" },
   ];
   const courses = [
-    { name: "Olmpiads", link: "/courses" },
+    { name: "Olympiads", link: "/olympiads" },
     { name: "Fast Track Course", link: "/courses" },
     { name: "DELF Junior Preparation Course", link: "/courses" },
     { name: "DELF TCF-TEF Preparation Course", link: "/courses" },
@@ -51,14 +51,14 @@ export default function Footer() {
             {courses.map((c, index) => {
               return (
                 <li key={index}>
-                  <NavLink to="/courses">{c.name}</NavLink>
+                  <NavLink to={c.link}>{c.name}</NavLink>
                 </li>
               );
             })}
           </ul>
         </div>
         <div className="contact-info ">
-          <img src="/flp-logo2.svg" alt="LOGO" />
+          <img src="/flp-logo4.svg" alt="LOGO" />
           <ul className="contact-link">
             <li>
               <Link to="tel:+919200720230">
