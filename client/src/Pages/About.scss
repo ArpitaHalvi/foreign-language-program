@@ -218,12 +218,10 @@
         font-size: 1.2rem;
       }
       .instructor-qualities {
-        // background-color: pink;
         ul {
           width: 90%;
           @include index.res-grid;
           li {
-            // text-align: center;
             &:nth-child(3) {
               width: 50%;
               grid-column: span 2;
@@ -234,7 +232,7 @@
           }
         }
         @media (max-width: 800px) {
-          padding: 0;
+          padding: 1rem;
           ul {
             @include index.flex-box(
               $flex-dir: column,
@@ -245,6 +243,17 @@
               &:nth-child(3) {
                 width: 100%;
               }
+            }
+          }
+        }
+        @media (max-width: 500px) {
+          padding: 1rem 0;
+          ul {
+            width: 100%;
+            padding: 1rem 0;
+            li {
+              gap: 0.5rem;
+              padding: 0.5rem;
             }
           }
         }
