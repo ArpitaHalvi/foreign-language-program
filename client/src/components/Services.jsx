@@ -1,7 +1,6 @@
 import {
   LiveTv,
   School,
-  // Feedback,
   ChecklistRounded,
   Language,
 } from "@mui/icons-material";
@@ -17,11 +16,6 @@ export default function Services() {
       text: "Simplified process to explore courses, enroll, and access courses instantly after payment.",
       icon: <School className="service-icon" />,
     },
-    // {
-    //   title: "Feedback for Improvement",
-    //   text: "Allow students to share their learning experience to help improve the course quality.",
-    //   icon: <Feedback className="service-icon" />,
-    // },
     {
       title: "French Courses & Olympiads",
       text: "We offer courses for all levels, from DELF Junior to TEF, TCF, and Olympiads, with expert guidance.",
