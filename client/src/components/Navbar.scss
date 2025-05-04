@@ -93,6 +93,9 @@
         .signup-btn {
           color: black;
         }
+        &:hover::after {
+          width: 0;
+        }
       }
     }
     .navigation {
@@ -212,12 +215,12 @@
         }
         @media (max-width: 468px) {
           li a {
-            font-size: 1rem;
+            font-size: 1.1rem;
           }
           .res-nav-btns {
             a {
               padding: 0.7rem 1rem;
-              font-size: 1rem;
+              // font-size: 1rem;
             }
           }
         }
