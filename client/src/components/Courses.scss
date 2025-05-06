@@ -500,7 +500,7 @@
       img {
         padding: 1rem;
         width: 100%;
-        background-color: grey;
+        // background-color: grey;
       }
     }
     @media (max-width: 1150px) {
@@ -520,18 +520,29 @@
         }
       }
       .review-img {
-        width: 80%;
         order: 2;
       }
       @media (max-width: 500px) {
         .feedback-form {
           width: 90%;
+          form {
+            h2 {
+              padding: 1rem 0 0 0;
+            }
+            .rating-box {
+              div label {
+                .star-icon {
+                  font-size: 2rem;
+                }
+              }
+            }
+            .feedback-box {
+              padding: 0 1rem 1rem 1rem;
+            }
+          }
           @media (max-width: 468px) {
             padding: 0.2rem;
           }
-        }
-        .review-img {
-          width: 90%;
         }
       }
     }

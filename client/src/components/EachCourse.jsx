@@ -132,12 +132,20 @@ export default function EachCourse() {
           </div>
         </div>
         <div className="course-decor">
-          <img src="/intro1.svg" alt="Course Decor" />
+          <img
+            src="/intro1.svg"
+            alt="Course Decor"
+            title="Designed by freepik.com"
+          />
         </div>
       </div>
       <div className="feedback-part">
         <div className="review-img">
-          <img src="" alt="" />
+          <img
+            src="/review3.svg"
+            alt="Review Image"
+            title="Designed by freepik.com"
+          />
         </div>
         <FeedbackForm courseId={id} />
       </div>

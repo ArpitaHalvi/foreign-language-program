@@ -35,14 +35,16 @@ export default function FeedbackForm({ courseId }) {
           body: JSON.stringify(feedback),
         }
       );
-      console.log("Response from feedback: ", res);
+      // console.log("Response from feedback: ", res);
       const res_data = await res.json();
       if (res.ok) {
         toast.success("Feedback Sent successfully!");
         setFeedback(initialFeedback);
         e.target.reset();
       } else {
-        toast.error(res_data.message || "Error while sending feedback!");
+        toast.error(
+          res_data.extraDetails ? res_data.extraDetails : res_data.message
+        );
       }
     } catch (e) {
       toast.error("An error occurred please try again later!");

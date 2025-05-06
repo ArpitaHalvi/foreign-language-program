@@ -22,7 +22,11 @@ export default function IntroPart() {
         </div>
       </div>
       <div className="explore-france">
-        <img src="intro3.svg" alt="INTRO IMAGE" />
+        <img
+          src="intro3.svg"
+          alt="INTRO IMAGE"
+          title="Designed by freepik.com"
+        />
       </div>
     </section>
   );
