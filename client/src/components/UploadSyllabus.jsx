@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
 import { useState } from "react";
 import { FileUpload } from "@mui/icons-material";
+import baseUrl from "../config";
 
 export default function UploadSyllabus() {
   const { authorizationToken } = useAuth();
@@ -22,7 +23,7 @@ export default function UploadSyllabus() {
       // Preparing form data
       const formData = new FormData();
       formData.append("file", file);
-      const response = await fetch(`http://localhost:5000/api/admin/syllabus`, {
+      const response = await fetch(`${baseUrl}admin/syllabus`, {
         method: "POST",
         headers: {
           Authorization: authorizationToken,

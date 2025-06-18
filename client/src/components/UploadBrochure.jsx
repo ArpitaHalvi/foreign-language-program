@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import "../components/AdminStyles.scss";
 import { useAuth } from "../store/auth";
 import { FileUpload } from "@mui/icons-material";
+import baseUrl from "../config";
 
 export default function UploadBrochure() {
   const [file, setFile] = useState(null);
@@ -19,7 +20,7 @@ export default function UploadBrochure() {
       // Preparing form data
       const formData = new FormData();
       formData.append("file", file);
-      const response = await fetch(`http://localhost:5000/api/admin/brochure`, {
+      const response = await fetch(`${baseUrl}admin/brochure`, {
         method: "POST",
         headers: {
           Authorization: authorizationToken,

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
 import { Star } from "@mui/icons-material";
+import baseUrl from "../config";
 
 const initialFeedback = {
   rating: "",
@@ -24,17 +25,14 @@ export default function FeedbackForm({ courseId }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(
-        `http://localhost:5000/api/course/${courseId}/feedback`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: authorizationToken,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(feedback),
-        }
-      );
+      const res = await fetch(`${baseUrl}course/${courseId}/feedback`, {
+        method: "POST",
+        headers: {
+          Authorization: authorizationToken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(feedback),
+      });
       // console.log("Response from feedback: ", res);
       const res_data = await res.json();
       if (res.ok) {

@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
 import { Delete, ExpandMore } from "@mui/icons-material";
 import ConfirmModal from "./ConfirmModal";
+import baseUrl from "../config";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
@@ -32,15 +33,12 @@ export default function AdminUsers() {
   };
   const deleteUser = async (id) => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/users/delete/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/users/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       if (response.ok) {
         toast.success("User deleted successfully.");
         fetchUsers();
@@ -53,7 +51,7 @@ export default function AdminUsers() {
   };
   const fetchUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/admin/users", {
+      const response = await fetch(`${baseUrl}admin/users`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,

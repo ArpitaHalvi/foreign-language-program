@@ -5,6 +5,7 @@ import ConfirmModal from "../components/ConfirmModal";
 import { useAuth } from "../store/auth";
 import Modal from "./Modal";
 import ShowImage from "./ShowImage";
+import baseUrl from "../config";
 
 export default function Payments() {
   const [payments, setpayments] = useState([]);
@@ -30,15 +31,12 @@ export default function Payments() {
   };
   const deletePayment = async (id) => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/payments/${id}/delete`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/payments/${id}/delete`, {
+        method: "DELETE",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       if (response.ok) {
         toast.success("Payment deleted successfully.");
         fetchpayments();
@@ -51,7 +49,7 @@ export default function Payments() {
   };
   const fetchpayments = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/admin/payments", {
+      const response = await fetch(`${baseUrl}admin/payments`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -79,17 +77,14 @@ export default function Payments() {
   const sendMail = async (id) => {
     console.log("Email Person id: ", id);
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/send-mail`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: authorizationToken,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ emailPerson: id }),
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/send-mail`, {
+        method: "POST",
+        headers: {
+          Authorization: authorizationToken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ emailPerson: id }),
+      });
       const res_data = await response.json();
       if (response.ok) {
         console.log("Email sent successfully!", res_data);
@@ -103,17 +98,14 @@ export default function Payments() {
 
   const updatePaymentStatus = async (id) => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/payments/${id}/update`,
-        {
-          method: "PATCH",
-          headers: {
-            Authorization: authorizationToken,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ paymentStatus: "paid" }),
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/payments/${id}/update`, {
+        method: "PATCH",
+        headers: {
+          Authorization: authorizationToken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ paymentStatus: "paid" }),
+      });
       // const res_data = await response.json();
       if (response.ok) {
         // console.log("Updated registration: ", res_data);

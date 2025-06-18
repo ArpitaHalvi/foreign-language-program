@@ -3,6 +3,7 @@ import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 import { Delete } from "@mui/icons-material";
 import ConfirmModal from "./ConfirmModal";
+import baseUrl from "../config";
 
 export default function AdminContacts() {
   const [contacts, setContacts] = useState([]);
@@ -26,15 +27,12 @@ export default function AdminContacts() {
   };
   const deleteContact = async (id) => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/contacts/delete/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/contacts/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       if (response.ok) {
         toast.success("Successfully deleted contact.");
         fetchContacts();
@@ -47,7 +45,7 @@ export default function AdminContacts() {
   };
   const fetchContacts = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/contacts`, {
+      const response = await fetch(`${baseUrl}admin/contacts`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,

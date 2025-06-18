@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
+import baseUrl from "../config";
 
 export default function UserCourses() {
   const [courses, setCourses] = useState([]);
@@ -12,16 +13,13 @@ export default function UserCourses() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/auth/user/${userId}/courses`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: authorizationToken,
-            },
-            // body: JSON.stringify(userCourses),
-          }
-        );
+        const response = await fetch(`${baseUrl}auth/user/${userId}/courses`, {
+          method: "GET",
+          headers: {
+            Authorization: authorizationToken,
+          },
+          // body: JSON.stringify(userCourses),
+        });
         const res_data = await response.json();
         if (response.ok) {
           console.log(res_data);

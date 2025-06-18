@@ -318,7 +318,7 @@ const updatePaymentStatus = async (req, res, next) => {
 };
 
 // Deleting the payment screenshot
-const deletePaymentScreenshot = async () => {
+const deletePaymentScreenshot = async (req, res, next) => {
   const { id } = req.params;
   try {
     const payment = await PaymentScreenshot.findById(id);

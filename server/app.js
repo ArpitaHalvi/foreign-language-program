@@ -19,7 +19,7 @@ const URL = process.env.MONGODB_URL;
 
 // HANDLING CORS POLICY
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: process.env.FRONTEND_URL,
   methods: "GET, POST, DELETE, PUT, PATCH, HEAD",
   credentials: true,
 };

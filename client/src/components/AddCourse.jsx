@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
+import baseUrl from "../config";
 
 const courseData = {
   title: "",
@@ -29,17 +30,14 @@ export default function AddCourse() {
         fee: Number(course.fee),
       };
       console.log("Sending data: ", dataToSend);
-      const response = await fetch(
-        `http://localhost:5000/api/admin/courses/add`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: authorizationToken,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(dataToSend),
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/courses/add`, {
+        method: "POST",
+        headers: {
+          Authorization: authorizationToken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSend),
+      });
       console.log(response);
       const res_data = await response.json();
       if (response.ok) {

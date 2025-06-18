@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import ConfirmModal from "./ConfirmModal";
 import PDFViewer from "./PDFViewer";
+import baseUrl from "../config";
 
 export default function Reports() {
   const { user, authorizationToken } = useAuth();
@@ -39,7 +40,7 @@ export default function Reports() {
   const fetchReports = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/admin/reports`, {
+      const response = await fetch(`${baseUrl}admin/reports`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -69,15 +70,12 @@ export default function Reports() {
   const deleteReport = async (id) => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `http://localhost:5000/api/admin/report/${id}/delete`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/report/${id}/delete`, {
+        method: "DELETE",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       // console.log(response);
       if (response.ok) {
         fetchReports();

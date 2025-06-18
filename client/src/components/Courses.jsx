@@ -6,6 +6,7 @@ import StatusPage from "../Pages/StatusPage";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import baseUrl from "../config";
 
 export default function Courses() {
   const [courses, setCourses] = useState(null);
@@ -13,7 +14,7 @@ export default function Courses() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/courses`);
+        const res = await fetch(`${baseUrl}courses`);
         if (res.ok) {
           const data = await res.json();
           setCourses(data);

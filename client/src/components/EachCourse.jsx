@@ -10,6 +10,7 @@ import { useAuth } from "../store/auth";
 import UploadSyllabus from "./UploadSyllabus";
 import Modal from "./Modal";
 import PDFViewer from "../components/PDFViewer";
+import baseUrl from "../config";
 
 export default function EachCourse() {
   const { id } = useParams(); // Get the Id from the route
@@ -22,7 +23,7 @@ export default function EachCourse() {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/courses/${id}`, {
+        const res = await fetch(`${baseUrl}courses/${id}`, {
           method: "GET",
         });
         if (res.ok) {
@@ -36,7 +37,7 @@ export default function EachCourse() {
     };
     const fetchSyllabus = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/admin/syllabus`, {
+        const res = await fetch(`${baseUrl}admin/syllabus`, {
           method: "GET",
           headers: {
             Authorization: authorizationToken,

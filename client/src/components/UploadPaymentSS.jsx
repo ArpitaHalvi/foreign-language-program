@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "../components/AdminStyles.scss";
 import { useAuth } from "../store/auth";
 import { FileUpload } from "@mui/icons-material";
+import baseUrl from "../config";
 
 export default function UploadPaymentSS({ setPaymentStatus, courseId }) {
   const [file, setFile] = useState(null);
@@ -23,16 +24,13 @@ export default function UploadPaymentSS({ setPaymentStatus, courseId }) {
       formData.append("file", file);
       formData.append("courseId", courseId);
       console.log("Form data: ", formData);
-      const response = await fetch(
-        `http://localhost:5000/api/admin/paymentScreenShot`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: authorizationToken,
-          },
-          body: formData,
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/paymentScreenShot`, {
+        method: "POST",
+        headers: {
+          Authorization: authorizationToken,
+        },
+        body: formData,
+      });
       console.log(response);
       const res_data = await response.json();
       if (response.ok) {

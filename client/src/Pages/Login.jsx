@@ -3,6 +3,7 @@ import "./Auth.scss";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
+import baseUrl from "../config";
 
 const initialData = {
   email: "",
@@ -27,7 +28,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch(`${baseUrl}auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

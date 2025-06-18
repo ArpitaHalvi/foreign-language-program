@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
 import ErrorMsg from "../components/ErrorMsg";
+import baseUrl from "../config";
 
 const initialData = {
   fullname: "",
@@ -48,7 +49,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/form/contact", {
+      const response = await fetch(`${baseUrl}form/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

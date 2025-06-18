@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import "./Olympiads.scss";
 import { NavLink } from "react-router-dom";
 import { KeyboardDoubleArrowRight } from "@mui/icons-material";
+import baseUrl from "../config";
 
 export default function Olympiads() {
   const [olympiadFee, setOlympiadFee] = useState("");
   useEffect(() => {
     const fetchOlympiad = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/courses/olympiad`, {
+        const res = await fetch(`${baseUrl}courses/olympiad`, {
           method: "GET",
         });
         if (res.ok) {

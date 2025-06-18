@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { Add, Delete, Edit } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import ConfirmModal from "./ConfirmModal";
+import baseUrl from "../config";
 
 export default function AdminCourses() {
   const [courses, setCourses] = useState([]);
@@ -27,15 +28,12 @@ export default function AdminCourses() {
   };
   const deleteCourse = async (id) => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/courses/delete/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/courses/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       if (response.ok) {
         toast.success("Course deleted successfully.");
         fetchCourses();
@@ -48,7 +46,7 @@ export default function AdminCourses() {
   };
   const fetchCourses = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/admin/courses", {
+      const response = await fetch(`${baseUrl}admin/courses`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,

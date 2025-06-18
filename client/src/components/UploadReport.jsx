@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import "../components/AdminStyles.scss";
 import { useAuth } from "../store/auth";
 import { FileUpload } from "@mui/icons-material";
+import baseUrl from "../config";
+
 const initialFormData = {
   title: "",
   pdfLink: null,
@@ -41,7 +43,7 @@ export default function UploadReport() {
       const formPayload = new FormData();
       formPayload.append("title", formData.title);
       formPayload.append("file", formData.pdfLink);
-      const response = await fetch(`http://localhost:5000/api/admin/report`, {
+      const response = await fetch(`${baseUrl}admin/report`, {
         method: "POST",
         headers: {
           Authorization: authorizationToken,

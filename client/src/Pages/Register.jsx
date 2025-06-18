@@ -7,6 +7,7 @@ import { ArrowForward, CheckCircle } from "@mui/icons-material";
 import Modal from "../components/Modal";
 import UploadPaymentSS from "../components/UploadPaymentSS";
 import SeatSure from "../modals/SeatSure";
+import baseUrl from "../config";
 
 const initialData = {
   fullname: "",
@@ -78,7 +79,7 @@ export default function Register() {
     e.preventDefault();
     // console.log(userData);
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/enroll`, {
+      const response = await fetch(`${baseUrl}auth/enroll`, {
         method: "POST",
         headers: {
           Authorization: authorizationToken,

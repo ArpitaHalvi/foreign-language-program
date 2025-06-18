@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Login } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
+import baseUrl from "../config";
 
 const initialData = {
   fullname: "",
@@ -40,7 +41,7 @@ export default function SignUp() {
       phoneNumber: phNumber,
     };
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/register`, {
+      const response = await fetch(`${baseUrl}auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

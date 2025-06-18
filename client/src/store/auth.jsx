@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import baseUrl from "../config";
 import { toast } from "react-toastify";
 
 // Context
@@ -46,7 +47,7 @@ export const AuthProvider = ({ children }) => {
   const userAuthentication = async (authToken) => {
     // console.log("AuthToken: ", authToken);
     try {
-      const response = await fetch("http://localhost:5000/api/auth/user", {
+      const response = await fetch(`${baseUrl}auth/user`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${authToken}`,

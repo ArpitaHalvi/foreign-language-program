@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 import { FileUpload } from "@mui/icons-material";
+import baseUrl from "../config";
 
 export default function UpdateSyllabus() {
   const [file, setFile] = useState("");
@@ -10,15 +11,12 @@ export default function UpdateSyllabus() {
   useEffect(() => {
     const fetchSyllabus = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/admin/syllabus`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: authorizationToken,
-            },
-          }
-        );
+        const response = await fetch(`${baseUrl}admin/syllabus`, {
+          method: "GET",
+          headers: {
+            Authorization: authorizationToken,
+          },
+        });
         console.log(response);
         const res_data = await response.json();
         if (response.ok) {
@@ -47,7 +45,7 @@ export default function UpdateSyllabus() {
       // Preparing form data
       const formData = new FormData();
       formData.append("file", file);
-      const response = await fetch(`http://localhost:5000/api/admin/syllabus`, {
+      const response = await fetch(`${baseUrl}admin/syllabus`, {
         method: "POST",
         headers: {
           Authorization: authorizationToken,

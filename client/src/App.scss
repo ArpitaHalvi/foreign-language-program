@@ -1154,14 +1154,14 @@
     height: 30vh;
     // background-color: index.$red-crayola;
     // color: white;
-    background-color: whitesmoke;
+    background-color: white;
     border-radius: 50px 0 50px 0;
     @include index.flex-box;
     position: relative;
     font-size: 1.1rem;
     padding: 5rem;
     text-align: center;
-    filter: drop-shadow(5px 5px 5px grey);
+    filter: drop-shadow(15px 15px 15px #d4d4d4c6);
     p {
       width: 80%;
       font-size: 1.1rem;
@@ -1278,7 +1278,7 @@
       background-color: white;
       border-radius: 10px;
       padding: 0.5rem 1rem;
-      filter: drop-shadow(5px 5px 5px #34333365);
+      filter: drop-shadow(15px 15px 15px #a7a7a765);
       img {
         width: 100%;
         object-fit: contain;

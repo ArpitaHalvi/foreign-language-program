@@ -7,6 +7,7 @@ import { Error } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import ConfirmModal from "./ConfirmModal";
 import ShowImage from "./ShowImage";
+import baseUrl from "../config";
 
 export default function Announcements() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,15 +51,12 @@ export default function Announcements() {
   const deleteBrochure = async (id) => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `http://localhost:5000/api/admin/brochure/${id}/delete`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/brochure/${id}/delete`, {
+        method: "DELETE",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       if (response.ok) {
         fetchBrochures();
         setLoading(false);
@@ -75,15 +73,12 @@ export default function Announcements() {
   const fetchBrochures = async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `http://localhost:5000/api/admin/brochures`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/brochures`, {
+        method: "GET",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       const res_data = await response.json();
       if (response.ok) {
         setBrochures(res_data);

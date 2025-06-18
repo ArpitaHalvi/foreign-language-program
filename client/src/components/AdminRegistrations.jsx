@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { Delete } from "@mui/icons-material";
 import { useAuth } from "../store/auth";
 import ConfirmModal from "./ConfirmModal";
+import baseUrl from "../config";
 
 export default function AdminRegistrations() {
   const [registrations, setRegistrations] = useState([]);
@@ -27,7 +28,7 @@ export default function AdminRegistrations() {
   const deleteRegistration = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/registrations/delete/${id}`,
+        `${baseUrl}admin/registrations/delete/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -48,15 +49,12 @@ export default function AdminRegistrations() {
   };
   const fetchUsers = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/admin/registrations",
-        {
-          method: "GET",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/registrations`, {
+        method: "GET",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       // console.log(response);
       const res_data = await response.json();
       if (response.ok) {

@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { Star, StarBorder } from "@mui/icons-material";
+import baseUrl from "../config";
 
 export default function Feedback({ courseId }) {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -21,12 +22,9 @@ export default function Feedback({ courseId }) {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/course/${courseId}/feedback`,
-          {
-            method: "GET",
-          }
-        );
+        const response = await fetch(`${baseUrl}course/${courseId}/feedback`, {
+          method: "GET",
+        });
         const res_data = await response.json();
         // console.log(res_data);
         if (response.ok) {

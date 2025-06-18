@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
+import baseUrl from "../config";
 
 export default function CourseUpdate() {
   const [course, setCourse] = useState({
@@ -25,17 +26,14 @@ export default function CourseUpdate() {
   const updateCourse = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/courses/update/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: authorizationToken,
-          },
-          body: JSON.stringify(course),
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/courses/update/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: authorizationToken,
+        },
+        body: JSON.stringify(course),
+      });
       if (response.ok) {
         toast.success("Updated the course successfully.");
       } else {
@@ -49,15 +47,12 @@ export default function CourseUpdate() {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/admin/courses/${id}`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: authorizationToken,
-            },
-          }
-        );
+        const response = await fetch(`${baseUrl}admin/courses/${id}`, {
+          method: "GET",
+          headers: {
+            Authorization: authorizationToken,
+          },
+        });
         // console.log(response);
         const res_data = await response.json();
         if (response.ok) {

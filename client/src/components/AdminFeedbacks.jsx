@@ -3,6 +3,7 @@ import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 import { Delete } from "@mui/icons-material";
 import ConfirmModal from "./ConfirmModal";
+import baseUrl from "../config";
 
 export default function AdminFeedbacks() {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -26,15 +27,12 @@ export default function AdminFeedbacks() {
   };
   const deleteFeedback = async (id) => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/feedbacks/delete/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/feedbacks/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       if (response.ok) {
         toast.success("Successfully deleted the feedback.");
         fetchFeedbacks();
@@ -47,15 +45,12 @@ export default function AdminFeedbacks() {
   };
   const fetchFeedbacks = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/admin/feedbacks",
-        {
-          method: "GET",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${baseUrl}admin/feedbacks`, {
+        method: "GET",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       // console.log("Feedback data:", response);
       const res_data = await response.json();
       if (response.ok) {
