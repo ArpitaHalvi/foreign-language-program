@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../store/auth";
-import { Close, Edit, FormatQuote } from "@mui/icons-material";
+import { Close, Edit } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import { SlideInOnScroll } from "./SlideInOnScroll";
 
@@ -52,7 +52,12 @@ export default function EditorsDesk() {
       <div className="editor-quote-container">
         <SlideInOnScroll>
           <div className="editor-quote">
-            <FormatQuote className="quote-icon" />
+            {/* <FormatQuote className="quote-icon" /> */}
+            <img
+              src="https://res.cloudinary.com/dgt8utaaa/image/upload/v1752471664/quote-icon_hcw7xh.svg"
+              alt="Quote Icon"
+              className="quote-icon"
+            />
             <p>{quote}</p>
             {user && user.isAdmin && (
               <button className="edit-quote" onClick={() => setShowModal(true)}>

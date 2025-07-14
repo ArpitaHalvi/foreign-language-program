@@ -1151,7 +1151,7 @@
   }
   .editor-quote {
     width: 600px;
-    height: 30vh;
+    height: 200px;
     margin: auto;
     // background-color: index.$red-crayola;
     // color: white;
@@ -1169,11 +1169,13 @@
       color: index.$oxford-blue;
     }
     .quote-icon {
+      width: 100px;
       position: absolute;
       font-size: 10rem;
-      left: -5%;
-      top: -30%;
+      left: -2%;
+      top: -15%;
       color: index.$oxford-blue;
+      object-fit: contain;
     }
     .edit-quote {
       position: absolute;
@@ -1226,8 +1228,8 @@
       }
       .quote-icon {
         font-size: 9rem;
-        top: -25%;
-        left: -5%;
+        // top: -25%;
+        // left: -5%;
       }
     }
   }
@@ -1245,8 +1247,9 @@
         font-size: 1rem;
       }
       .quote-icon {
-        left: -10%;
-        font-size: 8rem;
+        left: -3%;
+        width: 80px;
+        // font-size: 8rem;
       }
     }
   }

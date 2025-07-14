@@ -6,7 +6,7 @@ const validate = (schema) => async (req, res, next) => {
   try {
     const parseBody = await schema.parseAsync(req.body);
     req.body = parseBody;
-    // console.log(req.body);
+    console.log("Req.body", req.body);
     next();
   } catch (e) {
     // status code 422 - server is unable to process the request because of invalid data.
@@ -14,6 +14,7 @@ const validate = (schema) => async (req, res, next) => {
     const message = "Fill the form correctly";
     let extraDetails = "Validation Failed";
     console.log("Error from validate middleware: ", e);
+    console.log("Req.body", req.body);
     if (e.errors && e.errors.length > 0) {
       extraDetails = e.errors[0].message;
     }

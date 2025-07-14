@@ -46,7 +46,7 @@ const enrollment = async (req, res, next) => {
     user.enrolledCourses.push(course._id);
     await course.save();
     await user.save();
-    // console.log("New registration: ", newRegistration);
+    console.log("New registration: ", newRegistration);
     return res
       .status(200)
       .json({ message: "User registered successfully.", newRegistration });

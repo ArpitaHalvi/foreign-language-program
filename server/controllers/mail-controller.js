@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer");
 const PaymentScreenshot = require("../models/paymentss-model");
 const fs = require("fs");
 const path = require("path");
@@ -62,10 +62,15 @@ const mailSender = async (req, res, next) => {
 
     const result = await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: userEmail,
-      subject: "Test Email - FLP Payment Confirmation",
+      // to: userEmail,
+      to: "arpitahalvi@gmail.com",
+      subject: "Payment Approved - Foreign Language Programme",
       html: emailHTML,
     });
+    if (result.error) {
+      console.error("Resend error", result.error);
+      return res.status(403).json({ message: result.error.message });
+    }
     console.log("Result: ", result);
     return res.status(200).json({ message: "Email sent successfully!" });
   } catch (e) {

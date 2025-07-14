@@ -74,7 +74,7 @@ export default function Courses() {
                       <NavLink
                         to="/register"
                         className="join-btn"
-                        state={{ title: c.title }}
+                        state={{ title: c.title, courseId: c._id }}
                       >
                         Join Now
                       </NavLink>

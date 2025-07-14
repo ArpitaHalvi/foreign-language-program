@@ -15,8 +15,6 @@ const initialData = {
   courseName: "",
 };
 
-// sonalchaturvedi76-1@okaxis
-
 export default function Register() {
   const [userData, setUserData] = useState(initialData);
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -32,16 +30,21 @@ export default function Register() {
   const [wasSeatSureOpen, setWasSeatSureOpen] = useState(false);
   const [title, setTitle] = useState("");
   const location = useLocation();
+
+  console.log("Course Id: ", courseId);
+
   useEffect(() => {
     const changeTitle = () => {
-      const { title } = location.state || "";
-      if (title) {
+      const { title, courseId } = location.state || "";
+      if (title && courseId) {
         setTitle(title);
+        // added now
+        setCourseId(courseId);
         setUserData((prev) => ({ ...prev, courseName: title }));
       }
     };
     changeTitle();
-  }, [title, location.state]);
+  }, [title, courseId, location.state]);
 
   const handleTransitionEnd = () => {
     if (cardFlipped) {
