@@ -56,7 +56,7 @@ export default function AdminContacts() {
         // console.log(res_data);
         setContacts(res_data);
       } else {
-        toast.error("Error while fetching contacts");
+        response.status !== 404 && toast.error("Error while fetching contacts");
       }
     } catch (e) {
       toast.error(e);

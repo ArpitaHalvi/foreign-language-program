@@ -38,22 +38,18 @@ const login = async (req, res, next) => {
     const { email, password } = req.body;
     // Finding if the user exist with that email
     const userExist = await User.findOne({ email });
-    if (userExist) {
-      // Comparing the passwords
-      const user = await userExist.comparePassword(password);
-      if (user) {
-        return res.status(200).json({
-          message: "Logged in successfully.",
-          token: userExist.generateToken(),
-          userId: userExist._id.toString(),
-        });
-        // console.log("Token: ", userExist.generateToken());
-      } else {
-        return res.status(401).json({ message: "Invalid Email or password." });
-      }
-    } else {
-      return res.status(400).json({ message: "Invalid credentials." });
+    if (!userExist) {
+      return res.status(404).json({ message: "User not found." });
     }
+    const user = await userExist.comparePassword(password);
+    if (!user) {
+      return res.status(401).json({ message: "Invalid Email or password." });
+    }
+    return res.status(200).json({
+      message: "Logged in successfully.",
+      token: userExist.generateToken(),
+      userId: userExist._id.toString(),
+    });
   } catch (e) {
     // console.log(e);
     next(e);

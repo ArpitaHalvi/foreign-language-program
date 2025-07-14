@@ -61,9 +61,7 @@ export default function AdminRegistrations() {
         // console.log(res_data);
         setRegistrations(res_data);
       } else {
-        if (response.status !== 404) {
-          toast.error(res_data.message);
-        }
+        response.status !== 404 && toast.error(res_data.message);
       }
     } catch (e) {
       toast.error(e.message);

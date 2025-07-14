@@ -57,9 +57,7 @@ export default function AdminFeedbacks() {
         setFeedbacks(res_data);
         // console.log(res_data);
       } else {
-        if (response.status !== 404) {
-          toast.error(res_data.message);
-        }
+        response.status !== 404 && toast.error(res_data.message);
       }
     } catch (e) {
       console.log("Error: ", e);

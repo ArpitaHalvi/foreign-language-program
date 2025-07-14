@@ -41,7 +41,7 @@ export default function AddCourse() {
       console.log(response);
       const res_data = await response.json();
       if (response.ok) {
-        setCourse("");
+        setCourse(courseData);
         toast.success("Course Added!");
       } else {
         toast.error(

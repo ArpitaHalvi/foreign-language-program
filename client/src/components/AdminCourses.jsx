@@ -56,7 +56,7 @@ export default function AdminCourses() {
       if (response.ok) {
         setCourses(res_data);
       } else {
-        toast.error("Error while fetching courses.");
+        response.status !== 404 && toast.error("Error while fetching courses.");
       }
     } catch (e) {
       toast.error(e);

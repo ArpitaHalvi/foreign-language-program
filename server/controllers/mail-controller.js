@@ -1,5 +1,8 @@
 const nodemailer = require("nodemailer");
 const PaymentScreenshot = require("../models/paymentss-model");
+const fs = require("fs");
+const path = require("path");
+const { Resend } = require("resend");
 
 const mailSender = async (req, res, next) => {
   try {
@@ -20,33 +23,51 @@ const mailSender = async (req, res, next) => {
     const userEmail = payment.registeredUser.userId.email;
     console.log("User Email:", userEmail);
 
-    const auth = nodemailer.createTransport({
-      service: "gmail",
-      secure: true,
-      port: 465,
-      auth: {
-        user: "arpitaa0311@gmail.com",
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
+    const emailTemplatePath = path.join(
+      __dirname,
+      "../email_templates/payment-approval.html"
+    );
+    const emailHTML = fs.readFileSync(emailTemplatePath, "utf-8");
 
-    const receiver = {
-      from: "arpitaa0311@gmail.com",
+    // const auth = nodemailer.createTransport({
+
+    //   service: "gmail",
+    //   secure: true,
+    //   port: 465,
+    //   auth: {
+    //     user: "arpitaa0311@gmail.com",
+    //     pass: process.env.EMAIL_PASSWORD,
+    //   },
+    // });
+
+    // const receiver = {
+    //   from: "arpitaa0311@gmail.com",
+    //   to: userEmail,
+    //   // to: "arpitahalvi@gmail.com",
+    //   subject: "Payment Approved - Foreign Language Programme",
+    //   // text: "Greetings from Foreign Language Program.\nHello, Your payment has been approved you can go the course page to access your class link.\nThank You! Happy Learning! <br> Foreign Language Program.",
+    //   html: emailHTML,
+    // };
+    // auth.sendMail(receiver, (error, emailResponse) => {
+    //   if (error) {
+    //     console.error("Email sending error: ", error);
+    //     return;
+    //   }
+    //   console.log("EMAIL SENT!");
+    //   // console.log("Email response: ", emailResponse);
+    //   return res.status(200).json({ message: "Email sent successfully!" });
+    // });
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
+    const result = await resend.emails.send({
+      from: "onboarding@resend.dev",
       to: userEmail,
-      // to: "arpitahalvi@gmail.com",
-      subject: "PAYMENT APPROVAL",
-      text: "Greetings from Foreign Language Program.\nHello, Your payment has been approved you can go the course page to access your class link.\nThank You! Happy Learning! <br> Foreign Language Program.",
-      html: "<h1>Greetings from Foreign Language Program.</h1><p>Hello, Your payment has been approved you can go the course page to access your class link.</p><i>Thank You! Happy Learning! <br> Foreign Language Program.</i>",
-    };
-    auth.sendMail(receiver, (error, emailResponse) => {
-      if (error) {
-        console.error("Email sending error: ", error);
-        return;
-      }
-      console.log("EMAIL SENT!");
-      // console.log("Email response: ", emailResponse);
-      return res.status(200).json({ message: "Email sent successfully!" });
+      subject: "Test Email - FLP Payment Confirmation",
+      html: emailHTML,
     });
+    console.log("Result: ", result);
+    return res.status(200).json({ message: "Email sent successfully!" });
   } catch (e) {
     console.error("Error while sending mail: ", e);
     return next(e);

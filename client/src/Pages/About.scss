@@ -459,6 +459,7 @@
   width: 100%;
   @include index.flex-box($flex-dir: column);
   gap: 2rem;
+  // background-color: pink;
   h2 {
     font-size: 3rem;
     color: index.$oxford-blue;
@@ -470,8 +471,9 @@
   }
   .glimpses {
     width: 80%;
-    column-width: 300px;
-    column-gap: 1.5rem;
+    // column-width: 300px;
+    column-gap: 1rem;
+    column-count: 3;
     padding: 1rem;
     border-radius: 5px;
     .glimpse {
@@ -479,7 +481,7 @@
       break-inside: avoid;
       // padding: 1rem;
       margin-bottom: 1.5rem;
-      filter: drop-shadow(5px 5px 5px grey);
+      filter: drop-shadow(5px 5px 5px #8080808e);
       border-radius: 5px;
       position: relative;
       img {
@@ -523,8 +525,17 @@
         }
       }
     }
+    @media (max-width: 1000px) {
+      column-count: 2;
+      .glimpse {
+        margin-bottom: 1rem;
+      }
+    }
     @media (max-width: 468px) {
       width: 100%;
+      .glimpse h6 {
+        font-size: 1rem;
+      }
     }
   }
 }

@@ -47,6 +47,11 @@ export default function Login() {
         toast.error(
           res_data.extraDetails ? res_data.extraDetails : res_data.message
         );
+        if (response.status === 404) {
+          setTimeout(() => {
+            navigate("/signup");
+          }, 1500);
+        }
       }
     } catch (err) {
       toast.error("Error while logging In. Please Try again later!");

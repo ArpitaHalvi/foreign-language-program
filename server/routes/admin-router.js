@@ -154,7 +154,7 @@ router
   .route("/report/:id/delete")
   .delete(authMiddleware, adminMiddleware, deleteReport);
 
-router.route("/syllabus").get(authMiddleware, fetchSyllabus);
+router.route("/syllabus").get(fetchSyllabus);
 router.route("/syllabus").post(
   authMiddleware,
   adminMiddleware,

@@ -88,7 +88,7 @@
     a {
       @include index.flex-box;
       gap: 0.5rem;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       background-color: white;
       background-color: index.$oxford-blue;
       border-radius: 50px;
@@ -97,7 +97,7 @@
       border: 2px solid transparent;
       transition: all 0.5s ease-in-out;
       .dbl-right {
-        font-size: 2rem;
+        font-size: 1.5rem;
       }
       &:hover {
         background-color: transparent;
