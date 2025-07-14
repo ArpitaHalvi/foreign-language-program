@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../store/auth";
 import { Close, Edit, FormatQuote } from "@mui/icons-material";
 import { toast } from "react-toastify";
+import { SlideInOnScroll } from "./SlideInOnScroll";
 
 const sampleQuote =
   "Learning a new language is not just about words. it's about opening doors to new worlds.";
@@ -39,7 +40,7 @@ export default function EditorsDesk() {
         </div>
       )}
       <h2>From the Editor&apos;s Desk</h2>
-      <div className="editor-quote">
+      {/* <div className="editor-quote">
         <FormatQuote className="quote-icon" />
         <p>{quote}</p>
         {user && user.isAdmin && (
@@ -47,6 +48,19 @@ export default function EditorsDesk() {
             <Edit className="edit-icon" />
           </button>
         )}
+      </div> */}
+      <div className="editor-quote-container">
+        <SlideInOnScroll>
+          <div className="editor-quote">
+            <FormatQuote className="quote-icon" />
+            <p>{quote}</p>
+            {user && user.isAdmin && (
+              <button className="edit-quote" onClick={() => setShowModal(true)}>
+                <Edit className="edit-icon" />
+              </button>
+            )}
+          </div>
+        </SlideInOnScroll>
       </div>
     </section>
   );
