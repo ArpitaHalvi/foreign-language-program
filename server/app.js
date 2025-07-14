@@ -15,7 +15,7 @@ const feedbackRoutes = require("./routes/feedback-router");
 const adminRoutes = require("./routes/admin-router");
 const mailRoutes = require("./routes/mail-router");
 const url = "mongodb://127.0.0.1:27017/french-web";
-// const URL = process.env.MONGODB_URL;
+const URL = process.env.MONGODB_URL;
 
 // HANDLING CORS POLICY
 const corsOptions = {
@@ -27,7 +27,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 mongoose
-  .connect(url)
+  .connect(URL)
   .then(() => {
     console.log("CONNECTED TO DATABASE SUCCESSFULLY");
     app.listen(port, () => {

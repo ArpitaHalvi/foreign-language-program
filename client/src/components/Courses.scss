@@ -11,14 +11,14 @@
   height: 90vh;
   @include index.flex-box;
   // background: url("/olympiad-bg.svg");
-  background: url("/r-blob.png") center/cover no-repeat;
+  // background: url("/r-blob.png") center/cover no-repeat;
   // background-size: cover;
   .course-details {
     width: 90%;
     height: 100%;
     @include index.flex-box;
     padding: 1rem;
-    // background-color: pink;
+    // background-color: plum;
     @media (max-width: 468px) {
       width: 95%;
     }
@@ -53,99 +53,109 @@
         width: 100%;
         // @include index.flex-box;
         margin: 1%;
-        .course-item {
-          width: 80%;
-          background-color: white;
-          border-radius: 0.5rem;
-          filter: drop-shadow(5px 5px 5px #c2c2c2);
-          // padding: 0 1rem;
-          .course-img {
+      }
+    }
+    .courses {
+      width: 100%;
+      // background-color: pink;
+      @include index.flex-box($justify-content: space-around);
+      // padding: 1rem;
+      .course-item {
+        width: 350px;
+      }
+    }
+    .course-item {
+      width: 80%;
+      // width: 350px;
+      background-color: white;
+      border-radius: 0.5rem;
+      filter: drop-shadow(5px 5px 5px #c2c2c2);
+      // padding: 0 1rem;
+      .course-img {
+        width: 100%;
+        height: 30vh;
+        border-radius: 0.5rem 0.5rem 0 0;
+        font-size: 1.7rem;
+        @include index.flex-box;
+        color: #f4f4f4;
+        background: linear-gradient(index.$lipstick-red);
+        h2 {
+          font-size: 3rem;
+          text-decoration: overline;
+          @media (max-width: 1280px) {
+            font-size: 2.5rem;
+          }
+        }
+      }
+      .course-info {
+        @include index.flex-box($flex-dir: column);
+        // padding: 0.8rem;
+        padding: 0.5rem 1rem;
+        border-top: 1px solid #c2c2c2;
+        .course-data {
+          width: 100%;
+          @include index.flex-box($flex-dir: column);
+          .course-name {
             width: 100%;
-            height: 30vh;
-            border-radius: 0.5rem 0.5rem 0 0;
-            font-size: 1.7rem;
-            @include index.flex-box;
-            color: #f4f4f4;
-            background: linear-gradient(index.$lipstick-red);
-            h2 {
-              font-size: 3rem;
-              text-decoration: overline;
-              @media (max-width: 1280px) {
-                font-size: 2.5rem;
-              }
+            font-size: 1.4rem;
+            text-transform: capitalize;
+            @media (width<=1040px) {
+              font-size: 1.2rem;
             }
           }
-          .course-info {
-            @include index.flex-box($flex-dir: column);
-            // padding: 0.8rem;
-            padding: 0.5rem 1rem;
-            border-top: 1px solid #c2c2c2;
-            .course-data {
-              width: 100%;
-              @include index.flex-box($flex-dir: column);
-              .course-name {
-                width: 100%;
-                font-size: 1.4rem;
-                text-transform: capitalize;
-                @media (width<=1040px) {
-                  font-size: 1.2rem;
-                }
-              }
-              .age-group,
-              .duration {
-                width: 100%;
-                font-size: 1.1rem;
-                display: flex;
-                justify-content: space-between;
-                margin: 4% 0;
-                text-transform: capitalize;
-                @media (width<=1040px) {
-                  font-size: 1.1rem;
-                }
-              }
-              .age-group {
-                @include index.flex-box($justify-content: space-between);
-              }
-              .fee,
-              .mode {
-                background: linear-gradient(to right, black, grey);
-                background-clip: text;
-                color: transparent;
-                font-size: 1.2rem;
-                align-self: first baseline;
-              }
+          .age-group,
+          .duration {
+            width: 100%;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            margin: 4% 0;
+            text-transform: capitalize;
+            @media (width<=1040px) {
+              font-size: 1.1rem;
             }
-            .btn-container {
-              width: 100%;
-              @include index.flex-box($justify-content: space-between);
-              gap: 0.5rem;
-              .join-btn,
-              .show-btn {
-                text-align: center;
-                @include index.join-btn;
-                background: index.$oxford-blue;
-                padding: 0.5rem;
-                color: white;
-                font-size: 1rem;
-                border: 1px solid transparent;
-                transition: all 0.3s ease-in;
-                text-transform: uppercase;
-              }
-              .join-btn {
-                &:hover {
-                  background-color: transparent;
-                  color: index.$oxford-blue;
-                  border-color: index.$oxford-blue;
-                }
-              }
-              .show-btn {
-                background-color: transparent;
-                border: 1px solid index.$oxford-blue;
-                color: index.$oxford-blue;
-                &:hover {
-                  background-color: index.$antiflash-white;
-                }
-              }
+          }
+          .age-group {
+            @include index.flex-box($justify-content: space-between);
+          }
+          .fee,
+          .mode {
+            background: linear-gradient(to right, black, grey);
+            background-clip: text;
+            color: transparent;
+            font-size: 1.2rem;
+            align-self: first baseline;
+          }
+        }
+        .btn-container {
+          width: 100%;
+          @include index.flex-box($justify-content: space-between);
+          gap: 0.5rem;
+          .join-btn,
+          .show-btn {
+            text-align: center;
+            @include index.join-btn;
+            background: index.$oxford-blue;
+            padding: 0.5rem;
+            color: white;
+            font-size: 1rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease-in;
+            text-transform: uppercase;
+          }
+          .join-btn {
+            &:hover {
+              background-color: transparent;
+              color: index.$oxford-blue;
+              border-color: index.$oxford-blue;
+            }
+          }
+          .show-btn {
+            background-color: transparent;
+            border: 1px solid index.$oxford-blue;
+            color: index.$oxford-blue;
+            &:hover {
+              background-color: index.$antiflash-white;
             }
           }
         }
@@ -170,34 +180,49 @@
         @media (max-width: 520px) {
           margin: 0.5% 0.5%;
         }
-        .course-item {
-          height: fit-content;
-          @media (max-width: 480px) {
-            .course-info {
-              .course-data {
-                .course-name {
-                  font-size: 1.1rem;
-                }
-                .age-group {
-                  font-size: 1rem;
-                }
-                .duration {
-                  font-size: 1rem;
-                }
-                .fee,
-                .mode {
-                  font-size: 1rem;
-                }
+      }
+      .course-item {
+        height: fit-content;
+        @media (max-width: 480px) {
+          .course-info {
+            .course-data {
+              .course-name {
+                font-size: 1.1rem;
               }
-              .btn-container {
-                .join-btn,
-                .show-btn {
-                  font-size: 0.9rem;
-                  text-transform: capitalize;
-                }
+              .age-group {
+                font-size: 1rem;
+              }
+              .duration {
+                font-size: 1rem;
+              }
+              .fee,
+              .mode {
+                font-size: 1rem;
+              }
+            }
+            .btn-container {
+              .join-btn,
+              .show-btn {
+                font-size: 0.9rem;
+                text-transform: capitalize;
               }
             }
           }
+        }
+      }
+    }
+  }
+  @media (max-width: 900px) {
+    height: fit-content;
+    .course-details {
+      .courses {
+        flex-direction: column;
+        gap: 2rem;
+        @media (max-width: 400px) {
+          padding: 1rem;
+        }
+        .course-item {
+          width: 320px;
         }
       }
     }

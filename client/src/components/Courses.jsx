@@ -53,40 +53,77 @@ export default function Courses() {
       {/*  data-aos="fade-in" */}
       <section className="course-details">
         {courses.length !== 0 ? (
-          <Slider {...settings}>
-            {courses.map((c) => {
-              return (
-                <div className="course-item" key={c._id}>
-                  <div className="course-img">
-                    <h2>Start Now</h2>
-                  </div>
-                  <div className="course-info">
-                    <div className="course-data">
-                      <h2 className="course-name">{c.title}</h2>
-                      <p className="age-group">
-                        <span>Eligibility - 18+</span>
-                        <span className="fee">Fees - Rs {c.fee}/-</span>
-                      </p>
-                      <p className="duration">Duration - {c.duration}</p>
-                      <p className="mode">Online</p>
+          courses.length === 3 ? (
+            <Slider {...settings}>
+              {courses.map((c) => {
+                return (
+                  <div className="course-item" key={c._id}>
+                    <div className="course-img">
+                      <h2>Start Now</h2>
                     </div>
-                    <div className="btn-container">
-                      <NavLink
-                        to="/register"
-                        className="join-btn"
-                        state={{ title: c.title, courseId: c._id }}
-                      >
-                        Join Now
-                      </NavLink>
-                      <NavLink to={`/courses/${c._id}`} className="show-btn">
-                        Show Details
-                      </NavLink>
+                    <div className="course-info">
+                      <div className="course-data">
+                        <h2 className="course-name">{c.title}</h2>
+                        <p className="age-group">
+                          <span>Eligibility - 18+</span>
+                          <span className="fee">Fees - Rs {c.fee}/-</span>
+                        </p>
+                        <p className="duration">Duration - {c.duration}</p>
+                        <p className="mode">Online</p>
+                      </div>
+                      <div className="btn-container">
+                        <NavLink
+                          to="/register"
+                          className="join-btn"
+                          state={{ title: c.title, courseId: c._id }}
+                        >
+                          Join Now
+                        </NavLink>
+                        <NavLink to={`/courses/${c._id}`} className="show-btn">
+                          Show Details
+                        </NavLink>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </Slider>
+                );
+              })}
+            </Slider>
+          ) : (
+            <div className="courses">
+              {courses.map((c) => {
+                return (
+                  <div className="course-item" key={c._id}>
+                    <div className="course-img">
+                      <h2>Start Now</h2>
+                    </div>
+                    <div className="course-info">
+                      <div className="course-data">
+                        <h2 className="course-name">{c.title}</h2>
+                        <p className="age-group">
+                          <span>Eligibility - 18+</span>
+                          <span className="fee">Fees - Rs {c.fee}/-</span>
+                        </p>
+                        <p className="duration">Duration - {c.duration}</p>
+                        <p className="mode">Online</p>
+                      </div>
+                      <div className="btn-container">
+                        <NavLink
+                          to="/register"
+                          className="join-btn"
+                          state={{ title: c.title, courseId: c._id }}
+                        >
+                          Join Now
+                        </NavLink>
+                        <NavLink to={`/courses/${c._id}`} className="show-btn">
+                          Show Details
+                        </NavLink>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )
         ) : (
           <div className="no-courses">
             <p>No Courses Found.</p>
