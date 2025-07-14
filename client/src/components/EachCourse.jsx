@@ -13,7 +13,7 @@ import PDFViewer from "../components/PDFViewer";
 import baseUrl from "../config";
 
 export default function EachCourse() {
-  const { id } = useParams(); // Get the Id from the route
+  const { id } = useParams();
   const [course, setCourse] = useState(null);
   const [error, setError] = useState("");
   const { user, authorizationToken } = useAuth();
@@ -49,8 +49,8 @@ export default function EachCourse() {
           setSyllabus(data[0].pdfLink);
         }
       } catch (err) {
-        setError(err.message);
-        toast.error("Error while loading the syllabus!");
+        // setError(err.message);
+        // toast.error("Error while loading the syllabus!");
       }
     };
     fetchCourse();
@@ -60,11 +60,13 @@ export default function EachCourse() {
   if (!course) return <StatusPage />;
   return (
     <section className="course-page">
-      <PDFViewer
-        isOpen={openPDF}
-        pdfLink={syllabus}
-        onClose={() => setOpenPDF(false)}
-      />
+      {syllabus && (
+        <PDFViewer
+          isOpen={openPDF}
+          pdfLink={syllabus}
+          onClose={() => setOpenPDF(false)}
+        />
+      )}
       <div className="each-course">
         <div className="course-part">
           <h2>{course.title}</h2>

@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 const mongoose = require("mongoose");
 const errorMiddleware = require("./middlewares/error-middleware");
 const userRoutes = require("./routes/user-router");
@@ -14,7 +14,7 @@ const courseRoutes = require("./routes/course-router");
 const feedbackRoutes = require("./routes/feedback-router");
 const adminRoutes = require("./routes/admin-router");
 const mailRoutes = require("./routes/mail-router");
-const url = "mongodb://127.0.0.1:27017/french-web";
+// const url = "mongodb://127.0.0.1:27017/french-web";
 const URL = process.env.MONGODB_URL;
 
 // HANDLING CORS POLICY

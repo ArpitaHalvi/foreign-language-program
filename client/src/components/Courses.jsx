@@ -18,7 +18,7 @@ export default function Courses() {
         if (res.ok) {
           const data = await res.json();
           setCourses(data);
-          console.log("Data from Courses component: ", data);
+          // console.log("Data from Courses component: ", data);
         }
       } catch (e) {
         setError(e.message);

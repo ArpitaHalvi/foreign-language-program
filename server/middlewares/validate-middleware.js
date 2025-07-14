@@ -6,7 +6,6 @@ const validate = (schema) => async (req, res, next) => {
   try {
     const parseBody = await schema.parseAsync(req.body);
     req.body = parseBody;
-    console.log("Req.body", req.body);
     next();
   } catch (e) {
     // status code 422 - server is unable to process the request because of invalid data.
